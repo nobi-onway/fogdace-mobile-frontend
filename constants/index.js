@@ -1,4 +1,5 @@
 import IMAGES from './images'
+import ANIMATIONS from './animations'
 import { COLORS, SIZES } from './theme'
 
-export { IMAGES, COLORS, SIZES }
+export { ANIMATIONS, IMAGES, COLORS, SIZES }

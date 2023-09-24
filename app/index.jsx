@@ -1,10 +1,13 @@
-import { Image, Text, View } from "react-native";
+import { View } from "react-native";
+import { Banner } from "../components/elements";
+import { Welcome } from "../components/blocks";
 import { IMAGES } from "../constants";
 
 function LandingScreen() {
   return (
     <View>
-      <Image source={IMAGES.banner} />
+      <Banner source={IMAGES.banner} />
+      <Welcome />
     </View>
   );
 }
