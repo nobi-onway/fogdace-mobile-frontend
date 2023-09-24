@@ -1,11 +1,12 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
+import { IMAGES } from "../constants";
 
-function InitialScreen() {
+function LandingScreen() {
   return (
     <View>
-      <Text>Hello React Native!</Text>
+      <Image source={IMAGES.banner} />
     </View>
   );
 }
 
-export default InitialScreen;
+export default LandingScreen;
