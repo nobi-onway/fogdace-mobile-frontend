@@ -28,4 +28,14 @@ const SIZES = {
     mega: 60,
 }
 
-export { COLORS, SIZES }
+const FONTS = {
+    light: "Roboto-Light",
+    lightItalic: "Roboto-LightItalic",
+    regular: "Roboto-Regular",
+    medium: "Roboto-Medium",
+    mediumItalic: "Roboto-MediumItalic",
+    bold: "Roboto-Bold",
+    boldItalic: "Roboto-BoldItalic",
+}
+
+export { COLORS, SIZES, FONTS }

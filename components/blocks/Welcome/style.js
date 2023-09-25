@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
     container: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white,
         position: "absolute",
         top: -25,
-        borderRadius: '50%',
+        borderRadius: SIZES.mega,
         width: SIZES.mega,
         height: SIZES.mega,
     },
@@ -30,15 +30,15 @@ const styles = StyleSheet.create({
     titleWrapper: {
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        width: "100%"
+        width: "100%",
     },
     title: {
-        fontSize: SIZES.xLarge,
-        fontWeight: "bold",
+        fontSize: SIZES.xxLarge,
+        fontFamily: FONTS.bold,
     },
     primaryTitle: {
-        fontSize: SIZES.xxxLarge,
-        fontWeight: "bold",
+        fontSize: SIZES.jumbo,
+        fontFamily: FONTS.bold,
     },
     policyWrapper: {
         justifyContent: "center",
@@ -47,8 +47,9 @@ const styles = StyleSheet.create({
         marginTop: SIZES.small,
     },
     highlight: {
-        fontWeight: "bold",
+        fontFamily: FONTS.bold,
         textDecorationLine: "underline",
+        lineHeight: SIZES.xxLarge,
     }
 })
 

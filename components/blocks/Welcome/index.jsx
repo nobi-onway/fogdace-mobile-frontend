@@ -19,7 +19,7 @@ function Welcome() {
       </View>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>Hey,</Text>
-        <Text style={styles.primaryTitle}>Xin chào</Text>
+        <Text style={[styles.primaryTitle]}>Xin chào</Text>
       </View>
       <View style={{ marginVertical: SIZES.medium }}>
         <LottieView
