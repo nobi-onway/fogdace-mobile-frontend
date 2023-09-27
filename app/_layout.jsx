@@ -1,7 +1,9 @@
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
+import CloseButton from "../components/elements/CloseButton";
+import { SIZES } from "../constants";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,15 +24,7 @@ function DefaultLayout() {
 
   if (!fontsLoaded) return null;
 
-  return (
-    <Stack
-      screenOptions={{
-        title: "",
-        headerShown: false,
-      }}
-      onLayout={onLayoutRootView}
-    ></Stack>
-  );
+  return <Slot onLayout={onLayoutRootView} />;
 }
 
 export default DefaultLayout;

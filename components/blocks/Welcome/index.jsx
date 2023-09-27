@@ -1,21 +1,14 @@
 import { Text, TouchableOpacity, View, Image } from "react-native";
-import { LinkableButton } from "../../elements";
+import { LinkableButton, Logo } from "../../elements";
 import { COLORS, ANIMATIONS, SIZES, IMAGES } from "../../../constants";
 import styles from "./style";
 import LottieView from "lottie-react-native";
-import { useRouter } from "expo-router";
 
-function Welcome() {
-  const router = useRouter();
-
-  const handleNavigateToSignIn = () => {
-    router.push("/sign-in");
-  };
-
+function Welcome({ handleNavigateToSignIn }) {
   return (
     <View style={styles.container}>
       <View style={styles.logoWrapper}>
-        <Image style={styles.logo} resizeMode="contain" source={IMAGES.logo} />
+        <Logo rounded />
       </View>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>Hey,</Text>
@@ -30,10 +23,7 @@ function Welcome() {
           resizeMode="contain"
         />
       </View>
-      <LinkableButton
-        color={COLORS.primary}
-        handlePress={handleNavigateToSignIn}
-      >
+      <LinkableButton handlePress={handleNavigateToSignIn}>
         Đăng nhập bằng tài khoản của FogDace
       </LinkableButton>
       <View style={styles.policyWrapper}>

@@ -5,8 +5,6 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
-        paddingHorizontal: SIZES.xLarge,
-        paddingVertical: SIZES.large,
         position: "relative",
     },
     logoWrapper: {
@@ -15,7 +13,7 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: COLORS.white,
         position: "absolute",
-        top: -25,
+        top: -40,
         borderRadius: SIZES.mega,
         width: SIZES.mega,
         height: SIZES.mega,
