@@ -3,7 +3,7 @@ import { CustomInput, LinkableButton } from "../../elements";
 import { ICONS } from "../../../constants";
 import styles from "./style";
 
-function SignInForm() {
+function SignInForm({ handleNavigateToSignUp }) {
   return (
     <View style={styles.margin_col_jumbo}>
       <View style={styles.margin_col_sm}>
@@ -23,7 +23,11 @@ function SignInForm() {
         </TouchableOpacity>
       </View>
       <LinkableButton style={styles.margin_col_tiny}>Đăng nhập</LinkableButton>
-      <LinkableButton style={styles.margin_col_tiny} type="basic">
+      <LinkableButton
+        handlePress={handleNavigateToSignUp}
+        style={styles.margin_col_tiny}
+        type="basic"
+      >
         Chưa có tài khoản?{" "}
         <Text style={{ textDecorationLine: "underline" }}>Đăng ký</Text>
       </LinkableButton>
