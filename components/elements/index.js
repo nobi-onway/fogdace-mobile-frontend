@@ -3,6 +3,7 @@ import Banner from "./Banner"
 import CloseButton from "./CloseButton";
 import ContentContainer from "./ContentContainer";
 import Logo from "./Logo";
-import CustomInput from "./CustomInput";
+import FormInput from "./FormInput";
+import CheckBox from "./CheckBox";
 
-export { LinkableButton, Banner, CloseButton, ContentContainer, Logo, CustomInput }
+export { LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox }

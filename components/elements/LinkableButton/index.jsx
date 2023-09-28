@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, Button } from "react-native";
 import styles from "./style";
 
 function LinkableButton({

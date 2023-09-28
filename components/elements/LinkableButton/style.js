@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.tiny,
         justifyContent: 'center',
         alignItems: 'center',
+        marginVertical: SIZES.tiny,
         ...types[type],
     }),
     content: (type) => ({

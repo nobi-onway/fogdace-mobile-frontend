@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.xSmall,
         alignItems: 'center',
         flexDirection: 'row',
+        marginVertical: SIZES.small,
     }),
     prefix: {
         marginRight: SIZES.xSmall,
@@ -21,6 +22,11 @@ const styles = StyleSheet.create({
         flex: 1,
         fontFamily: FONTS.regular,
         fontSize: SIZES.medium,
+    },
+    errorMessage: {
+        fontFamily: FONTS.regular,
+        fontSize: SIZES.small,
+        color: COLORS.danger,
     }
 })
 
