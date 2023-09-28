@@ -4,11 +4,18 @@ import { COLORS, ICONS, SIZES } from "../../../constants";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
-function CustomInput({ placeholder, width, height, secure = false, prefix }) {
+function CustomInput({
+  placeholder,
+  width,
+  height,
+  secure = false,
+  prefix,
+  style,
+}) {
   const [isSecure, setIsSecure] = useState(secure);
 
   return (
-    <View style={styles.inputContainer(width, height)}>
+    <View style={[styles.inputContainer(width, height), style]}>
       {prefix && (
         <Ionicons style={styles.prefix} name={prefix} size={SIZES.large} />
       )}

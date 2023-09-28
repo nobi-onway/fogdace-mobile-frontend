@@ -7,10 +7,11 @@ function LinkableButton({
   height,
   children,
   handlePress,
+  style,
 }) {
   return (
     <TouchableOpacity
-      style={styles.container(type, width, height)}
+      style={[styles.container(type, width, height), style]}
       onPress={handlePress}
       disabled={type === "disable"}
     >

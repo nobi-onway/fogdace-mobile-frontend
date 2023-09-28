@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         ...types[type],
     }),
     content: (type) => ({
-        fontSize: SIZES.large,
+        fontSize: SIZES.medium,
         fontWeight: 'bold',
         fontFamily: FONTS.medium,
         color: contentColor[type],

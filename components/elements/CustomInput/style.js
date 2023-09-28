@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { COLORS, FONTS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
-    inputContainer: (width = '100%', height = SIZES.jumbo) => ({
+    inputContainer: (width = '100%', height = 48) => ({
         padding: SIZES.xSmall,
         width: width,
         height: height,
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     }),
     prefix: {
-        marginRight: SIZES.tiny,
+        marginRight: SIZES.xSmall,
     },
     suffix: {
         marginLeft: SIZES.tiny,
