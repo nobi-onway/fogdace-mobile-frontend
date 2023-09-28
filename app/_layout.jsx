@@ -1,9 +1,7 @@
 import { useFonts } from "expo-font";
-import { Slot, Stack } from "expo-router";
+import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
-import CloseButton from "../components/elements/CloseButton";
-import { SIZES } from "../constants";
 
 SplashScreen.preventAutoHideAsync();
 

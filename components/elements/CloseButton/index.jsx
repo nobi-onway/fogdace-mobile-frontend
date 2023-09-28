@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "../../../constants";
+import { COLORS, ICONS } from "../../../constants";
 import { TouchableOpacity } from "react-native";
 
 function CloseButton({ size, handlePress }) {
@@ -13,12 +13,7 @@ function CloseButton({ size, handlePress }) {
       }}
       onPress={handlePress}
     >
-      <Ionicons
-        name="close-outline"
-        color={COLORS.black}
-        size={size}
-        style={{}}
-      />
+      <Ionicons name={ICONS.ionIcon_close} color={COLORS.black} size={size} />
     </TouchableOpacity>
   );
 }
