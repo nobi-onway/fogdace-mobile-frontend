@@ -13,6 +13,10 @@ const COLORS = {
 
     white: '#fff',
     black: '#000',
+    lightBlack: '#4B4B4B',
+
+    gray: '#ecf0f6',
+    lightGray: '#f0f3f8',
 }
 
 const SIZES = {
@@ -28,4 +32,14 @@ const SIZES = {
     mega: 60,
 }
 
-export { COLORS, SIZES }
+const FONTS = {
+    light: "Roboto-Light",
+    lightItalic: "Roboto-LightItalic",
+    regular: "Roboto-Regular",
+    medium: "Roboto-Medium",
+    mediumItalic: "Roboto-MediumItalic",
+    bold: "Roboto-Bold",
+    boldItalic: "Roboto-BoldItalic",
+}
+
+export { COLORS, SIZES, FONTS }
