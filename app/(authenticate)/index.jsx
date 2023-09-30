@@ -1,5 +1,9 @@
 import { View } from "react-native";
-import { Banner, ContentContainer } from "../../components/elements";
+import {
+  Banner,
+  ContentContainer,
+  LinkableButton,
+} from "../../components/elements";
 import { Welcome } from "../../components/blocks";
 import { IMAGES } from "../../constants";
 import { useRouter } from "expo-router";
@@ -13,6 +17,9 @@ function WelcomePage() {
       <ContentContainer>
         <Welcome handleNavigateToSignIn={() => router.push("/sign-in")} />
       </ContentContainer>
+      <LinkableButton handlePress={() => router.push("/feed")}>
+        GO TO USER PAGE
+      </LinkableButton>
     </View>
   );
 }
