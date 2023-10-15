@@ -15,9 +15,17 @@ function SignUpForm({ style }) {
 
   return (
     <View style={style}>
-      <FormInput control={control} type="username" />
-      <FormInput control={control} type="password" />
-      <FormInput control={control} type="confirmPassword" />
+      <FormInput
+        control={control}
+        type="username"
+        placeholder={"Tên đăng nhập"}
+      />
+      <FormInput control={control} type="password" placeholder={"Mật khẩu"} />
+      <FormInput
+        control={control}
+        type="confirmPassword"
+        placeholder={"Nhập lại mật khẩu"}
+      />
       <View style={styles.policyWrapper}>
         <CheckBox
           checked={policyAccepted}

@@ -1,10 +1,13 @@
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { LinkableButton, Logo } from "../../elements";
-import { COLORS, ANIMATIONS, SIZES, IMAGES } from "../../../constants";
+import { ANIMATIONS, SIZES } from "../../../constants";
 import styles from "./style";
 import LottieView from "lottie-react-native";
+import useNavigation from "../../../hooks/useNavigation";
 
-function Welcome({ handleNavigateToSignIn }) {
+function Welcome() {
+  const { go_to_sign_in } = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.logoWrapper}>
@@ -23,13 +26,15 @@ function Welcome({ handleNavigateToSignIn }) {
           resizeMode="contain"
         />
       </View>
-      <LinkableButton handlePress={handleNavigateToSignIn}>
+      <LinkableButton handlePress={go_to_sign_in}>
         Đăng nhập bằng tài khoản của FogDace
       </LinkableButton>
       <View style={styles.policyWrapper}>
         <Text>Bấm đăng nhập có nghĩa là bạn đồng ý</Text>
         <TouchableOpacity>
-          <Text style={styles.highlight}>Các điều khoản sử dụng của Pety</Text>
+          <Text style={styles.highlight}>
+            Các điều khoản sử dụng của FogDace
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

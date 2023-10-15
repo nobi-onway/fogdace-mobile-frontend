@@ -6,20 +6,18 @@ import {
 } from "../../components/elements";
 import { Welcome } from "../../components/blocks";
 import { IMAGES } from "../../constants";
-import { useRouter } from "expo-router";
+import useNavigation from "../../hooks/useNavigation";
 
 function WelcomePage() {
-  const router = useRouter();
+  const { go_to_feed } = useNavigation();
 
   return (
     <View style={{ flex: 1 }}>
       <Banner source={IMAGES.banner} />
       <ContentContainer>
-        <Welcome handleNavigateToSignIn={() => router.push("/sign-in")} />
+        <Welcome />
       </ContentContainer>
-      <LinkableButton handlePress={() => router.push("/feed")}>
-        GO TO USER PAGE
-      </LinkableButton>
+      <LinkableButton handlePress={go_to_feed}>GO TO USER PAGE</LinkableButton>
     </View>
   );
 }

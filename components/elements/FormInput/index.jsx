@@ -39,7 +39,7 @@ const types = {
   }),
 };
 
-function FormInput({ width, height, style, type, control }) {
+function FormInput({ type, control, placeholder }) {
   const [isSecure, setIsSecure] = useState(types[type]?.isSecure);
 
   return (
@@ -52,16 +52,16 @@ function FormInput({ width, height, style, type, control }) {
         field: { onBlur, onChange, value },
         fieldState: { error },
       }) => (
-        <View style={style}>
-          <View style={[styles.inputContainer(width, height)]}>
+        <View>
+          <View style={[styles.inputContainer()]}>
             <Ionicons
               style={styles.prefix}
-              name={types[type]?.icon}
+              name={types[type].icon}
               size={SIZES.large}
             />
             <TextInput
               style={styles.input}
-              placeholder={types[type]?.placeholder}
+              placeholder={placeholder}
               placeholderTextColor={COLORS.lightBlack}
               secureTextEntry={isSecure}
               value={value}
