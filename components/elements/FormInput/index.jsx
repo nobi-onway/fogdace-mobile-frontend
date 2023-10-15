@@ -9,37 +9,39 @@ const types = {
   username: {
     placeholder: "Tài khoản của bạn",
     icon: ICONS.ionIcon_user,
-    rules: { required: "Bạn chưa nhập tên tài khoản của bạn! " },
+    rules: () => ({
+      required: "Bạn chưa nhập tên tài khoản của bạn! ",
+      pattern: {
+        value: /^\S*$/,
+        message: "Tên tài khoản không được để trống",
+      },
+    }),
   },
   password: {
     placeholder: "Mật khẩu",
     icon: ICONS.ionIcon_lock_closed,
     isSecure: true,
-    rules: {
+    rules: () => ({
       required: "Bạn chưa nhập mật khẩu!",
       pattern: {
-        value: /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/,
+        value: /^(?=.*[a-zA-Z])(?=.*\d)(?!\s).{6,}$/,
         message:
-          "Mật khẩu phải có ít nhất 6 ký tự. Gồm cả chữ thường, chữ hoa và số",
+          "Mật khẩu phải có ít nhất 6 ký tự. Gồm cả chữ thường, chữ hoa và số, không chứa khoảng trắng",
       },
-    },
+    }),
   },
-  confirmPassword: (comparedValue) => ({
+  confirmPassword: {
     placeholder: "Nhập lại mật khẩu",
     icon: ICONS.ionIcon_lock_closed,
     isSecure: true,
-    rules: {
+    rules: (validated) => ({
       required: "Bạn chưa nhập lại mật khẩu!",
-      pattern: {
-        value: /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/,
-        message:
-          "Mật khẩu phải có ít nhất 6 ký tự. Gồm cả chữ thường, chữ hoa và số",
-      },
-    },
-  }),
+      validate: () => validated || "Mật khẩu không khớp",
+    }),
+  },
 };
 
-function FormInput({ type, control, placeholder }) {
+function FormInput({ width, height, style, type, control, validated = true }) {
   const [isSecure, setIsSecure] = useState(types[type]?.isSecure);
 
   return (
@@ -47,13 +49,13 @@ function FormInput({ type, control, placeholder }) {
       control={control}
       name={type}
       defaultValue={""}
-      rules={types[type].rules}
+      rules={types[type].rules(validated)}
       render={({
         field: { onBlur, onChange, value },
         fieldState: { error },
       }) => (
-        <View>
-          <View style={[styles.inputContainer()]}>
+        <View style={style}>
+          <View style={[styles.inputContainer(width, height, error)]}>
             <Ionicons
               style={styles.prefix}
               name={types[type].icon}

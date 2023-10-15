@@ -1,16 +1,19 @@
 import { Text, View } from "react-native";
 import { CheckBox, FormInput, LinkableButton } from "../../elements";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./style";
 
 function SignUpForm({ style }) {
-  const { control, handleSubmit, formState } = useForm();
+  const { control, handleSubmit, watch } = useForm();
   const [policyAccepted, setPolicyAccepted] = useState(false);
 
+  const password = watch("password");
+  const confirmPassword = watch("confirmPassword");
+
   const onSubmit = (data) => {
-    console.log(formState);
+    console.log("onSubmit: " + data);
   };
 
   return (
@@ -36,7 +39,7 @@ function SignUpForm({ style }) {
         </Text>
       </View>
       <LinkableButton
-        type={policyAccepted && formState.isValid ? "primary" : "disable"}
+        type={policyAccepted ? "primary" : "disable"}
         handlePress={handleSubmit(onSubmit)}
       >
         Đăng ký

@@ -1,4 +1,5 @@
 const COLORS = {
+    none: 'transparent',
     primary: '#F37022',
     secondary: '#00a480',
     tertiary: '#FDBD41',

@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { CloseButton } from "../../components/elements";
 import { SIZES } from "../../constants";
 import useNavigation from "../../hooks/useNavigation";
+import { TouchableWithoutFeedback } from "react-native";
 
 function AuthenticateLayout() {
   const { go_back } = useNavigation();
