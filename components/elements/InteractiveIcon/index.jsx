@@ -32,7 +32,7 @@ function InteractiveIcon({ type }) {
         style={{ width: 80, height: 80 }}
         source={TYPES[type].source}
         resizeMode="contain"
-        progress={active}
+        progress={active ? 1 : 0}
         loop={false}
       />
     </TouchableOpacity>

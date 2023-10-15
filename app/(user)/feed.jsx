@@ -5,7 +5,7 @@ function Feed() {
   return (
     <View>
       <Text>Feed Page</Text>
-      <InteractiveIcon type="heart" />
+      <InteractiveIcon type="favorite" />
     </View>
   );
 }

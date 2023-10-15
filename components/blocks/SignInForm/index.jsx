@@ -16,12 +16,8 @@ function SignInForm() {
   return (
     <View style={{ marginVertical: SIZES.jumbo }}>
       <View>
-        <FormInput
-          type="username"
-          control={control}
-          placeholder="Nhập tên đăng nhập"
-        />
-        <FormInput type="password" control={control} placeholder="Mật khẩu" />
+        <FormInput type="username" control={control} />
+        <FormInput type="password" control={control} />
         <TouchableOpacity style={{ alignSelf: "flex-end" }}>
           <Text style={styles.forgetPassword}>Quên mật khẩu?</Text>
         </TouchableOpacity>

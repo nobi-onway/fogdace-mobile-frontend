@@ -36,8 +36,6 @@ function StateIcon({ activated, name }) {
   const Icon = types[name].component;
   const color = activated ? types[name].color : COLORS.gray;
 
-  console.log(name);
-
   return (
     <View style={styles.wrapper}>
       <Icon

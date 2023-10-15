@@ -7,6 +7,7 @@ import {
 import { Welcome } from "../../components/blocks";
 import { IMAGES } from "../../constants";
 import useNavigation from "../../hooks/useNavigation";
+import { useRouter } from "expo-router";
 
 function WelcomePage() {
   const { go_to_feed } = useNavigation();

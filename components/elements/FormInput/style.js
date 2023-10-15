@@ -2,10 +2,10 @@ import { StyleSheet } from "react-native";
 import { COLORS, FONTS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
-    inputContainer: (width = '100%', height = 48, error) => ({
+    inputContainer: (error) => ({
         padding: SIZES.xSmall,
-        width: width,
-        height: height,
+        width: '100%',
+        height: 48,
         backgroundColor: COLORS.lightGray,
         borderWidth: 1,
         borderColor: error ? COLORS.danger : COLORS.none,
