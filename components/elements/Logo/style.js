@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
         height: size,
         borderWidth: border ? 2 : 0,
         borderColor: COLORS.gray,
+        margin: SIZES.medium,
     }),
     logo: (size = SIZES.mega) => ({
         width: size * 0.75,

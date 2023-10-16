@@ -3,9 +3,11 @@ import { FormInput, LinkableButton } from "../../elements";
 import styles from "./style";
 import { useForm } from "react-hook-form";
 import { SIZES } from "../../../constants";
+import useNavigation from "../../../hooks/useNavigation";
 
-function SignInForm({ handleNavigateToSignUp }) {
+function SignInForm() {
   const { control, handleSubmit } = useForm();
+  const { go_to_sign_up } = useNavigation();
 
   const onSubmit = () => {
     console.log("onSubmit");
@@ -23,7 +25,7 @@ function SignInForm({ handleNavigateToSignUp }) {
       <LinkableButton handlePress={handleSubmit(onSubmit)}>
         Đăng nhập
       </LinkableButton>
-      <LinkableButton handlePress={handleNavigateToSignUp} type="basic">
+      <LinkableButton handlePress={go_to_sign_up} type="basic">
         Chưa có tài khoản?{" "}
         <Text style={{ textDecorationLine: "underline" }}>Đăng ký</Text>
       </LinkableButton>

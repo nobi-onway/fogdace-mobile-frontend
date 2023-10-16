@@ -18,6 +18,13 @@ const styles = StyleSheet.create({
         lineHeight: SIZES.xLarge,
         color: COLORS.lightBlack,
     },
+    text_bold_sm: {
+        fontFamily: FONTS.bold,
+        fontSize: SIZES.small,
+    },
+    text_color: (color) => ({
+        color: color
+    }),
     margin_col_tiny: {
         marginVertical: SIZES.tiny,
     },

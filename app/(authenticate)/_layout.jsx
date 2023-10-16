@@ -1,16 +1,18 @@
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import { CloseButton } from "../../components/elements";
 import { SIZES } from "../../constants";
+import useNavigation from "../../hooks/useNavigation";
 import { TouchableWithoutFeedback } from "react-native";
 
 function AuthenticateLayout() {
-  const router = useRouter();
+  const { go_back } = useNavigation();
+
   return (
     <Stack
       screenOptions={{
         title: "",
         headerRight: () => (
-          <CloseButton size={SIZES.xxLarge} handlePress={() => router.back()} />
+          <CloseButton size={SIZES.xxLarge} handlePress={go_back} />
         ),
         headerLeft: () => <></>,
         headerShadowVisible: false,
