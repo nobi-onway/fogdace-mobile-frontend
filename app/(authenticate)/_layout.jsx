@@ -1,6 +1,7 @@
 import { Stack, useRouter } from "expo-router";
 import { CloseButton } from "../../components/elements";
 import { SIZES } from "../../constants";
+import { TouchableWithoutFeedback } from "react-native";
 
 function AuthenticateLayout() {
   const router = useRouter();
