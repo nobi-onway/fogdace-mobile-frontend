@@ -23,6 +23,7 @@ function SignUpForm({ style }) {
       <FormInput
         control={control}
         type="confirmPassword"
+        placeholder={"Nhập lại mật khẩu"}
         validated={password === confirmPassword}
       />
       <View style={styles.policyWrapper}>
