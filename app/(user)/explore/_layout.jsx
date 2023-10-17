@@ -1,20 +1,39 @@
 import { Stack, useNavigation } from "expo-router";
 import { CloseButton } from "../../../components/elements";
-import { SIZES } from "../../../constants";
+import { COLORS, FONTS, SIZES } from "../../../constants";
+import { Text, View } from "react-native";
 
 function ExploreLayout() {
-  const { go_back } = useNavigation();
-
   return (
     <Stack
       screenOptions={{
         title: "",
-        headerLeft: () => (
-          <CloseButton size={SIZES.xxLarge} handlePress={go_back} />
-        ),
       }}
     >
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          headerLeft: () => (
+            <View
+              style={{
+                borderBottomColor: COLORS.lightGray,
+                borderBottomWidth: 1,
+                flex: 1,
+                paddingVertical: 8,
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: FONTS.bold,
+                  fontSize: 28,
+                }}
+              >
+                Khám phá
+              </Text>
+            </View>
+          ),
+        }}
+      />
     </Stack>
   );
 }

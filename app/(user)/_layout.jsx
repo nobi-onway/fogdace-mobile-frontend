@@ -23,8 +23,7 @@ function UserLayout() {
               tabBarIcon: ({ focused }) => (
                 <StateIcon activated={focused} name={page} />
               ),
-              title: "",
-              headerShadowVisible: false,
+              headerShown: false,
             }}
           />
         );
