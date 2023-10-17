@@ -12,7 +12,7 @@ const TYPES = {
   },
 };
 
-function InteractiveIcon({ type }) {
+function InteractiveIcon({ type, width = 80, height = 80, scale = 1.0 }) {
   const [active, setActive] = useState(false);
   const iconRef = useRef();
 
@@ -26,10 +26,13 @@ function InteractiveIcon({ type }) {
       onPress={() => {
         setActive(!active);
       }}
+      
     >
       <AnimatedLottieView
         ref={iconRef}
-        style={{ width: 80, height: 80 }}
+        style={{
+          transform: [{ scale }],
+           width, height }}
         source={TYPES[type].source}
         resizeMode="contain"
         progress={active ? 1 : 0}

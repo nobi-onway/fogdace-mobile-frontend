@@ -2,43 +2,18 @@ import { useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
-  FlatList,
   Image,
   Pressable,
-  RefreshControl,
-  Dimensions,
-  Button
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
 import styles from "./style";
 import CarouselSlider from "../../elements/CarouselSlider";
+import { InteractiveIcon, StateIcon } from "../../elements";
+import { COLORS, SIZES } from "../../../constants";
+import Avatar from "../../elements/Avatar";
 
-export default function NewsFeed(){
-    const [refresh, setRefresh] = useState(false);
-    const handleRefreshFeeds = () => {
-        setRefresh(true);
-    
-        setTimeout(() => {
-          setRefresh(false);
-        }, 3000);
-      };
-    return (
-        <View style={styles.container}>
-          <FlatList
-          data={[]}
-          renderItem={({ item }) => <FeedItem data={item} />}
-          keyExtractor={(item) => item.id}
-          refreshControl={
-            <RefreshControl refreshing={refresh} onRefresh={handleRefresh} />
-          }
-        />
-        </View>
-    )
-}
 
-const NewsFeedItem = ({data}) => {
+export default function NewsFeedItem({data}){
   const { id, username, avatar, content, img, likes } = data;
     const [isInteract, setIsInteract] = useState({
       liked: false,
@@ -63,21 +38,14 @@ const NewsFeedItem = ({data}) => {
     <View style={styles.feedWrapper}>
       {/* Header */}
       <View style={styles.row}>
-          <View style={styles.avatarWrapper}>
-            <Image
-              source={{
-                uri: avatar,
-              }}
-              style={styles.avatar}
-            />
-          </View>
+          <Avatar src={avatar} shape="rounded" size="default"/>
+
           <View style={styles.userInfoWrapper}>
             <Text style={styles.username}>{username}</Text>
   
             <View style={{ flexDirection: "row", gap: 10, alignItems: "center" }}>
               <Text style={styles.activityStatus}>2 days ago</Text>
-  
-              <Ionicons name="globe" size={12} color="gray" solid />
+              <StateIcon name="globe" size={12} hasTitle={false} customColor={COLORS.lightBlack}/>
   
               {isInteract.followed ? null : <Pressable
                 onPress={() => handleInteract('follow')}
@@ -88,20 +56,17 @@ const NewsFeedItem = ({data}) => {
                       : "transparent",
                       borderRadius: 50,
                       padding: 2
-                      
                   },
                   styles.wrapperCustom,
                 ]}
-              >
+                >
                 <Text style={styles.followText}>Follow</Text>
-              </Pressable>}
-              
+              </Pressable>}           
             </View>
           </View>
           <View style={styles.threeDotsWrapper}>
-            <Pressable onPress={() => handleSnapPress(0)}>
-              <Text style={styles.threeDots}>...</Text>
-            </Pressable>
+              <StateIcon name="threeDotsHorizontal" hasTitle={false} />
+            
           </View>
         </View>
   
@@ -112,37 +77,25 @@ const NewsFeedItem = ({data}) => {
   
         {/* Image */}
         <View style={styles.imageContainer}> 
-          <CarouselSlider pagination autoplay type="feeds"/>
+          <CarouselSlider pagination autoplay type="feeds" carouselData={img}/>
         </View>
   
         {/* Reactions */}
         <View style={styles.reactionWrapper}>
-          <Ionicons name="heart-sharp" size={15} color="red" solid />
-          <Ionicons name="md-thumbs-up-sharp" size={15} color="blue" solid />
+          <StateIcon name="heart" hasTitle={false} customColor={COLORS.danger} size={SIZES.large}/>
           <Text>{likes} others people reacted to this</Text>
         </View>
   
         {/* Interaction */}
         <View style={styles.interactionWrapper}>
-          <View style={{ flexDirection: "row", gap: 40, alignItems: "center" }}>
-            <Ionicons
-              name="md-heart"
-              size={25}
-              color={isInteract.liked ? "red" : "gray"}
-              solid
-              onPress={() => handleInteract("like")}
-            />
-            <Ionicons name="chatbox-outline" size={23} color="gray" solid />
-            <Ionicons name="ios-share-outline" size={23} color="gray" solid />
+          <View style={styles.interactionRowGap}>
+            <InteractiveIcon type="heart" width={SIZES.xSmall} height={SIZES.xxxLarge} scale={1.5}/>
+            <StateIcon name="comment" hasTitle={false} customColor={COLORS.lightBlack}/>
+          
           </View>
           <View>
-            <Ionicons
-              name="bookmark"
-              size={23}
-              color={isInteract.bookmarked ? "#f7bd00" : "gray"}
-              solid
-              onPress={() => handleInteract("bookmark")}
-            />
+            <InteractiveIcon type="favorite" width={SIZES.xxLarge} height={SIZES.xxLarge} scale={1.5}/>
+
           </View>
         </View>
     </View>

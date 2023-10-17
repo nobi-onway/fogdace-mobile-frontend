@@ -32,10 +32,10 @@ const ITEM_CAROUSEL_WIDTH = WIDTH_FULL * 0.8;
 const TYPE = {
   feeds: {
     title: "feeds",
-    itemWidth: WIDTH,
+    itemWidth: WIDTH_FULL,
     padding: 0,
-    widthImg: WIDTH,
-    heightImg: WIDTH * 0.8
+    widthImg: WIDTH_FULL,
+    heightImg: WIDTH_FULL * 0.8
   },
   default: {
     title: "default",
@@ -54,7 +54,7 @@ export default function CarouselSlider({ pagination = false, autoplay = false, c
   const renderItem = ({ item }) => {
     return (
       <View style={styles.carouselItem(padding, widthImg, heightImg)}>
-        <Image source={{ uri: item.img }} style={styles.image} />
+        <Image source={{ uri: item.URI }} style={styles.image} />
       </View>
     );
   };

@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
         flex: 8,
       },
     username: {
-        fontSize: SIZES.large,
+        fontSize: SIZES.medium,
         fontWeight: FONTS.bold
     },
     activityStatus: {
         fontSize: SIZES.xSmall,
-        color: COLORS.gray,
+        color: COLORS.lightBlack,
       },
       threeDotsWrapper: {
         flex: 1,
@@ -47,6 +47,11 @@ const styles = StyleSheet.create({
       followText: {
         color: COLORS.info,
         fontSize: SIZES.xSmall,
+      },
+      interactionRowGap: {
+        flexDirection: "row", 
+        alignItems: "center", 
+        gap: 10
       },
       reactionWrapper: {
         padding: 8,

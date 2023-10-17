@@ -21,14 +21,15 @@ const styles = StyleSheet.create({
         height: WIDTH_FULL,
       },
       paginationContainer: {
-        paddingTop: SIZES.xSmall,
+        paddingTop: SIZES.tiny,
+        paddingBottom: SIZES.tiny,
       },
       paginationDot: {
         width: SIZES.xSmall,
         height: SIZES.xSmall,
         borderRadius: 5,
-        marginHorizontal: 8,
-        backgroundColor: COLORS.info,
+        marginHorizontal: 5,
+        backgroundColor: COLORS.primary,
       },
       inactivePaginationDot: {
         width: SIZES.xSmall,
