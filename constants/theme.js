@@ -21,6 +21,7 @@ const COLORS = {
 }
 
 const SIZES = {
+    xTiny: 2,
     tiny: 4,
     xSmall: 10,
     small: 12,
