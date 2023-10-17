@@ -1,15 +1,17 @@
 import { useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
-import usePetDictionary from "../../../../hooks/usePetDictionary";
+import { PetDictionaryDetail } from "../../../../components/blocks";
 
 function Detail() {
-  const { pet_info_of } = usePetDictionary();
   const params = useLocalSearchParams();
-  const { id } = params;
+  const info = params;
+  console.log(info);
 
-  const info = pet_info_of(id);
-
-  return <View></View>;
+  return (
+    <View>
+      <PetDictionaryDetail info={info} />
+    </View>
+  );
 }
 
 export default Detail;

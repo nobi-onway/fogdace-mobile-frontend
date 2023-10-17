@@ -8,7 +8,7 @@ function useNavigation() {
     const go_to_sign_up = () => router.push('/sign-up');
     const go_to_feed = () => router.push('/feed');
     const go_to_dictionary_of = (id) => router.push({ pathname: '/explore/dictionary', params: { id: id } });
-    const go_to_dictionary_detail_of = (id) => router.push({ pathname: '/explore/dictionary/detail', params: { id: id } })
+    const go_to_dictionary_detail_of = (info) => router.push({ pathname: '/explore/dictionary/detail', params: { ...info } })
 
     return {
         go_back,

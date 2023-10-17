@@ -13,12 +13,12 @@ import useNavigation from "../../../../hooks/useNavigation";
 import { useState } from "react";
 
 function Dictionary() {
-  const { go_back, go_to_dictionary_with_endpoint } = useNavigation();
-  const { pet_info_of } = usePetDictionary();
+  const { go_back, go_to_dictionary_detail_of } = useNavigation();
+  const { pet_type_info_of } = usePetDictionary();
   const params = useLocalSearchParams();
   const { id } = params;
 
-  const pet_info = pet_info_of(id);
+  const pet_info = pet_type_info_of(id);
   const { type, list } = pet_info;
 
   const [data, setData] = useState(list);
@@ -64,7 +64,7 @@ function Dictionary() {
             renderItem={({ item: info }) => (
               <PetDictionaryCard
                 onPress={() => {
-                  go_to_dictionary_with_endpoint(info.id);
+                  go_to_dictionary_detail_of(info);
                 }}
                 key={info.id}
                 pet={info}
