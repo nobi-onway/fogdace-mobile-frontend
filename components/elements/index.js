@@ -9,5 +9,6 @@ import StateIcon from "./StateIcon";
 import InteractiveIcon from "./InteractiveIcon";
 import SearchBar from "./SearchBar";
 import AnimationView from "./AnimationView";
+import PetDictionaryCard from "./PetDictionaryCard";
 
-export { LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon, SearchBar, AnimationView }
+export { PetDictionaryCard, LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon, SearchBar, AnimationView }

@@ -1,5 +1,4 @@
 import { Text, View } from "react-native";
-import { InteractiveIcon } from "../../components/elements";
 
 function Feed() {
   return (
