@@ -3,8 +3,8 @@ import { COLORS, FONTS, SIZES } from "../../../constants";
 
 const styles = StyleSheet.create({
     container: {
-        width: 120,
-        height: 120,
+        width: 160,
+        height: 160,
         overflow: 'hidden',
         borderRadius: SIZES.medium,
     },
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         fontFamily: FONTS.medium,
         fontSize: SIZES.xLarge,
+        width: "85%",
         bottom: 8,
         left: 8,
     }

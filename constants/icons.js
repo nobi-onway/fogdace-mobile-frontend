@@ -9,5 +9,6 @@ const ionIcon_heart = 'heart-half'
 const fa_cart = 'shopify'
 const ionIcon_menu = 'grid'
 const ionIcon_search = 'search'
+const ionIcon_back = 'chevron-back-outline'
 
-export default { ionIcon_close, ionIcon_user, ionIcon_lock_closed, ionIcon_eye_open, ionIcon_eye_close, fa_home, ionIcon_paw, ionIcon_heart, fa_cart, ionIcon_menu, ionIcon_search }
+export default { ionIcon_close, ionIcon_user, ionIcon_lock_closed, ionIcon_eye_open, ionIcon_eye_close, fa_home, ionIcon_paw, ionIcon_heart, fa_cart, ionIcon_menu, ionIcon_search, ionIcon_back }

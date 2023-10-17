@@ -2,7 +2,16 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS, ICONS } from "../../../constants";
 import { TouchableOpacity } from "react-native";
 
-function CloseButton({ size, handlePress }) {
+const TYPE = {
+  close: {
+    icon: ICONS.ionIcon_close,
+  },
+  back: {
+    icon: ICONS.ionIcon_back,
+  },
+};
+
+function CloseButton({ size, handlePress, type = "close" }) {
   return (
     <TouchableOpacity
       style={{
@@ -13,7 +22,7 @@ function CloseButton({ size, handlePress }) {
       }}
       onPress={handlePress}
     >
-      <Ionicons name={ICONS.ionIcon_close} color={COLORS.black} size={size} />
+      <Ionicons name={TYPE[type].icon} color={COLORS.black} size={size} />
     </TouchableOpacity>
   );
 }
