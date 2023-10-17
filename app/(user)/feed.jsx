@@ -5,7 +5,6 @@ function Feed() {
   return (
     <View>
       <Text>Feed Page</Text>
-      <InteractiveIcon type="favorite" />
     </View>
   );
 }

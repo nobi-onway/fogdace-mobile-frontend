@@ -8,5 +8,6 @@ import CheckBox from "./CheckBox";
 import StateIcon from "./StateIcon";
 import InteractiveIcon from "./InteractiveIcon";
 import SearchBar from "./SearchBar";
+import AnimationView from "./AnimationView";
 
-export { LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon, SearchBar }
+export { LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon, SearchBar, AnimationView }
