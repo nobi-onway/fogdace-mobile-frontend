@@ -8,24 +8,6 @@ import Carousel, { Pagination } from "react-native-snap-carousel";
 
 import styles from "./style";
 
-const carouselData = [
-  {
-    id: "1",
-    content: "Item 1",
-    img: "https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  },
-  {
-    id: "2",
-    content: "Item 2",
-    img: "https://images.unsplash.com/photo-1494256997604-768d1f608cac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1529&q=80",
-  },
-  {
-    id: "3",
-    content: "Item 3",
-    img: "https://images.unsplash.com/photo-1571566882372-1598d88abd90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGNhdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-  },
-];
-
 const WIDTH_FULL = Dimensions.get("window").width
 const ITEM_CAROUSEL_WIDTH = WIDTH_FULL * 0.8;
 
@@ -35,7 +17,7 @@ const TYPE = {
     itemWidth: WIDTH_FULL,
     padding: 0,
     widthImg: WIDTH_FULL,
-    heightImg: WIDTH_FULL * 0.8
+    heightImg: WIDTH_FULL * 1
   },
   default: {
     title: "default",

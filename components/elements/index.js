@@ -7,5 +7,7 @@ import FormInput from "./FormInput";
 import CheckBox from "./CheckBox";
 import StateIcon from "./StateIcon";
 import InteractiveIcon from "./InteractiveIcon";
+import Icon2D from "./Icon2D";
+import Avatar from "./Avatar";
 
-export { LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon }
+export { LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon, Icon2D, Avatar }

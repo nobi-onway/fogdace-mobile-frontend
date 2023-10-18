@@ -6,15 +6,23 @@ import { useEffect, useRef, useState } from "react";
 const TYPES = {
   heart: {
     source: ANIMATIONS.heart,
+    scale: 1.5,
+    width: 24,
+    height: 32
   },
   favorite: {
     source: ANIMATIONS.favorite,
+    scale: 1.5,
+    width: 24,
+    height: 24
   },
 };
 
-function InteractiveIcon({ type, width = 80, height = 80, scale = 1.0 }) {
+function InteractiveIcon({ type }) {
   const [active, setActive] = useState(false);
   const iconRef = useRef();
+
+  const { width, height, scale } = TYPES[type];
 
   useEffect(() => {
     if (!active) return;
