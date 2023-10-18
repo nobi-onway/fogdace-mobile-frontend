@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   feedWrapper: {
+    backgroundColor: 'red',
+    paddingHorizontal: 1,
     marginVertical: SIZES.xSmall,
     backgroundColor: COLORS.white,
     flex: 1,
@@ -13,7 +15,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    padding: SIZES.tiny,
+    paddingHorizontal: SIZES.small,
+    paddingVertical: SIZES.medium
   },
   avatarWrapper: {
     flex: 1,
@@ -51,8 +54,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.small,
   },
   followText: {
-    color: COLORS.info,
+    color: COLORS.black,
     fontSize: SIZES.xSmall,
+    fontWeight: 'bold'
   },
   interactionRowGap: {
     flexDirection: "row",
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   reactionWrapper: {
-    padding: 8,
+    paddingHorizontal: 8,
     borderBottomColor: COLORS.lightGray,
     borderBottomWidth: 1,
     flexDirection: "row",
@@ -74,9 +78,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.tiny,
   },
   followBtn: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.gray,
     borderWidth: 1,
-    borderColor: COLORS.info,
+    borderColor: COLORS.gray,
     borderRadius: 4, 
     paddingHorizontal: 8,
     paddingVertical: 6

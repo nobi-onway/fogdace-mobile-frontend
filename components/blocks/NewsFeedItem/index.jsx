@@ -62,7 +62,7 @@ export default function NewsFeedItem({ data }) {
       {/* Reactions */}
       <View style={styles.reactionWrapper}>
         <Icon2D name="heart" activated="red" />
-        <Text>{likes} others people reacted to this</Text>
+        <Text>{likes} others people reacted</Text>
       </View>
 
       <View style={styles.conentWrapper}>
@@ -70,19 +70,6 @@ export default function NewsFeedItem({ data }) {
           <Text style={styles.username}>{username}</Text>: {content}
         </Text>
       </View>
-
-      {/* Interaction */}
-      {/* <View style={styles.interactionWrapper}>
-          <View style={styles.interactionRowGap}>
-            <InteractiveIcon type="heart" width={SIZES.xSmall} height={SIZES.xxxLarge} scale={1.5}/>
-            <StateIcon name="comment" hasTitle={false} customColor={COLORS.lightBlack}/>
-          
-          </View>
-          <View>
-            <InteractiveIcon type="favorite" width={SIZES.xxLarge} height={SIZES.xxLarge} scale={1.5}/>
-
-          </View>
-        </View> */}
     </View>
   );
 }
