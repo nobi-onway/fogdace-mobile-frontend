@@ -10,5 +10,7 @@ import InteractiveIcon from "./InteractiveIcon";
 import SearchBar from "./SearchBar";
 import AnimationView from "./AnimationView";
 import PetDictionaryCard from "./PetDictionaryCard";
+import Icon2D from "./Icon2D";
+import Avatar from "./Avatar";
 
-export { PetDictionaryCard, LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon, SearchBar, AnimationView }
+export { PetDictionaryCard, SearchBar, AnimationView, LinkableButton, Banner, CloseButton, ContentContainer, Logo, FormInput, CheckBox, StateIcon, InteractiveIcon, Icon2D, Avatar }
