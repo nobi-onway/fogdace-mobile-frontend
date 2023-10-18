@@ -9,15 +9,14 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.medium,
     },
     image: {
-        width: "100%",
-        height: "100%",
+        flex: 1,
     },
     content: {
         position: 'absolute',
         color: COLORS.white,
         fontFamily: FONTS.medium,
         fontSize: SIZES.xLarge,
-        width: "85%",
+        flex: 0.8,
         bottom: 8,
         left: 8,
     }

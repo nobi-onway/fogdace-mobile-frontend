@@ -37,6 +37,8 @@ function Dictionary() {
     setData(searchedList);
   };
 
+  const HAVE_DATA = data.length > 0;
+
   return (
     <ContentContainer>
       <Stack.Screen
@@ -53,7 +55,7 @@ function Dictionary() {
       />
       <SearchBar onSearch={handleSearch} />
       <View>
-        {data.length > 0 ? (
+        {HAVE_DATA ? (
           <FlatList
             keyExtractor={(item) => item.id}
             data={data}

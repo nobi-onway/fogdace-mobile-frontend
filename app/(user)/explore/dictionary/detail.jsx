@@ -5,7 +5,6 @@ import { PetDictionaryDetail } from "../../../../components/blocks";
 function Detail() {
   const params = useLocalSearchParams();
   const info = params;
-  console.log(info);
 
   return (
     <View>
