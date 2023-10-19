@@ -3,8 +3,7 @@ import React from "react";
 import styles from "./style";
 import LottieView from "lottie-react-native";
 import heart from "../../../assets/animations/heart.json";
-import coin from "../../../assets/animations/coin.json";
-import heart2 from "../../../assets/animations/heartButton.json";
+import InteractiveIcon from "../InteractiveIcon";
 
 const types = {
   heart: {
@@ -12,14 +11,14 @@ const types = {
     source: heart,
     description: "Thả Tim Để Lan Tỏa Yêu Thương!",
     textButton: "100 Tim",
-    sourceButton: heart2,
+    sourceButton: "heart",
   },
   diamond: {
     title: "Reward",
     source: heart,
     description: "Rất nhiều phần quà đang chờ bạn đổi thưởng!",
     textButton: "100 Xu",
-    sourceButton: coin,
+    sourceButton: "coin",
   },
 };
 
@@ -38,13 +37,7 @@ function RewardCard({ type = "heart" }) {
       <Text style={styles.title}>{types[type].title}</Text>
       <Text style={styles.description}>{types[type].description}</Text>
       <TouchableOpacity style={styles.button}>
-        <LottieView
-          style={styles.iconButton}
-          source={heart2}
-          autoPlay
-          loop
-          resizeMode="contain"
-        />
+        <InteractiveIcon type={types[type].sourceButton} />
         <Text style={styles.textButton}>{types[type].textButton}</Text>
       </TouchableOpacity>
     </View>

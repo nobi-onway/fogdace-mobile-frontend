@@ -47,10 +47,10 @@ const itemData = [
 ];
 const itemDataBelow = [
   {
-    icon: <SupportItemCard type="heart" />,
+    icon: <SupportItemCard typeIt="heart" />,
   },
   {
-    icon: <SupportItemCard type="favourite" />,
+    icon: <SupportItemCard type="favorite" />,
   },
   {
     icon: <SupportItemCard type="phone" />,

@@ -10,6 +10,12 @@ const TYPES = {
   favorite: {
     source: ANIMATIONS.favorite,
   },
+  phone: {
+    source: ANIMATIONS.phone,
+  },
+  coin: {
+    source: ANIMATIONS.coin,
+  },
 };
 
 function InteractiveIcon({ type }) {
