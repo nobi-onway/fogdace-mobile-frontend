@@ -4,6 +4,7 @@ import SignUpForm from "./SignUpForm";
 import SearchingNotFound from "./SearchingNotFound";
 import PetDictionary from "./PetDictionary";
 import PetDictionaryDetail from "./PetDictionaryDetail";
+import ProductCard from "./ProductCard";
 import PetAddingCategory from "./PetAddingCategory";
 
 export {
@@ -14,4 +15,5 @@ export {
   PetDictionary,
   PetDictionaryDetail,
   PetAddingCategory,
+  ProductCard,
 };
