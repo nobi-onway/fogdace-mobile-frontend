@@ -47,7 +47,7 @@ const itemData = [
 ];
 const itemDataBelow = [
   {
-    icon: <SupportItemCard typeIt="heart" />,
+    icon: <SupportItemCard type="heart" />,
   },
   {
     icon: <SupportItemCard type="favorite" />,
