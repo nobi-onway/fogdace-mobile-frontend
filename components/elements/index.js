@@ -12,5 +12,6 @@ import AnimationView from "./AnimationView";
 import PetDictionaryCard from "./PetDictionaryCard";
 import Icon2D from "./Icon2D";
 import Avatar from "./Avatar";
+import PetKnowledgeCard from "./PetKnowledgeCard";
 
-export { PetDictionaryCard, SearchBar, AnimationView, LinkableButton, Banner, HeaderButton, ContentContainer, Logo, FormInput, CheckBox, TabIcon, InteractiveIcon3D, Icon2D, Avatar }
+export { PetKnowledgeCard, PetDictionaryCard, SearchBar, AnimationView, LinkableButton, Banner, HeaderButton, ContentContainer, Logo, FormInput, CheckBox, TabIcon, InteractiveIcon3D, Icon2D, Avatar }

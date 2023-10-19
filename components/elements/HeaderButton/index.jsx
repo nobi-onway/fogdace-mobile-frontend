@@ -22,7 +22,7 @@ function HeaderButton({ handlePress, type }) {
       }}
       onPress={handlePress}
     >
-      <Ionicons name={TYPE[type].icon} color={COLORS.black} size={32} />
+      <Ionicons name={TYPE[type].icon} color={COLORS.black} size={20} />
     </TouchableOpacity>
   );
 }

@@ -1,7 +1,8 @@
-import { Stack, useNavigation } from "expo-router";
+import { Stack } from "expo-router";
 import { HeaderButton } from "../../../components/elements";
-import { COLORS, FONTS, SIZES } from "../../../constants";
+import { COLORS, FONTS } from "../../../constants";
 import { Text, View } from "react-native";
+import useNavigation from "../../../hooks/useNavigation";
 
 function ExploreLayout() {
   const { go_back } = useNavigation();

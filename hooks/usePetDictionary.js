@@ -1,4 +1,4 @@
-const PET_DATA = [
+const PET_DICTIONARY_DATA = [
     {
         id: "1",
         url: "https://static.chotot.com/storage/chotot-kinhnghiem/c2c/2021/05/fe4be2e2-cho-san-thumb.png",
@@ -51,11 +51,11 @@ const PET_DATA = [
 ];
 
 function usePetDictionary() {
-    const pets = PET_DATA;
+    const pet_dictionary = PET_DICTIONARY_DATA;
 
-    const pet_type_info_of = (id) => pets.find(pet => pet.id === id)
+    const pet_type_info_of = (id) => pet_dictionary.find(pet => pet.id === id)
 
-    return { pets, pet_type_info_of };
+    return { pet_dictionary, pet_type_info_of };
 }
 
 export default usePetDictionary;
