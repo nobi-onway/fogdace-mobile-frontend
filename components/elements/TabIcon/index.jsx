@@ -49,12 +49,10 @@ const types = {
     component: Ionicons,
     icon: ICONS.ionIcon_ellipsis_horizontal_sharp,
     color: COLORS.lightGray,
-
-  }
+  },
 };
 
-
-function StateIcon({ activated, name, size=SIZES.xxLarge, hasTitle=true, customColor=null }) {
+function TabIcon({ activated, name, size = SIZES.xxLarge }) {
   const Icon = types[name].component;
   const color = activated ? types[name].color : COLORS.gray;
 
@@ -63,12 +61,12 @@ function StateIcon({ activated, name, size=SIZES.xxLarge, hasTitle=true, customC
       <Icon
         style={styles.icon}
         name={types[name].icon}
-        color={customColor ? customColor : color}
+        color={color}
         size={size}
       />
-      {hasTitle && <Text style={styles.label(color)}>{name}</Text>}
+      <Text style={styles.label(color)}>{name}</Text>
     </View>
   );
 }
 
-export default StateIcon;
+export default TabIcon;

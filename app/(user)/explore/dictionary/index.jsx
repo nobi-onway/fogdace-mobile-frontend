@@ -1,25 +1,23 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, View } from "react-native";
 import {
-  CloseButton,
   ContentContainer,
   PetDictionaryCard,
   SearchBar,
 } from "../../../../components/elements";
 import { SearchingNotFound } from "../../../../components/blocks";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import usePetDictionary from "../../../../hooks/usePetDictionary";
-import { SIZES } from "../../../../constants";
 import useNavigation from "../../../../hooks/useNavigation";
 import { useState } from "react";
 
 function Dictionary() {
-  const { go_back, go_to_dictionary_detail_of } = useNavigation();
+  const { go_to_dictionary_detail_of } = useNavigation();
   const { pet_type_info_of } = usePetDictionary();
   const params = useLocalSearchParams();
   const { id } = params;
 
   const pet_info = pet_type_info_of(id);
-  const { type, list } = pet_info;
+  const { list } = pet_info;
 
   const [data, setData] = useState(list);
 
@@ -41,18 +39,6 @@ function Dictionary() {
 
   return (
     <ContentContainer>
-      <Stack.Screen
-        options={{
-          title: type,
-          headerLeft: () => (
-            <CloseButton
-              size={SIZES.xLarge}
-              type="back"
-              handlePress={go_back}
-            />
-          ),
-        }}
-      />
       <SearchBar onSearch={handleSearch} />
       <View>
         {HAVE_DATA ? (

@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { StateIcon } from "../../components/elements";
+import { TabIcon } from "../../components/elements";
 
 const tabs = [
   { page: "feed", name: "Bảng tin" },
@@ -21,7 +21,7 @@ function UserLayout() {
             options={{
               tabBarShowLabel: false,
               tabBarIcon: ({ focused }) => (
-                <StateIcon activated={focused} name={page} />
+                <TabIcon activated={focused} name={page} />
               ),
               headerShown: false,
             }}

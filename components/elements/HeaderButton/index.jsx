@@ -11,7 +11,7 @@ const TYPE = {
   },
 };
 
-function CloseButton({ size, handlePress, type = "close" }) {
+function HeaderButton({ handlePress, type }) {
   return (
     <TouchableOpacity
       style={{
@@ -22,9 +22,9 @@ function CloseButton({ size, handlePress, type = "close" }) {
       }}
       onPress={handlePress}
     >
-      <Ionicons name={TYPE[type].icon} color={COLORS.black} size={size} />
+      <Ionicons name={TYPE[type].icon} color={COLORS.black} size={32} />
     </TouchableOpacity>
   );
 }
 
-export default CloseButton;
+export default HeaderButton;
