@@ -9,9 +9,7 @@ function ExploreLayout() {
     <Stack
       screenOptions={{
         title: "",
-        headerLeft: () => (
-          <HeaderButton size={SIZES.xLarge} type="back" handlePress={go_back} />
-        ),
+        headerLeft: () => <HeaderButton type="back" handlePress={go_back} />,
       }}
     >
       <Stack.Screen
