@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: SIZES.xLarge,
   },
-  conentWrapper: {
+  contentWrapper: {
     paddingHorizontal: 5,
     paddingVertical: 10,
     flexDirection: "row",

@@ -8,17 +8,17 @@ const TYPES = {
     source: ANIMATIONS.heart,
     scale: 1.5,
     width: 24,
-    height: 32
+    height: 32,
   },
   favorite: {
     source: ANIMATIONS.favorite,
     scale: 1.5,
     width: 24,
-    height: 24
+    height: 24,
   },
 };
 
-function InteractiveIcon({ type }) {
+function InteractiveIcon3D({ type }) {
   const [active, setActive] = useState(false);
   const iconRef = useRef();
 
@@ -34,13 +34,14 @@ function InteractiveIcon({ type }) {
       onPress={() => {
         setActive(!active);
       }}
-      
     >
       <AnimatedLottieView
         ref={iconRef}
         style={{
           transform: [{ scale }],
-           width, height }}
+          width,
+          height,
+        }}
         source={TYPES[type].source}
         resizeMode="contain"
         progress={active ? 1 : 0}
@@ -50,4 +51,4 @@ function InteractiveIcon({ type }) {
   );
 }
 
-export default InteractiveIcon;
+export default InteractiveIcon3D;
