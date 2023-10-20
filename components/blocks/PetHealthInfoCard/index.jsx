@@ -1,7 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { MenuOptionCard, SupportItemCard } from '../../elements'
-import { COLORS } from '../../../constants'
+import { View, Text } from 'react-native'
 import Icon3D from '../../elements/Icon3D'
 
 import styles from './style'
