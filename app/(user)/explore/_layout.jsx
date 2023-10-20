@@ -2,15 +2,13 @@ import { Stack } from "expo-router";
 import { HeaderButton } from "../../../components/elements";
 import { COLORS, FONTS } from "../../../constants";
 import { Text, View } from "react-native";
-import useNavigation from "../../../hooks/useNavigation";
 
 function ExploreLayout() {
-  const { go_back } = useNavigation();
   return (
     <Stack
       screenOptions={{
         title: "",
-        headerLeft: () => <HeaderButton type="back" handlePress={go_back} />,
+        headerLeft: () => <HeaderButton type="back" />,
       }}
     >
       <Stack.Screen
