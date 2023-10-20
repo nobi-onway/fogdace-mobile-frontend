@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#30395a",
     borderRadius: 10,
     padding: 15,
-    width: "100%",
+    width: "auto",
+    alignSelf: 'flex-start'
   },
   iconWrapper: {
     width: SIZES.mega,
