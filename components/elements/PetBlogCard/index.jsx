@@ -5,12 +5,16 @@ import Avatar from "../Avatar";
 import Icon2D from "../Icon2D";
 import shortenNumber from "../../../utils/shortenNumber";
 
-export default function PetBlogCard({ blog }) {
+export default function PetBlogCard({ blog, onPress }) {
   const { primary_image_url, title, description, author, views } = blog;
+
+  const handleOnPress = () => {
+    onPress(blog);
+  };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleOnPress}>
         <View style={styles.image_wrapper}>
           <Image
             style={styles.image}
