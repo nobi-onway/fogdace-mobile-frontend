@@ -16,5 +16,6 @@ import PetKnowledgeCard from "./PetKnowledgeCard";
 import MenuOptionCard from "./MenuOption";
 import RewardCard from "./RewardCard";
 import SupportItemCard from "./SupportItemCard";
+import PetBlogCard from "./PetBlogCard";
 
-export { PetKnowledgeCard, InteractiveIcon3D, SearchBar, AnimationView, PetDictionaryCard, Icon2D, Avatar, TabIcon, MenuOptionCard, RewardCard, SupportItemCard, LinkableButton, Banner, HeaderButton, ContentContainer, Logo, FormInput, CheckBox }
+export { PetBlogCard, PetKnowledgeCard, InteractiveIcon3D, SearchBar, AnimationView, PetDictionaryCard, Icon2D, Avatar, TabIcon, MenuOptionCard, RewardCard, SupportItemCard, LinkableButton, Banner, HeaderButton, ContentContainer, Logo, FormInput, CheckBox }
