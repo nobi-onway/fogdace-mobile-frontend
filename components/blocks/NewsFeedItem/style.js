@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: SIZES.small,
-    paddingVertical: SIZES.medium
+    paddingVertical: SIZES.medium,
+    gap: 8,
   },
   avatarWrapper: {
     flex: 1,
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     width: SIZES.xxxLarge,
     height: SIZES.xxxLarge,
     borderRadius: ROUNDED.full,
+
   },
   userInfoWrapper: {
     flex: 8,
