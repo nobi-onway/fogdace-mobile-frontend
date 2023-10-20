@@ -1,26 +1,28 @@
-import { Image, Text, TouchableOpacity } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import styles from "./style";
 
 function PetKnowledgeCard({ pet, onPress }) {
   if (!pet) return null;
 
-  const { url, type, id } = pet;
+  const { url, info_about, id } = pet;
 
   const handleOnPress = () => {
     onPress(id);
   };
 
   return (
-    <TouchableOpacity onPress={handleOnPress} style={styles.container}>
-      <Image
-        style={styles.image}
-        resizeMode="cover"
-        source={{
-          uri: url,
-        }}
-      />
-      <Text style={styles.content}>{type}</Text>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={handleOnPress} style={styles.image_container}>
+        <Image
+          style={styles.image}
+          resizeMode="cover"
+          source={{
+            uri: url,
+          }}
+        />
+      </TouchableOpacity>
+      <Text style={styles.content}>{info_about}</Text>
+    </View>
   );
 }
 

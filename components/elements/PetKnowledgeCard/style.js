@@ -4,6 +4,10 @@ import { COLORS, FONTS, SIZES } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
         width: 160,
+        height: 'auto'
+    },
+    image_container: {
+        width: 160,
         height: 160,
         overflow: 'hidden',
         borderRadius: SIZES.medium,
@@ -12,9 +16,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     content: {
-        color: COLORS.white,
+        marginTop: 4,
+        color: COLORS.lightBlack,
         fontFamily: FONTS.medium,
-        fontSize: SIZES.xLarge,
+        fontSize: SIZES.small,
     }
 })
 
