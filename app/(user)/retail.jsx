@@ -1,11 +1,17 @@
-import { Text, View } from "react-native";
+import { Text, View, FlatList } from "react-native";
 import { ProductCard } from "../../components/blocks";
+import PetHealthInfoCard from "../../components/blocks/PetHealthInfoCard";
+import { PET_HEALTH_INFO } from "../../fakeData/petHealthInfo";
 
 function Retail() {
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <Text>Retail page</Text>
       <ProductCard />
+
+      <FlatList data={PET_HEALTH_INFO} renderItem={({item}) => <PetHealthInfoCard type={item.type} mainInfo={item.mainInfo} subInfo={item.subInfo}/>} keyExtractor={item => item.id} horizontal/>
+
+    
     </View>
   );
 }
