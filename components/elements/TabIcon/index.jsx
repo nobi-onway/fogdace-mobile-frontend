@@ -30,9 +30,29 @@ const types = {
     icon: ICONS.ionIcon_menu,
     color: COLORS.info,
   },
+  globe: {
+    component: Ionicons,
+    icon: ICONS.ionIcon_globe,
+    color: COLORS.lightGray,
+  },
+  comment: {
+    component: Ionicons,
+    icon: ICONS.ionIcon_comment,
+    color: COLORS.lightGray,
+  },
+  heart: {
+    component: Ionicons,
+    icon: ICONS.ionIcon_heart_full,
+    color: COLORS.lightGray,
+  },
+  threeDotsHorizontal: {
+    component: Ionicons,
+    icon: ICONS.ionIcon_ellipsis_horizontal_sharp,
+    color: COLORS.lightGray,
+  },
 };
 
-function StateIcon({ activated, name }) {
+function TabIcon({ activated, name, size = SIZES.xxLarge }) {
   const Icon = types[name].component;
   const color = activated ? types[name].color : COLORS.gray;
 
@@ -42,11 +62,11 @@ function StateIcon({ activated, name }) {
         style={styles.icon}
         name={types[name].icon}
         color={color}
-        size={SIZES.xxLarge}
+        size={size}
       />
       <Text style={styles.label(color)}>{name}</Text>
     </View>
   );
 }
 
-export default StateIcon;
+export default TabIcon;

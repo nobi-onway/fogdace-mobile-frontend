@@ -21,6 +21,7 @@ const COLORS = {
 }
 
 const SIZES = {
+    xTiny: 2,
     tiny: 4,
     xSmall: 10,
     small: 12,
@@ -33,6 +34,15 @@ const SIZES = {
     mega: 60,
 }
 
+const ROUNDED = {
+    tiny: 2,
+    xSmall: 4,
+    small: 10,
+    medium: 14,
+    large: 20,
+    full: 50
+}
+
 const FONTS = {
     light: "Roboto-Light",
     lightItalic: "Roboto-LightItalic",
@@ -43,4 +53,4 @@ const FONTS = {
     boldItalic: "Roboto-BoldItalic",
 }
 
-export { COLORS, SIZES, FONTS }
+export { COLORS, SIZES, FONTS, ROUNDED }

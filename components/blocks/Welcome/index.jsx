@@ -1,8 +1,6 @@
-import { Text, TouchableOpacity, View, Image } from "react-native";
-import { LinkableButton, Logo } from "../../elements";
-import { ANIMATIONS, SIZES } from "../../../constants";
+import { Text, TouchableOpacity, View } from "react-native";
+import { AnimationView, LinkableButton, Logo } from "../../elements";
 import styles from "./style";
-import LottieView from "lottie-react-native";
 import useNavigation from "../../../hooks/useNavigation";
 
 function Welcome() {
@@ -17,15 +15,7 @@ function Welcome() {
         <Text style={styles.title}>Hey,</Text>
         <Text style={[styles.primaryTitle]}>Xin chào</Text>
       </View>
-      <View style={{ marginVertical: SIZES.medium }}>
-        <LottieView
-          style={{ width: 240, height: 240 }}
-          source={ANIMATIONS.welcome}
-          autoPlay
-          loop
-          resizeMode="contain"
-        />
-      </View>
+      <AnimationView type={"welcome"} />
       <LinkableButton handlePress={go_to_sign_in}>
         Đăng nhập bằng tài khoản của FogDace
       </LinkableButton>

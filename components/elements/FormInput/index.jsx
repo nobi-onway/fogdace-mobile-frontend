@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { Controller } from "react-hook-form";
 
-const types = {
+const TYPE = {
   username: {
     placeholder: "Tài khoản của bạn",
     icon: ICONS.ionIcon_user,
@@ -42,35 +42,35 @@ const types = {
 };
 
 function FormInput({ type, control, validated = true }) {
-  const [isSecure, setIsSecure] = useState(types[type]?.isSecure);
+  const [isSecure, setIsSecure] = useState(TYPE[type]?.isSecure);
 
   return (
     <Controller
       control={control}
       name={type}
       defaultValue={""}
-      rules={types[type].rules(validated)}
+      rules={TYPE[type].rules(validated)}
       render={({
-        field: { onBlur, onChange, value },
+        field: { value, onChange, onBlur },
         fieldState: { error },
       }) => (
         <View>
           <View style={[styles.inputContainer(error)]}>
             <Ionicons
               style={styles.prefix}
-              name={types[type].icon}
+              name={TYPE[type].icon}
               size={SIZES.large}
             />
             <TextInput
               style={styles.input}
-              placeholder={types[type].placeholder}
+              placeholder={TYPE[type].placeholder}
               placeholderTextColor={COLORS.lightBlack}
               secureTextEntry={isSecure}
               value={value}
-              onBlur={onBlur}
               onChangeText={onChange}
+              onBlur={onBlur}
             />
-            {types[type]?.isSecure && (
+            {TYPE[type]?.isSecure && (
               <Ionicons
                 style={styles.suffix}
                 name={

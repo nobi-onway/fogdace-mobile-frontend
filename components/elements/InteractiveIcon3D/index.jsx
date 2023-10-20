@@ -6,9 +6,15 @@ import { useEffect, useRef, useState } from "react";
 const TYPES = {
   heart: {
     source: ANIMATIONS.heart,
+    scale: 1.5,
+    width: 24,
+    height: 32,
   },
   favorite: {
     source: ANIMATIONS.favorite,
+    scale: 1.5,
+    width: 24,
+    height: 24,
   },
   phone: {
     source: ANIMATIONS.phone,
@@ -18,9 +24,11 @@ const TYPES = {
   },
 };
 
-function InteractiveIcon({ type }) {
+function InteractiveIcon3D({ type }) {
   const [active, setActive] = useState(false);
   const iconRef = useRef();
+
+  const { width, height, scale } = TYPES[type];
 
   useEffect(() => {
     if (!active) return;
@@ -35,7 +43,11 @@ function InteractiveIcon({ type }) {
     >
       <AnimatedLottieView
         ref={iconRef}
-        style={{ width: 80, height: 80 }}
+        style={{
+          transform: [{ scale }],
+          width,
+          height,
+        }}
         source={TYPES[type].source}
         resizeMode="contain"
         progress={active ? 1 : 0}
@@ -45,4 +57,4 @@ function InteractiveIcon({ type }) {
   );
 }
 
-export default InteractiveIcon;
+export default InteractiveIcon3D;
