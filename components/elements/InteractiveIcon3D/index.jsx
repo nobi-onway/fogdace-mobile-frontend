@@ -18,9 +18,15 @@ const TYPES = {
   },
   phone: {
     source: ANIMATIONS.phone,
+    scale: 1.5,
+    width: 32,
+    height: 32,
   },
   coin: {
     source: ANIMATIONS.coin,
+    scale: 1.5,
+    width: 24,
+    height: 24,
   },
 };
 

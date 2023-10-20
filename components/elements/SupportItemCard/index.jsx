@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import styles from "./style";
-import InteractiveIcon from "../InteractiveIcon";
+import InteractiveIcon3D from "../InteractiveIcon3D";
 
 const types = {
   heart: {
@@ -17,7 +17,7 @@ const types = {
 function SupportItemCard({ type = "heart" }) {
   return (
     <TouchableOpacity style={styles.container}>
-      <InteractiveIcon type={type} />
+      <InteractiveIcon3D type={type} />
       <View style={styles.textWrapper}>
         <Text style={styles.text}>{types[type].text}</Text>
       </View>

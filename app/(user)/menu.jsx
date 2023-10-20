@@ -1,7 +1,9 @@
 import { View, FlatList } from "react-native";
-import MenuOptionCard from "../../components/elements/MenuOption";
-import RewardCard from "../../components/elements/RewardCard";
-import SupportItemCard from "../../components/elements/SupportItemCard";
+import {
+  MenuOptionCard,
+  RewardCard,
+  SupportItemCard,
+} from "../../components/elements";
 import React from "react";
 const styles = {
   app: {
@@ -27,7 +29,7 @@ const ItemBellow = ({ item }) => {
 function Menu() {
   return (
     <View style={styles.app}>
-      <FlatList data={itemData} numColumns={2} renderItem={Item} />
+      {/* <FlatList data={itemData} numColumns={2} renderItem={Item} /> */}
       <FlatList data={itemDataBelow} renderItem={ItemBellow} />
     </View>
   );
