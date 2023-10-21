@@ -1,4 +1,4 @@
-import { ContentContainer, PetBlogCard } from "../../../components/elements";
+import { ContentContainer } from "../../../components/elements";
 import { PetExploreList } from "../../../components/blocks";
 import usePetDictionary from "../../../hooks/usePetDictionary";
 import useNavigation from "../../../hooks/useNavigation";

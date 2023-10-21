@@ -6,8 +6,14 @@ import PetExploreList from "./PetExploreList";
 import PetDictionaryDetail from "./PetDictionaryDetail";
 import ProductCard from "./ProductCard";
 import PetAddingCategory from "./PetAddingCategory";
+import PetBlogCard from "./PetBlogCard";
+import PetDictionaryCard from "./PetDictionaryCard";
+import PetKnowledgeCard from "./PetKnowledgeCard";
 
 export {
+  PetKnowledgeCard,
+  PetDictionaryCard,
+  PetBlogCard,
   Welcome,
   SignInForm,
   SignUpForm,

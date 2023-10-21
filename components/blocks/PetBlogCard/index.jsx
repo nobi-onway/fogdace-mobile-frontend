@@ -1,9 +1,8 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import styles from "./style";
-import Avatar from "../Avatar";
-import Icon2D from "../Icon2D";
 import shortenNumber from "../../../utils/shortenNumber";
+import { Avatar, Icon2D } from "../../elements";
 
 export default function PetBlogCard({ blog, onPress }) {
   const { primary_image_url, title, description, author, views } = blog;
