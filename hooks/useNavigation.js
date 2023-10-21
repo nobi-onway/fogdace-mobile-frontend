@@ -11,6 +11,7 @@ function useNavigation() {
     const go_to_dictionary_detail_of = (info) => router.push({ pathname: '/explore/dictionary/detail', params: { ...info } })
     const go_to_knowledge_of = (id) => router.push({ pathname: '/explore/knowledge', params: { id: id } });
     const go_to_knowledge_detail_of = (info) => router.push({ pathname: '/explore/knowledge/detail', params: { ...info } })
+    const go_to_trading = () => router.push('/explore/trading')
 
     return {
         go_back,
@@ -20,7 +21,8 @@ function useNavigation() {
         go_to_dictionary_of,
         go_to_dictionary_detail_of,
         go_to_knowledge_of,
-        go_to_knowledge_detail_of
+        go_to_knowledge_detail_of,
+        go_to_trading,
     };
 }
 

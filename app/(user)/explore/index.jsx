@@ -1,5 +1,5 @@
 import { ContentContainer } from "../../../components/elements";
-import { PetExploreList } from "../../../components/blocks";
+import { PetExploreList, PetTrading } from "../../../components/blocks";
 import usePetDictionary from "../../../hooks/usePetDictionary";
 import useNavigation from "../../../hooks/useNavigation";
 import usePetKnowledge from "../../../hooks/usePetKnowledge";
@@ -11,6 +11,7 @@ function Explore() {
 
   return (
     <ContentContainer>
+      <PetTrading />
       <PetExploreList
         pets={pet_knowledge}
         onCardPress={go_to_knowledge_of}
