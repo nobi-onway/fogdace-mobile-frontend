@@ -1,5 +1,5 @@
 import React from 'react'
-import { FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, Feather } from "@expo/vector-icons";
 import { COLORS, ICONS, SIZES } from "../../../constants";
 
 import { View } from 'react-native'
@@ -61,14 +61,18 @@ const types = {
     icon: ICONS.ionIcon_heart_full,
     color: COLORS.danger,
     size: SIZES.xxLarge
-
   },
   threeDotsHorizontal: {
     component: Ionicons,
     icon: ICONS.ionIcon_ellipsis_horizontal_sharp,
     color: COLORS.lightGray,
     size: SIZES.xxLarge
-
+  },
+  productCart: {
+    component: Feather,
+    icon: ICONS.feathure_product_cart,
+    color: COLORS.white,
+    size: SIZES.medium
   }
 };
 
