@@ -1,15 +1,12 @@
 import { Stack } from "expo-router";
 import { HeaderButton } from "../../components/elements";
-import useNavigation from "../../hooks/useNavigation";
 
 function AuthenticateLayout() {
-  const { go_back } = useNavigation();
-
   return (
     <Stack
       screenOptions={{
         title: "",
-        headerRight: () => <HeaderButton handlePress={go_back} type="close" />,
+        headerRight: () => <HeaderButton type="close" />,
         headerLeft: () => <></>,
         headerShadowVisible: false,
       }}

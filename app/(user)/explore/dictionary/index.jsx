@@ -5,7 +5,7 @@ import {
   SearchBar,
 } from "../../../../components/elements";
 import { SearchingNotFound } from "../../../../components/blocks";
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import usePetDictionary from "../../../../hooks/usePetDictionary";
 import useNavigation from "../../../../hooks/useNavigation";
 import { useState } from "react";
@@ -17,7 +17,7 @@ function Dictionary() {
   const { id } = params;
 
   const pet_info = pet_type_info_of(id);
-  const { list } = pet_info;
+  const { list, type } = pet_info;
 
   const [data, setData] = useState(list);
 
@@ -39,6 +39,7 @@ function Dictionary() {
 
   return (
     <ContentContainer>
+      <Stack.Screen options={{ title: type }} />
       <SearchBar onSearch={handleSearch} />
       <View>
         {HAVE_DATA ? (
