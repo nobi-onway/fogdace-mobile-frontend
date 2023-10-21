@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { FONTS, COLORS, SIZES } from "../../../constants";
+import { FONTS } from "../../../constants";
 
 const styles = StyleSheet.create({
   container: {
@@ -7,8 +7,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 20,
-    marginVertical: SIZES.xSmall,
-    backgroundColor: COLORS.white,
+    paddingTop: 200,
   },
   title: {
     fontSize: 27,
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     marginTop: 7,
-    marginBottom:50,
+    marginBottom: 50,
     fontFamily: FONTS.regular,
   },
   image: {

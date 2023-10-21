@@ -5,6 +5,7 @@ import SearchingNotFound from "./SearchingNotFound";
 import PetDictionary from "./PetDictionary";
 import PetDictionaryDetail from "./PetDictionaryDetail";
 import PetAddingCategory from "./PetAddingCategory";
+import PetList from "./PetList";
 
 export {
   Welcome,
@@ -14,4 +15,5 @@ export {
   PetDictionary,
   PetDictionaryDetail,
   PetAddingCategory,
+  PetList,
 };
