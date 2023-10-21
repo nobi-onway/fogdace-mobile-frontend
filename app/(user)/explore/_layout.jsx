@@ -1,17 +1,14 @@
-import { Stack, useNavigation } from "expo-router";
+import { Stack } from "expo-router";
 import { HeaderButton } from "../../../components/elements";
-import { COLORS, FONTS, SIZES } from "../../../constants";
+import { COLORS, FONTS } from "../../../constants";
 import { Text, View } from "react-native";
 
 function ExploreLayout() {
-  const { go_back } = useNavigation();
   return (
     <Stack
       screenOptions={{
         title: "",
-        headerLeft: () => (
-          <HeaderButton size={SIZES.xLarge} type="back" handlePress={go_back} />
-        ),
+        headerLeft: () => <HeaderButton type="back" />,
       }}
     >
       <Stack.Screen

@@ -5,6 +5,7 @@ import { ANIMATIONS, SIZES } from "../../../constants";
 const TYPE = {
   browsing: { source: ANIMATIONS.browsing },
   welcome: { source: ANIMATIONS.welcome },
+  coding_working_on: { source: ANIMATIONS.coding_working_on },
 };
 
 function AnimationView({ type }) {
