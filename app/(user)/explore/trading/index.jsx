@@ -38,9 +38,9 @@ export default function Trading() {
         }}
       >
         {pets_trading.map((pet, index) => (
-          <>
-            <PetIdentifyCard key={`${pet.id} + ${index}`} pet={pet} />
-          </>
+          <View key={`${pet.id} + ${index}`}>
+            <PetIdentifyCard pet={pet} />
+          </View>
         ))}
       </View>
     </ScrollableContentContainer>
