@@ -2,7 +2,7 @@ import Welcome from "./Welcome";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
 import SearchingNotFound from "./SearchingNotFound";
-import PetDictionary from "./PetDictionary";
+import PetExploreList from "./PetExploreList";
 import PetDictionaryDetail from "./PetDictionaryDetail";
 import ProductCard from "./ProductCard";
 import PetAddingCategory from "./PetAddingCategory";
@@ -13,7 +13,7 @@ export {
   SignInForm,
   SignUpForm,
   SearchingNotFound,
-  PetDictionary,
+  PetExploreList,
   PetDictionaryDetail,
   PetAddingCategory,
   ProductCard,

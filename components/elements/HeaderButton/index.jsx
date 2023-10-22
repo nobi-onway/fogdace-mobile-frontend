@@ -1,17 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, ICONS } from "../../../constants";
 import { TouchableOpacity } from "react-native";
+import useHeaderButton from "./useHeaderButton";
 
-const TYPE = {
-  close: {
-    icon: ICONS.ionIcon_close,
-  },
-  back: {
-    icon: ICONS.ionIcon_back,
-  },
-};
+function HeaderButton({ type }) {
+  const HEADER_BUTTON = useHeaderButton();
 
-function HeaderButton({ handlePress, type }) {
+  const props = HEADER_BUTTON[type];
+
   return (
     <TouchableOpacity
       style={{
@@ -20,9 +16,9 @@ function HeaderButton({ handlePress, type }) {
         backgroundColor: COLORS.lightGray,
         borderRadius: 9999,
       }}
-      onPress={handlePress}
+      onPress={props.function}
     >
-      <Ionicons name={TYPE[type].icon} color={COLORS.black} size={32} />
+      <Ionicons name={props.icon} color={COLORS.black} size={20} />
     </TouchableOpacity>
   );
 }
