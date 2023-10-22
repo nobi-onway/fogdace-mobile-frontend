@@ -3,6 +3,7 @@ import { PetExploreList, PetTrading } from "../../../components/blocks";
 import usePetDictionary from "../../../hooks/usePetDictionary";
 import useNavigation from "../../../hooks/useNavigation";
 import usePetKnowledge from "../../../hooks/usePetKnowledge";
+import { SafeAreaView } from "react-native";
 
 function Explore() {
   const { pet_dictionary } = usePetDictionary();

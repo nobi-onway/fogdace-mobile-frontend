@@ -6,11 +6,11 @@ const styles = StyleSheet.create({
         height: 360,
         borderRadius: 16,
         overflow: 'hidden',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     bottom_wrapper: {
         padding: 12,
-        backgroundColor: 'rgba(150, 99, 72, 0.65)',
+        backgroundColor: COLORS.opacityBrown,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import { HeaderButton } from "../../../components/elements";
 import { COLORS, FONTS } from "../../../constants";
-import { Text, View } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
 
 function ExploreLayout() {
   return (

@@ -10,8 +10,10 @@ import PetBlogCard from "./PetBlogCard";
 import PetDictionaryCard from "./PetDictionaryCard";
 import PetKnowledgeCard from "./PetKnowledgeCard";
 import PetTrading from "./PetTrading";
+import PetIdentifyCard from "./PetIdentifyCard";
 
 export {
+  PetIdentifyCard,
   PetTrading,
   PetKnowledgeCard,
   PetDictionaryCard,
