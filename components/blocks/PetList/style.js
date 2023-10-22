@@ -1,19 +1,15 @@
 import { StyleSheet } from "react-native";
 import { FONTS } from "../../../constants";
 
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#f8f9fd",
-    paddingTop: 50,
+    paddingHorizontal: 10
   },
   cover: {
     display: "flex",
-    flexDirection: "row",
     backgroundColor: "#f8f9fd",
-    justifyContent: "center",
-    paddingVertical: 20,
+    marginVertical: 20,
   },
   sectionTitle: {
     fontSize: 15,
@@ -55,7 +51,7 @@ const styles = StyleSheet.create({
     color: "#384059",
     padding: 15,
     fontSize: 17,
-    fontFamily: FONTS.medium
+    fontFamily: FONTS.medium,
   },
   image: {
     width: 70,
