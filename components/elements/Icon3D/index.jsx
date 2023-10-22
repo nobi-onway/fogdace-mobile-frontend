@@ -27,6 +27,42 @@ const TYPES = {
     width: 40,
     height: 40,
   },
+  diamond: {
+    source: ANIMATIONS.diamond,
+    scale: 2.0,
+    width: 40,
+    height: 40,
+  },
+  NFC: {
+    source: ANIMATIONS.NFC,
+    scale: 1.25,
+    width: 24,
+    height: 24,
+  },
+  shopping: {
+    source: ANIMATIONS.shopping,
+    scale: 1.0,
+    width: 20,
+    height: 20,
+  },
+  pet_service: {
+    source: ANIMATIONS.pet_service,
+    scale: 1.25,
+    width: 20,
+    height: 20,
+  },
+  social: {
+    source: ANIMATIONS.social,
+    scale: 1.0,
+    width: 28,
+    height: 28,
+  },
+  emergency: {
+    source: ANIMATIONS.emergency,
+    scale: 1.0,
+    width: 28,
+    height: 28,
+  },
 };
 
 const Icon3D = ({ type, loop = true }) => {
