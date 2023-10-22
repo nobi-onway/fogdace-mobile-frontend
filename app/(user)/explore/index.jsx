@@ -1,9 +1,8 @@
-import { ContentContainer } from "../../../components/elements";
+import { ScrollableContentContainer } from "../../../components/elements";
 import { PetExploreList, PetTrading } from "../../../components/blocks";
 import usePetDictionary from "../../../hooks/usePetDictionary";
 import useNavigation from "../../../hooks/useNavigation";
 import usePetKnowledge from "../../../hooks/usePetKnowledge";
-import { SafeAreaView } from "react-native";
 
 function Explore() {
   const { pet_dictionary } = usePetDictionary();
@@ -11,7 +10,7 @@ function Explore() {
   const { go_to_dictionary_of, go_to_knowledge_of } = useNavigation();
 
   return (
-    <ContentContainer>
+    <ScrollableContentContainer>
       <PetTrading />
       <PetExploreList
         pets={pet_knowledge}
@@ -23,7 +22,7 @@ function Explore() {
         onCardPress={go_to_dictionary_of}
         type={"dictionary"}
       />
-    </ContentContainer>
+    </ScrollableContentContainer>
   );
 }
 
