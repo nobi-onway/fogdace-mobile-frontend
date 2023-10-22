@@ -14,7 +14,17 @@ function useHeaderButton() {
         function: () => go_back(),
     }
 
-    return { close, back };
+    const chat = {
+        icon: ICONS.ionIcon_chat,
+        function: () => { }
+    }
+
+    const search = {
+        icon: ICONS.ionIcon_search,
+        function: () => { }
+    }
+
+    return { close, back, chat, search };
 }
 
 export default useHeaderButton;

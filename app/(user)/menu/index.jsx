@@ -1,10 +1,12 @@
-import { View, FlatList } from "react-native";
+import { View } from "react-native";
 import {
   MenuOptionCard,
   RewardCard,
+  ScrollableContentContainer,
   SupportItemCard,
-} from "../../components/elements";
+} from "../../../components/elements";
 import React from "react";
+import { UserGeneration } from "../../../components/blocks";
 const styles = {
   app: {
     backgroundColor: "#252b47",
@@ -28,10 +30,9 @@ const ItemBellow = ({ item }) => {
 };
 function Menu() {
   return (
-    <View style={styles.app}>
-      {/* <FlatList data={itemData} numColumns={2} renderItem={Item} /> */}
-      <FlatList data={itemDataBelow} renderItem={ItemBellow} />
-    </View>
+    <ScrollableContentContainer>
+      <UserGeneration />
+    </ScrollableContentContainer>
   );
 }
 const itemData = [
