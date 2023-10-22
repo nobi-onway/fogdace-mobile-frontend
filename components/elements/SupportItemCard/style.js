@@ -4,7 +4,7 @@ import { SIZES, FONTS, COLORS } from "../../../constants";
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    padding: 15,
+    marginVertical: 16,
     flex: 1,
   },
   icon_wrapper: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     padding: 8,
     alignItems: "center",
     alignContent: "center",
-    marginRight: 12,
+    marginRight: 16,
   },
   icon: {
     width: 28,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontSize: SIZES.large,
+    fontSize: 16,
     fontFamily: FONTS.bold,
     color: COLORS.black,
   },

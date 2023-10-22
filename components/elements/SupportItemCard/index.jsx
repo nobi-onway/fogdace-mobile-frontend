@@ -14,11 +14,11 @@ const TYPE = {
     text: "Bài viết đã lưu",
   },
   following: {
-    icon: IMAGES.heart_3D,
+    icon: IMAGES.community_3D,
     text: "Đang theo dõi",
   },
   assistance: {
-    icon: IMAGES.heart_3D,
+    icon: IMAGES.QA_3D,
     text: "Trợ giúp",
   },
   setting: {

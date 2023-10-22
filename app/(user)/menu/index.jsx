@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import {
+  RewardCard,
   ScrollableContentContainer,
   SupportItemCard,
 } from "../../../components/elements";
@@ -19,9 +20,11 @@ function Menu() {
   return (
     <ScrollableContentContainer color={COLORS.white}>
       <UserGeneration />
-      <View style>
-        <View></View>
-        <View></View>
+      <View style={{ flexDirection: "row" }}>
+        <View style={{ flex: 0.5 }}>
+          <RewardCard type="diamond" />
+        </View>
+        <View style={{ flex: 0.5 }}></View>
       </View>
       <View>
         {SUPPORT_LIST.map((item, index) => (
