@@ -21,7 +21,10 @@ export default function Trading() {
   const { pets_trading } = usePetTrading();
 
   return (
-    <ScrollableContentContainer color={COLORS.brown}>
+    <ScrollableContentContainer
+      style={{ paddingHorizontal: 0 }}
+      color={COLORS.brown}
+    >
       <Stack.Screen
         options={{
           headerShown: false,

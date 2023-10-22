@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white,
         padding: 8,
         borderRadius: 8,
+        marginVertical: 16,
         ...GLOBAL_STYLE.shadow
     },
     avatar_wrapper: {

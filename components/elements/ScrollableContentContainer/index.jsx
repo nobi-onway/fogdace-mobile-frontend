@@ -6,11 +6,13 @@ import {
 } from "react-native";
 import styles from "./style";
 
-function ScrollableContentContainer({ color, children }) {
+function ScrollableContentContainer({ style, color, children }) {
   return (
-    <SafeAreaView style={styles.container(color)}>
+    <SafeAreaView style={[styles.container(color)]}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <ScrollView>{children}</ScrollView>
+        <ScrollView style={[styles.content_wrapper, style]}>
+          {children}
+        </ScrollView>
       </TouchableWithoutFeedback>
     </SafeAreaView>
   );
