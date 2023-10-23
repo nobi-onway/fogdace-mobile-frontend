@@ -2,7 +2,6 @@ import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
-import { LinkableButton } from "../components/elements";
 
 SplashScreen.preventAutoHideAsync();
 

@@ -1,46 +1,39 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import styles from "./style";
-import { ANIMATIONS } from "../../../constants";
+import { ANIMATIONS, IMAGES } from "../../../constants";
 import InteractiveIcon3D from "../InteractiveIcon3D";
-import AnimatedLottieView from "lottie-react-native";
+import Icon3D from "../Icon3D";
 
-const types = {
-  heart: {
-    title: "Heart",
-    source: ANIMATIONS.heart,
-    description: "Thả Tim Để Lan Tỏa Yêu Thương!",
-    textButton: "100 Tim",
-    sourceButton: "heart",
-  },
+const TYPE = {
   diamond: {
     title: "Reward",
-    source: ANIMATIONS.heart,
+    primary_icon: "diamond",
     description: "Rất nhiều phần quà đang chờ bạn đổi thưởng!",
-    textButton: "100 Xu",
-    sourceButton: "coin",
+    text_button: "100 Xu",
+    button_icon: IMAGES.coin_3D,
   },
 };
 
-function RewardCard({ type = "heart" }) {
+function RewardCard({ type }) {
+  const props = TYPE[type];
+
+  const { title, primary_icon, description, text_button, button_icon } = props;
+
   return (
-    <View style={styles.container}>
-      <View style={styles.viewAbsolute}>
-        <AnimatedLottieView
-          style={styles.icon}
-          source={types[type].source}
-          autoPlay
-          loop
-          resizeMode="contain"
-        />
+    <TouchableOpacity style={styles.container}>
+      <View style={styles.primary_icon_wrapper}>
+        <Icon3D type={primary_icon} />
       </View>
-      <Text style={styles.title}>{types[type].title}</Text>
-      <Text style={styles.description}>{types[type].description}</Text>
-      <TouchableOpacity style={styles.button}>
-        <InteractiveIcon3D type={types[type].sourceButton} />
-        <Text style={styles.textButton}>{types[type].textButton}</Text>
-      </TouchableOpacity>
-    </View>
+      <View style={styles.content_wrapper}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
+        <TouchableOpacity style={styles.button}>
+          <Image style={styles.icon_button} source={button_icon} />
+          <Text style={styles.text_button}>{text_button}</Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
   );
 }
 export default RewardCard;

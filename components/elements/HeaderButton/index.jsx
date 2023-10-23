@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS, ICONS } from "../../../constants";
+import { COLORS } from "../../../constants";
 import { TouchableOpacity } from "react-native";
 import useHeaderButton from "./useHeaderButton";
 

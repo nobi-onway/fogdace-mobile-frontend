@@ -43,6 +43,12 @@ const styles = StyleSheet.create({
     margin_col_jumbo: {
         marginVertical: SIZES.jumbo,
     },
+    shadow: {
+        shadowColor: 'rgba(0, 0, 0, 0.3)',
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+    }
 });
 
 export default styles;
