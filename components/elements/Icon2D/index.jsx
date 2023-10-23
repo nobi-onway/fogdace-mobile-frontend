@@ -1,8 +1,8 @@
 import React from "react";
-import { FontAwesome5, Ionicons, Feather } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, Feather, AntDesign } from "@expo/vector-icons";
 import { COLORS, ICONS, SIZES } from "../../../constants";
 
-import { View } from "react-native";
+import { View, Image } from "react-native";
 
 import styles from "./style";
 
@@ -73,6 +73,25 @@ const types = {
     color: COLORS.white,
     size: SIZES.medium,
   },
+  born:{
+    component: Image,
+    src: ICONS.born_img,
+    size: SIZES.large,
+    icon: ICONS.feather_activity,
+    color: COLORS.white,
+  },
+  pills:{
+    component: FontAwesome5,
+    icon: ICONS.fontAwesome_pills,
+    color: COLORS.white,
+    size: SIZES.medium,
+  },
+  right: {
+    component: AntDesign,
+    icon: ICONS.antDesign_right,
+    color: COLORS.white,
+    size: SIZES.small,
+  }
 };
 
 const Icon2D = ({ activated, name }) => {
@@ -87,6 +106,7 @@ const Icon2D = ({ activated, name }) => {
         name={types[name].icon}
         color={color}
         size={size}
+        source={types[name].src}
       />
     </View>
   );
