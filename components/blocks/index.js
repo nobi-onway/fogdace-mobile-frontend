@@ -11,11 +11,11 @@ import PetDictionaryCard from "./PetDictionaryCard";
 import PetKnowledgeCard from "./PetKnowledgeCard";
 import PetTrading from "./PetTrading";
 import PetIdentifyCard from "./PetIdentifyCard";
-import UserGeneration from "./UserGeneration";
+import UserBriefCard from "./UserBriefCard";
 import PetList from "./PetList";
 
 export {
-  UserGeneration,
+  UserBriefCard,
   PetIdentifyCard,
   PetTrading,
   PetKnowledgeCard,

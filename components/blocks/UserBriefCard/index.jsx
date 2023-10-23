@@ -5,7 +5,7 @@ import { Avatar } from "../../elements";
 import useUser from "../../../hooks/useUser";
 import useNavigation from "../../../hooks/useNavigation";
 
-export default function UserGeneration() {
+export default function UserBriefCard() {
   const { currentUser } = useUser();
   const { go_to_user_profile } = useNavigation();
 

@@ -6,7 +6,7 @@ import {
   SupportItemCard,
 } from "../../../components/elements";
 import React from "react";
-import { UserGeneration } from "../../../components/blocks";
+import { UserBriefCard } from "../../../components/blocks";
 import { COLORS } from "../../../constants";
 
 const SUPPORT_LIST = [
@@ -23,7 +23,7 @@ const OPTION_LEFT_LIST = ["pet_report_lost"];
 function Menu() {
   return (
     <ScrollableContentContainer color={COLORS.white}>
-      <UserGeneration />
+      <UserBriefCard />
       <View style={{ flexDirection: "row", columnGap: 12, marginTop: 40 }}>
         <View style={{ flex: 0.5 }}>
           <RewardCard type="diamond" />
