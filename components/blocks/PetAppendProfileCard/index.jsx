@@ -11,7 +11,7 @@ export default function PetAppendProfileCard() {
 
   return (
     <TouchableOpacity onPress={handleAppendProfile} style={styles.container}>
-      <Image style={styles.image} source={IMAGES.corgi_3D} />
+      <Image style={styles.image} source={IMAGES.cat_3D} />
       <TouchableOpacity
         onPress={handleAppendProfile}
         style={styles.button_wrapper}
