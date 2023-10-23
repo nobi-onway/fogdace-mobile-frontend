@@ -6,6 +6,7 @@ import PetExploreList from "./PetExploreList";
 import PetDictionaryDetail from "./PetDictionaryDetail";
 import ProductCard from "./ProductCard";
 import PetAddingCategory from "./PetAddingCategory";
+import PetList from "./PetList";
 
 export {
   Welcome,
@@ -16,4 +17,5 @@ export {
   PetDictionaryDetail,
   PetAddingCategory,
   ProductCard,
+  PetList,
 };
