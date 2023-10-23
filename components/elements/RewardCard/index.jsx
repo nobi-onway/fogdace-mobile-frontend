@@ -21,7 +21,7 @@ function RewardCard({ type }) {
   const { title, primary_icon, description, text_button, button_icon } = props;
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <View style={styles.primary_icon_wrapper}>
         <Icon3D type={primary_icon} />
       </View>
@@ -33,7 +33,7 @@ function RewardCard({ type }) {
           <Text style={styles.text_button}>{text_button}</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 export default RewardCard;

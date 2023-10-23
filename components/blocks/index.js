@@ -13,8 +13,12 @@ import PetTrading from "./PetTrading";
 import PetIdentifyCard from "./PetIdentifyCard";
 import UserBriefCard from "./UserBriefCard";
 import PetList from "./PetList";
+import PetBriefCard from "./PetBriefCard";
+import PetAppendProfileCard from "./PetAppendProfileCard";
 
 export {
+  PetAppendProfileCard,
+  PetBriefCard,
   UserBriefCard,
   PetIdentifyCard,
   PetTrading,

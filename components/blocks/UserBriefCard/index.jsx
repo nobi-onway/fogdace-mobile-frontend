@@ -19,7 +19,7 @@ export default function UserBriefCard() {
       <View style={styles.info_wrapper}>
         <Text style={styles.name}>{name}</Text>
         <TouchableOpacity onPress={go_to_user_profile}>
-          <Text style={styles.go_to_profile}>Vào trang cá nhân</Text>
+          <Text style={styles.go_to_profile}>Trang cá nhân</Text>
         </TouchableOpacity>
       </View>
     </View>
