@@ -17,5 +17,11 @@ const ionIcon_ellipsis_horizontal_sharp = "ellipsis-horizontal-sharp"
 const feather_product_cart = "shopping-cart"
 const feather_activity = "activity"
 const ionIcon_chat = 'chatbubbles-outline'
+const fontAwesome_pills = "pills"
+const antDesign_right = "right"
 
-export default { ionIcon_chat, feather_activity, ionIcon_close, ionIcon_user, ionIcon_lock_closed, ionIcon_eye_open, ionIcon_eye_close, fa_home, ionIcon_paw, ionIcon_heart, fa_cart, ionIcon_menu, ionIcon_globe, ionIcon_comment, ionIcon_heart_full, ionIcon_ellipsis_horizontal_sharp, ionIcon_search, ionIcon_back, feather_product_cart }
+const born_img = require('../assets/icons/born.png')
+const pills_img = require('../assets/icons/pills.jpg')
+
+
+export default { ionIcon_chat, feather_activity, ionIcon_close, ionIcon_user, ionIcon_lock_closed, ionIcon_eye_open, ionIcon_eye_close, fa_home, ionIcon_paw, ionIcon_heart, fa_cart, ionIcon_menu, ionIcon_globe, ionIcon_comment, ionIcon_heart_full, ionIcon_ellipsis_horizontal_sharp, ionIcon_search, ionIcon_back, feather_product_cart, fontAwesome_pills, antDesign_right, born_img, pills_img }
