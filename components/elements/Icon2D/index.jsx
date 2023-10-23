@@ -79,12 +79,17 @@ const types = {
     size: SIZES.large,
     icon: ICONS.feather_activity,
     color: COLORS.white,
+    height: 35,
+    width: 35
   },
   pills:{
-    component: FontAwesome5,
-    icon: ICONS.fontAwesome_pills,
+    component: Image,
+    src: ICONS.pills_img,
+    size: SIZES.large,
+    icon: ICONS.feather_activity,
     color: COLORS.white,
-    size: SIZES.medium,
+    height: 15,
+    width: 15
   },
   right: {
     component: AntDesign,
@@ -102,7 +107,7 @@ const Icon2D = ({ activated, name }) => {
   return (
     <View style={styles.wrapper}>
       <Icon
-        style={styles.icon}
+        style={styles.icon(types[name].height, types[name].width)}
         name={types[name].icon}
         color={color}
         size={size}

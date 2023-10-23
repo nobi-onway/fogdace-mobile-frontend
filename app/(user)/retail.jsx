@@ -10,7 +10,7 @@ function Retail() {
       <Text>Retail page</Text>
       <ProductCard />
 
-      <PetInfoSectionCard />
+      <PetInfoSectionCard iconName="pills" title="Cân nặng"/>
 
       {/* <FlatList data={PET_HEALTH_INFO} renderItem={({item}) => <PetHealthInfoCard type={item.type} mainInfo={item.mainInfo} subInfo={item.subInfo}/>} keyExtractor={item => item.id} horizontal/> */}
     
