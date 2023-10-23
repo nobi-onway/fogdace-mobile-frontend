@@ -10,6 +10,11 @@ import birthday from '../assets/animations/birthday.json'
 import chemical from '../assets/animations/chemical.json'
 import born from '../assets/animations/born.json'
 import coding_working_on from '../assets/animations/coding_working_on.json'
+import diamond from '../assets/animations/diamond.json'
+import NFC from "../assets/animations/NFC.json"
+import shopping from "../assets/animations/shopping.json"
+import pet_service from "../assets/animations/pet_service.json"
+import social from "../assets/animations/social.json"
+import emergency from "../assets/animations/emergency.json"
 
-
-export default { coding_working_on, welcome, heart, favorite, browsing, phone, fireHeart, coin, ballons, birthday, chemical, born }
+export default { emergency, social, pet_service, shopping, NFC, diamond, coding_working_on, welcome, heart, favorite, browsing, phone, fireHeart, coin, ballons, birthday, chemical, born }

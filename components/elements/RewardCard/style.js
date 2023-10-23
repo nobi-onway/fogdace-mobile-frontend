@@ -1,50 +1,58 @@
 import { StyleSheet } from "react-native";
-import { SIZES, FONTS } from "../../../constants";
+import { SIZES, FONTS, COLORS } from "../../../constants";
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fddf99",
+    backgroundColor: COLORS.danger,
     borderRadius: 10,
-    padding: 15,
-    marginTop: 10,
-    flex: 1,
+    paddingHorizontal: 8,
+    paddingVertical: 16,
+    marginVertical: 16,
   },
-  viewAbsolute: {
-    flex: 1,
+  primary_icon_wrapper: {
     height: 60,
+    top: -30,
+    right: 0,
+    left: 0,
     justifyContent: "center",
     alignItems: "center",
-  },
-  icon: {
-    flex: 1,
     position: "absolute",
-    top: -30,
+  },
+  content_wrapper: {
+    marginTop: 48,
   },
   title: {
     textAlign: "center",
     fontSize: 20,
     fontFamily: FONTS.bold,
+    color: COLORS.lightGray,
   },
   description: {
     textAlign: "center",
-    paddingVertical: 15,
-    fontSize: 15,
+    paddingVertical: 14,
+    fontFamily: FONTS.regular,
+    color: COLORS.lightGray,
+    fontSize: 13,
   },
   button: {
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 4,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    height: 32,
   },
-  iconButton: {
-    width: SIZES.mega,
-    height: SIZES.mega,
+  icon_button: {
+    width: 20,
+    height: 20,
+    marginHorizontal: 4,
   },
-  textButton: {
-    fontSize: 10,
-    color: "#e7a530",
+  text_button: {
+    fontSize: 14,
+    color: COLORS.primary,
     fontFamily: FONTS.bold,
+    textAlign: 'center',
+    marginHorizontal: 4,
   },
 });
 

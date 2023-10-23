@@ -1,35 +1,34 @@
 import { StyleSheet } from "react-native";
-import { SIZES, FONTS } from "../../../constants";
+import { SIZES, FONTS, COLORS } from "../../../constants";
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#30395a",
     flexDirection: "row",
-    padding: 15,
+    marginVertical: 16,
     flex: 1,
   },
-  logoWrapper: {
-    width: SIZES.mega,
-    height: SIZES.mega,
-    borderRadius: 10,
-    padding: 5,
-    backgroundColor: "#1b2038",
-    overflow: "hidden",
-    justifyContent: "center",
+  icon_wrapper: {
+    borderRadius: 8,
+    backgroundColor: COLORS.lightGray,
+    width: 44,
+    height: 44,
+    padding: 8,
     alignItems: "center",
+    alignContent: "center",
+    marginRight: 16,
   },
-  logo: {
-    width: SIZES.jumbo,
-    height: SIZES.jumbo,
+  icon: {
+    width: 28,
+    height: 28,
+    flex: 1
   },
-  textWrapper: {
+  text_wrapper: {
     justifyContent: "center",
-    paddingHorizontal: 30,
   },
   text: {
-    fontSize: SIZES.large,
+    fontSize: 16,
     fontFamily: FONTS.bold,
-    color: "white",
+    color: COLORS.black,
   },
 });
 

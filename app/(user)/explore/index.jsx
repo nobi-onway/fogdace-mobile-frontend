@@ -3,6 +3,7 @@ import { PetExploreList, PetTrading } from "../../../components/blocks";
 import usePetDictionary from "../../../hooks/usePetDictionary";
 import useNavigation from "../../../hooks/useNavigation";
 import usePetKnowledge from "../../../hooks/usePetKnowledge";
+import { COLORS } from "../../../constants";
 
 function Explore() {
   const { pet_dictionary } = usePetDictionary();
@@ -10,7 +11,7 @@ function Explore() {
   const { go_to_dictionary_of, go_to_knowledge_of } = useNavigation();
 
   return (
-    <ScrollableContentContainer>
+    <ScrollableContentContainer color={COLORS.white}>
       <PetTrading />
       <PetExploreList
         pets={pet_knowledge}

@@ -1,14 +1,14 @@
 import { Stack } from "expo-router";
 import { HeaderButton } from "../../../components/elements";
-import { COLORS, FONTS } from "../../../constants";
-import { Text, View } from "react-native";
+import { View, Text } from "react-native";
+import { FONTS } from "../../../constants";
 
-function ExploreLayout() {
+function MenuLayout() {
   return (
     <Stack
       screenOptions={{
         title: "",
-        headerLeft: () => <HeaderButton type="back" />,
+        headerLeft: () => <HeaderButton type={"back"} />,
       }}
     >
       <Stack.Screen
@@ -17,8 +17,6 @@ function ExploreLayout() {
           headerLeft: () => (
             <View
               style={{
-                borderBottomColor: COLORS.lightGray,
-                borderBottomWidth: 1,
                 flex: 1,
                 paddingVertical: 8,
               }}
@@ -29,8 +27,20 @@ function ExploreLayout() {
                   fontSize: 28,
                 }}
               >
-                Khám phá
+                Menu
               </Text>
+            </View>
+          ),
+          headerRight: () => (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                width: 72,
+              }}
+            >
+              <HeaderButton type={"search"} />
+              <HeaderButton type={"chat"} />
             </View>
           ),
         }}
@@ -39,4 +49,4 @@ function ExploreLayout() {
   );
 }
 
-export default ExploreLayout;
+export default MenuLayout;
