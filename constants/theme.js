@@ -21,7 +21,8 @@ const COLORS = {
 
     brown: "rgba(150, 99, 72, 1)",
     opacityBrown: "rgba(150, 99, 72, 0.65)",
-    lightBrown: "#a2654c"
+    lightBrown: "#a2654c",
+    blueGrey: "#E7EAF4"
 }
 
 const SIZES = {

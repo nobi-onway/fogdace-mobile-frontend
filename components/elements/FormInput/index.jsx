@@ -39,11 +39,56 @@ const TYPE = {
       validate: () => validated || "Mật khẩu không khớp",
     }),
   },
+  petName: {
+    placeholder: "Chó Việt",
+    rules: () => ({
+      required: "Nhập tên cho thú cưng! ",
+      pattern: {
+        value: /^\S*$/,
+        message: "Tên thú cưng không được để trống",
+      },
+    }),
+  },
+  petDescription: {
+    placeholder: "Rất thân thiện nhưng cũng rất khùng",
+    rules: () => ({
+      required: "Nhập mô tả cho thú cưng!",
+      pattern: {
+        value: /^\S*$/,
+        message: "Mô tả thú cưng không được để trống",
+      },
+    }),
+  },
+  petWeight: {
+    placeholder: "Nhập vào kg",
+    isKg: true,
+    rules: () => ({
+      required: "Vui lòng thêm cân nặng cho thú cưng!",
+      pattern: {
+        value: /^\S*$/,
+        message: "Cân nặng thú cưng không được để trống",
+      },
+      validate: {
+        isNumber: (value) => {
+          if (isNaN(value)) {
+            return "Cân nặng thú cưng phải là một số";
+          }
+          if(value > 80){
+            return "Cân nặng phải nhỏ hơn hoặc bằng 80 kg";
+          }
+          if(value < 0.1){
+            return "Cân nặng phải lớn hơn hoặc bằng 0.1";
+          }
+          return true;
+        },
+      },
+    }),
+  },
 };
 
 function FormInput({ type, control, validated = true }) {
   const [isSecure, setIsSecure] = useState(TYPE[type]?.isSecure);
-
+  
   return (
     <Controller
       control={control}
@@ -79,6 +124,9 @@ function FormInput({ type, control, validated = true }) {
                 size={SIZES.xLarge}
                 onPress={() => setIsSecure(!isSecure)}
               />
+            )}
+            {TYPE[type]?.isKg && (
+              <Text style={styles.isKg}>Kg</Text>
             )}
           </View>
           {error && <Text style={styles.errorMessage}>{error.message}</Text>}
