@@ -12,6 +12,7 @@ import PetKnowledgeCard from "./PetKnowledgeCard";
 import PetTrading from "./PetTrading";
 import PetIdentifyCard from "./PetIdentifyCard";
 import UserGeneration from "./UserGeneration";
+import PetList from "./PetList";
 
 export {
   UserGeneration,
@@ -28,4 +29,5 @@ export {
   PetDictionaryDetail,
   PetAddingCategory,
   ProductCard,
+  PetList,
 };
