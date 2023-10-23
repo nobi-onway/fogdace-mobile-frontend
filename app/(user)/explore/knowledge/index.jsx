@@ -1,5 +1,5 @@
-import { Dimensions, FlatList, View } from "react-native";
-import { PetBlogCard } from "../../../../components/elements";
+import { FlatList, View } from "react-native";
+import { PetBlogCard } from "../../../../components/blocks";
 import { Stack, useLocalSearchParams } from "expo-router";
 import usePetKnowledge from "../../../../hooks/usePetKnowledge";
 import useNavigation from "../../../../hooks/useNavigation";

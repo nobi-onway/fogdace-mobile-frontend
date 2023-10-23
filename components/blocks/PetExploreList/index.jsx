@@ -1,5 +1,6 @@
 import { FlatList, Text, View } from "react-native";
-import { PetDictionaryCard, PetKnowledgeCard } from "../../elements";
+import PetDictionaryCard from "../PetDictionaryCard";
+import PetKnowledgeCard from "../PetKnowledgeCard";
 import styles from "./style";
 
 const TYPE = {

@@ -16,6 +16,10 @@ const AVATAR_SIZES = {
     width: SIZES.mega,
     height: SIZES.mega,
   },
+  mega: {
+    width: 80,
+    height: 80,
+  },
   small: {
     width: SIZES.xxLarge,
     height: SIZES.xxLarge,

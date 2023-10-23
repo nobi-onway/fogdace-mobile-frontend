@@ -1,10 +1,9 @@
 import { FlatList, View } from "react-native";
+import { ContentContainer, SearchBar } from "../../../../components/elements";
 import {
-  ContentContainer,
+  SearchingNotFound,
   PetDictionaryCard,
-  SearchBar,
-} from "../../../../components/elements";
-import { SearchingNotFound } from "../../../../components/blocks";
+} from "../../../../components/blocks";
 import { Stack, useLocalSearchParams } from "expo-router";
 import usePetDictionary from "../../../../hooks/usePetDictionary";
 import useNavigation from "../../../../hooks/useNavigation";
