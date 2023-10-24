@@ -1,25 +1,41 @@
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import styles from "./style";
-import InteractiveIcon3D from "../InteractiveIcon3D";
+import Icon3D from "../Icon3D";
 
-const types = {
-  heart: {
-    text: "Pety Smart NFC",
+const TYPE = {
+  NFC: {
+    icon: "NFC",
+    text: "FogDace Smart NFC",
   },
-  favorite: {
+  shopping_options: {
+    icon: "shopping",
     text: "Tùy Chọn Mua Hàng",
   },
-  phone: {
+  pet_services: {
+    icon: "pet_service",
     text: "Dịch Vụ Thú Cưng",
+  },
+  videos: {},
+  clubs: {
+    icon: "social",
+    text: "Clubs",
+  },
+  pet_report_lost: {
+    icon: "emergency",
+    text: "Báo mất thú cưng",
   },
 };
 
-function MenuOptionCard({ type = "heart" }) {
+function MenuOptionCard({ type }) {
+  const props = TYPE[type];
+
+  const { icon, text } = props;
+
   return (
     <TouchableOpacity style={styles.container}>
-      <InteractiveIcon3D type={type} />
-      <Text style={styles.text}>{types[type].text}</Text>
+      <Icon3D type={icon} />
+      <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );
 }

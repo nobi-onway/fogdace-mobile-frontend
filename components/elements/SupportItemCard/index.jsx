@@ -1,25 +1,43 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import styles from "./style";
-import InteractiveIcon3D from "../InteractiveIcon3D";
+import Icon3D from "../Icon3D";
+import { IMAGES } from "../../../constants";
 
-const types = {
-  heart: {
+const TYPE = {
+  wish_list: {
+    icon: IMAGES.heart_3D,
     text: "Wishlist của bạn",
   },
-  favorite: {
+  saved_post: {
+    icon: IMAGES.favorite_3D,
     text: "Bài viết đã lưu",
   },
-  phone: {
+  following: {
+    icon: IMAGES.community_3D,
     text: "Đang theo dõi",
   },
+  assistance: {
+    icon: IMAGES.QA_3D,
+    text: "Trợ giúp",
+  },
+  setting: {
+    icon: IMAGES.setting_3D,
+    text: "Cài đặt",
+  },
 };
-function SupportItemCard({ type = "heart" }) {
+function SupportItemCard({ type }) {
+  const props = TYPE[type];
+
+  const { icon, text } = props;
+
   return (
     <TouchableOpacity style={styles.container}>
-      <InteractiveIcon3D type={type} />
-      <View style={styles.textWrapper}>
-        <Text style={styles.text}>{types[type].text}</Text>
+      <View style={styles.icon_wrapper}>
+        <Image resizeMode="cover" style={styles.icon} source={icon} />
+      </View>
+      <View style={styles.text_wrapper}>
+        <Text style={styles.text}>{text}</Text>
       </View>
     </TouchableOpacity>
   );

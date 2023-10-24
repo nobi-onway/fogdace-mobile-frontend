@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { COLORS, FONTS } from "../../../constants";
+import GLOBAL_STYLE from "../../../app/global.style"
 
 const styles = StyleSheet.create({
     container: {
@@ -8,10 +9,7 @@ const styles = StyleSheet.create({
         height: 180,
         flexDirection: 'row',
         padding: 8,
-        shadowColor: 'rgba(0, 0, 0, 0.3)',
-        shadowOffset: { width: 2, height: 2 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
+        ...GLOBAL_STYLE.shadow,
         marginVertical: 8,
     },
     avatar_wrapper: {
