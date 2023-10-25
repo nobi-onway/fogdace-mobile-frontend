@@ -4,7 +4,6 @@ import styles from "./style";
 import { useForm } from "react-hook-form";
 import { SIZES } from "../../../constants";
 import useNavigation from "../../../hooks/useNavigation";
-import { ToggleButton } from "../../elements";
 function SignInForm() {
   const { control, handleSubmit } = useForm();
   const { go_to_sign_up } = useNavigation();
@@ -18,7 +17,6 @@ function SignInForm() {
       <View>
         <FormInput type="username" control={control} />
         <FormInput type="password" control={control} />
-        <ToggleButton/>
         <TouchableOpacity style={{ alignSelf: "flex-end" }}>
           <Text style={styles.forgetPassword}>Quên mật khẩu?</Text>
         </TouchableOpacity>

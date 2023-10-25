@@ -12,7 +12,7 @@ import styles from './style'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { Ionicons } from '@expo/vector-icons'
 import { ICONS, SIZES, FONTS, COLORS } from '../../../constants'
-import { getCurrentDate } from '../../../utils/getCurrentDate'
+import { getCurrentDate, getCurrentFormattedDate } from '../../../utils/getCurrentDate'
 
 const FormInputDate = () => {
 
@@ -68,9 +68,7 @@ const FormInputDate = () => {
             color={COLORS.danger}
           />
           <Text style={styles.txt}>
-
-            {`${date.getFullYear()}-${date.getMonth() + 1
-              }-${date.getDate()}`}
+            {getCurrentFormattedDate(date)}
           </Text>
         </View>
         {Platform.OS !== 'ios' && show && renderDatePicker()}
