@@ -12,10 +12,11 @@ import styles from './style'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { Ionicons } from '@expo/vector-icons'
 import { ICONS, SIZES, FONTS, COLORS } from '../../../constants'
+import { getCurrentDate } from '../../../utils/getCurrentDate'
 
 const FormInputDate = () => {
 
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(getCurrentDate())
   const [show, setShow] = useState(false)
 
   const onChange = (e, selectedDate) => {
