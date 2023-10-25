@@ -2,7 +2,6 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { FIREBASE_AUTH } from "../config/firebase";
 import useNavigation from "./useNavigation";
 import { userStore } from "../stores/userStore";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function useAuth() {
     const { go_to_sign_in, go_to_feed } = useNavigation()
@@ -14,17 +13,15 @@ function useAuth() {
                 setAuthentication(null)
                 return
             }
-
             const { uid } = authenticateUser;
             const { refreshToken, accessToken } = authenticateUser.stsTokenManager
-
             setAuthentication({ uid, refreshToken, accessToken })
         })
     }
 
     const sign_in_with_email = async (email, password) => {
         await signInWithEmailAndPassword(FIREBASE_AUTH, email, password)
-            .then(userCredential => { })
+            .then(userCredential => { go_to_feed() })
             .catch(err => { alert('login fail') })
     }
 

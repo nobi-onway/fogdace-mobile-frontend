@@ -1,14 +1,12 @@
 import { Stack } from "expo-router";
 import { HeaderButton } from "../../components/elements";
-import { useEffect, useLayoutEffect } from "react";
-import useAuth from "../../hooks/useAuth";
+import { useLayoutEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { userStore } from "../../stores/userStore";
 import useNavigation from "../../hooks/useNavigation";
 
 function AuthenticateLayout() {
-  const { subscribe_auth_state_changed } = useAuth();
-  const { authentication, setAuthentication } = userStore();
+  const { setAuthentication } = userStore();
   const { go_to_feed } = useNavigation();
 
   useLayoutEffect(() => {
@@ -22,12 +20,6 @@ function AuthenticateLayout() {
       setAuthentication(authentication);
       go_to_feed();
     });
-  }, [authentication]);
-
-  useEffect(() => {
-    const unsubscribe_auth_state_changed = subscribe_auth_state_changed();
-
-    return () => unsubscribe_auth_state_changed();
   }, []);
 
   return (

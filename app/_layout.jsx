@@ -1,7 +1,8 @@
 import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import useAuth from "../hooks/useAuth";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -15,6 +16,13 @@ function DefaultLayout() {
     "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
     "Roboto-BoldItalic": require("../assets/fonts/Roboto-BoldItalic.ttf"),
   });
+  const { subscribe_auth_state_changed } = useAuth();
+
+  useEffect(() => {
+    const unsubscribe_auth_state_changed = subscribe_auth_state_changed();
+
+    return () => unsubscribe_auth_state_changed();
+  }, []);
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) await SplashScreen.hideAsync();
