@@ -4,12 +4,13 @@ import { FONTS, SIZES, COLORS, ROUNDED } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
       height: 280,
-      width: "50%",
+      flex: 1,
       paddingHorizontal: 10,
       backgroundColor: COLORS.white,
       borderRadius: 8,
       flexDirection: "column",
       gap: 8,
+      margin: 5
     },
   
     imageWrapper: {

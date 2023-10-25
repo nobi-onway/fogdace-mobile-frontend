@@ -17,14 +17,14 @@ const TYPE = {
     itemWidth: WIDTH_FULL,
     padding: 0,
     widthImg: WIDTH_FULL,
-    heightImg: WIDTH_FULL * 1
+    heightImg: WIDTH_FULL,
+
   },
   default: {
     title: "default",
-    itemWidth: ITEM_CAROUSEL_WIDTH,
-    padding: 20,
-    widthImg: 350,
-    heightImg: 200
+    itemWidth: ITEM_CAROUSEL_WIDTH * 1.2,
+    heightImg: 200,
+
   },
 };
 
