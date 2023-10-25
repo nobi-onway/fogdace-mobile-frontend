@@ -1,22 +1,43 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "@firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "@firebase/auth";
 import { FIREBASE_AUTH } from "../config/firebase";
 import useNavigation from "./useNavigation";
+import { userStore } from "../stores/userStore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function useAuth() {
     const { go_to_sign_in, go_to_feed } = useNavigation()
+    const { setAuthentication } = userStore();
+
+    const subscribe_auth_state_changed = () => {
+        return onAuthStateChanged(FIREBASE_AUTH, async authenticateUser => {
+            if (!authenticateUser) {
+                setAuthentication(null)
+                return
+            }
+
+            const { uid } = authenticateUser;
+            const { refreshToken, accessToken } = authenticateUser.stsTokenManager
+
+            setAuthentication({ uid, refreshToken, accessToken })
+        })
+    }
 
     const sign_in_with_email = async (email, password) => {
-        signInWithEmailAndPassword(FIREBASE_AUTH, email, password)
-            .then(userCredential => { go_to_feed() })
+        await signInWithEmailAndPassword(FIREBASE_AUTH, email, password)
+            .then(userCredential => { })
             .catch(err => { alert('login fail') })
     }
 
     const sign_up_with_email = async (email, password) => {
-        createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
+        await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
             .then(userCredential => { go_to_sign_in() })
             .catch(() => { alert('sign up fail') })
     }
-    return { sign_in_with_email, sign_up_with_email };
+
+    const sign_out = () => {
+        signOut();
+    }
+    return { sign_in_with_email, sign_up_with_email, sign_out, subscribe_auth_state_changed };
 }
 
 export default useAuth;
