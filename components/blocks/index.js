@@ -13,6 +13,7 @@ import PetTrading from "./PetTrading";
 import PetIdentifyCard from "./PetIdentifyCard";
 import UserBriefCard from "./UserBriefCard";
 import PetList from "./PetList";
+import RadioGroup from "./RadioGroup";
 import PetBriefCard from "./PetBriefCard";
 import PetAppendProfileCard from "./PetAppendProfileCard";
 
@@ -34,4 +35,5 @@ export {
   PetAddingCategory,
   ProductCard,
   PetList,
+  RadioGroup
 };

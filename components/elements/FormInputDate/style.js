@@ -1,45 +1,53 @@
 import { StyleSheet } from "react-native";
 import { COLORS, FONTS, SIZES } from "../../../constants";
-import { Ionicons } from "@expo/vector-icons";
+
+
+
 const styles = StyleSheet.create({
-    inputContainer: (error) => ({
+    pickerContainer: {
+        backgroundColor: '#000',
+        width: '100%',
+        height: '30%',
+        position: 'absolute',
+        bottom: 0,
+    },
+    box: {
         padding: SIZES.xSmall,
         width: '100%',
         height: 48,
         backgroundColor: COLORS.lightGray,
-        borderWidth: 1,
-        borderColor: error ? COLORS.danger : COLORS.none,
         borderRadius: SIZES.xSmall,
         alignItems: 'center',
         flexDirection: 'row',
         marginVertical: SIZES.small,
-    }),
+    },
     prefix: {
         marginRight: SIZES.xSmall,
-    },
-    suffix: {
-        marginLeft: SIZES.tiny,
     },
     input: {
         flex: 1,
         fontFamily: FONTS.regular,
         fontSize: SIZES.medium,
     },
-    errorMessage: {
-        fontFamily: FONTS.regular,
-        fontSize: SIZES.small,
-        color: COLORS.danger,
-    },
-    isKg: {
-        fontSize: SIZES.large,
-        color: COLORS.black,
-        fontFamily: FONTS.bold,
-    },
-    date:{
+    screen: {
         flex: 1,
-        fontFamily: FONTS.regular,
-        fontSize: SIZES.medium,
-    }
+    },
+    btnText: {
+        position: 'absolute',
+        top: 0,
+        height: 50,
+        paddingHorizontal: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btnCancel: {
+        left: 0,
+    },
+    btnDone: {
+        right: 0,
+    },
 })
+
 
 export default styles;
