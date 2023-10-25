@@ -37,12 +37,10 @@ const PetList = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.sectionTitle}></Text>
       <FlatList
         style={[styles.cover, { alignSelf: "center" }]}
         data={petData}
         horizontal
-        contentContainerStyle={{ paddingHorizontal: 20 }}
         keyExtractor={(item) => item.id}
         renderItem={(item) => (
           <TouchableHighlight
