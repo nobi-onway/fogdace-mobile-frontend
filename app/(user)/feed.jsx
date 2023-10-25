@@ -3,6 +3,7 @@ import { useState } from "react";
 import { View, FlatList, RefreshControl } from "react-native";
 import { FEEDS } from "../../fakeData/feed";
 import NewsFeedItem from "../../components/blocks/NewsFeedItem"
+import UserComposition from "../../components/blocks/UserComposition";
 
 function Feed() {
   const [refresh, setRefresh] = useState(false);
@@ -16,6 +17,7 @@ function Feed() {
 
   return (
     <View style={{flex: 1}}>
+      <UserComposition />
       <FlatList
           data={FEEDS}
           renderItem={({ item }) => <NewsFeedItem data={item} />}

@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesome5, Ionicons, Feather, AntDesign } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, Feather, AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { COLORS, ICONS, SIZES } from "../../../constants";
 
 import { View, Image } from "react-native";
@@ -96,7 +96,25 @@ const types = {
     icon: ICONS.antDesign_right,
     color: COLORS.white,
     size: SIZES.small,
-  }
+  },
+  pets: {
+    component: MaterialIcons,
+    icon: ICONS.materials_pet,
+    color: COLORS.lightBlack,
+    size: SIZES.large,
+  },
+  palette: {
+    component: FontAwesome5,
+    icon: ICONS.fontAwesome_palette,
+    color: COLORS.lightBlack,
+    size: SIZES.large,
+  },
+  image_gallery: {
+    component: Ionicons,
+    icon: ICONS.ionIcons_image,
+    color: COLORS.lightBlack,
+    size: SIZES.large,
+  },
 };
 
 const Icon2D = ({ activated, name }) => {
