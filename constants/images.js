@@ -8,5 +8,11 @@ import QA_3D from '../assets/images/QA_3D.png';
 import community_3D from '../assets/images/community_3D.png';
 import coin_3D from '../assets/images/coin_3D.png';
 import cat_3D from '../assets/images/cat_3D.png';
+import location from '../assets/images/location.png';
+import order from '../assets/images/order.png';
+import shopping from '../assets/images/shopping.png';
+import wallet from '../assets/images/wallet.png';
+import cancel from '../assets/images/cancel.png';
+import noData from '../assets/images/noData.png';
 
-export default { cat_3D, coin_3D, logo, banner, pet_trading, heart_3D, favorite_3D, setting_3D, QA_3D, community_3D }
+export default { cat_3D, coin_3D, logo, banner, pet_trading, heart_3D, favorite_3D, setting_3D, QA_3D, community_3D,location,order,shopping,wallet,cancel,noData }

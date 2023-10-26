@@ -22,6 +22,12 @@ function useNavigation() {
   const go_to_trading = () => router.push("/explore/trading");
   const go_to_add_profile_pet = () => router.push("/menu/add-profile-pet");
   const go_to_pet_list = () => router.push("/menu/add-profile-pet/pet-list");
+  const go_to_shopping_options = () => router.push("/menu/shopping-option");
+  const go_to_my_order = () => router.push("/menu/shopping-option/my-order");
+  const go_to_my_cart = () => router.push("/menu/shopping-option/cart");
+  const go_to_address_book = () => router.push("/menu/shopping-option/address-book");
+  const go_to_payment_method = () => router.push("/menu/shopping-option/payment-method");
+
 
   return {
     go_back,
@@ -36,6 +42,11 @@ function useNavigation() {
     go_to_user_profile,
     go_to_add_profile_pet,
     go_to_pet_list,
+    go_to_shopping_options,
+    go_to_my_order,
+    go_to_my_cart,
+    go_to_address_book,
+    go_to_payment_method,
   };
 }
 
