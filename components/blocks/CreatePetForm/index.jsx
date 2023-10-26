@@ -5,14 +5,43 @@ import styles from "./style";
 import { FormInput, FormInputDate, LinkableButton } from "../../elements";
 import { useForm } from "react-hook-form";
 import RadioGroup from "../RadioGroup";
+import usePet from "../../../hooks/usePet";
+import useNavigation from "../../../hooks/useNavigation";
 
-export default function CreatePetForm() {
+export default function CreatePetForm({ pet_type }) {
   const { control, handleSubmit } = useForm();
-  const [gender, setGender] = useState("Đực");
-  const [triet_san, setTriet_san] = useState("Rồi");
+  const { create_pet_profile, update_pet_health_profile_of } = usePet();
 
-  const onSubmit = (data) => {
-    console.log({ ...data, gender, triet_san });
+  const onSubmit = async (data) => {
+    const {
+      pet_name,
+      pet_birthday,
+      pet_description,
+      pet_weight,
+      pet_gender,
+      is_triet_san,
+    } = data;
+
+    const { type } = pet_type;
+
+    const pet_data = {
+      owner: "653869dfb35af1758d932c1c",
+      name: pet_name,
+      //   avatar: "",
+      gender: pet_gender,
+      birthday: pet_birthday,
+      type: "cho1",
+      description: pet_description,
+    };
+
+    const health_profile_id = await create_pet_profile(pet_data);
+
+    await update_pet_health_profile_of(health_profile_id, {
+      weight: pet_weight,
+    });
+    await update_pet_health_profile_of(health_profile_id, {
+      triet_san: is_triet_san,
+    });
   };
 
   return (
@@ -32,19 +61,11 @@ export default function CreatePetForm() {
       <View style={{ flexDirection: "row", gap: 16 }}>
         <View style={styles.radio_group}>
           <Text style={styles.input_title}>Giới tính</Text>
-          <RadioGroup
-            selectedOption={gender}
-            onOptionSelect={(value) => setGender(value)}
-            options={["Đực", "Cái"]}
-          />
+          <RadioGroup control={control} type="pet_gender" />
         </View>
         <View style={styles.radio_group}>
           <Text style={styles.input_title}>Đã triệt sản hay chưa</Text>
-          <RadioGroup
-            selectedOption={triet_san}
-            onOptionSelect={(value) => setTriet_san(value)}
-            options={["Rồi", "Chưa"]}
-          />
+          <RadioGroup control={control} type="pet_triet_san" />
         </View>
       </View>
       <View>

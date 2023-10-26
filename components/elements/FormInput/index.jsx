@@ -40,7 +40,7 @@ const TYPE = {
     }),
   },
   pet_name: {
-    placeholder: "Chó Việt",
+    placeholder: "Pikachu...",
     rules: () => ({
       required: "Nhập tên cho thú cưng! ",
     }),
@@ -56,19 +56,9 @@ const TYPE = {
     isKg: true,
     rules: () => ({
       required: "Vui lòng thêm cân nặng cho thú cưng!",
-      validate: {
-        isNumber: (value) => {
-          if (isNaN(value)) {
-            return "Cân nặng thú cưng phải là một số";
-          }
-          if (value > 80) {
-            return "Cân nặng phải nhỏ hơn hoặc bằng 80 kg";
-          }
-          if (value < 0.1) {
-            return "Cân nặng phải lớn hơn hoặc bằng 0.1";
-          }
-          return true;
-        },
+      pattern: {
+        value: /^(?!0$)[1-7]?[0-9]$/,
+        message: "Cân nặng thú cưng phải nặng hơn 0 Kg và dưới 80 Kg",
       },
     }),
   },

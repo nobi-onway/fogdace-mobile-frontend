@@ -19,14 +19,14 @@ import {
 import { Controller } from "react-hook-form";
 
 const FormInputDate = ({ control, type }) => {
-  const [date, setDate] = useState(getCurrentDate());
+  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
-  const onChange = (e, selectedDate) => {
+  const onDateChange = (e, selectedDate) => {
     setDate(new Date(selectedDate));
   };
 
-  const onAndroidChange = (e, selectedDate) => {
+  const onAndroidDateChange = (e, selectedDate) => {
     setShow(false);
     if (selectedDate) {
       setDate(new Date(selectedDate));
@@ -54,9 +54,11 @@ const FormInputDate = ({ control, type }) => {
             mode="date"
             minimumDate={new Date(1920, 10, 20)}
             maximumDate={new Date()}
-            // onChange={Platform.OS === "ios" ? onChange : onAndroidChange}
-            onChange={(e, selectedDate) => onChange(selectedDate)}
-            onBlur={(e, selectedDate) => onBlur(selectedDate)}
+            onChange={(e, selectedDate) => {
+              setDate(new Date(selectedDate));
+              onChange(new Date(selectedDate));
+            }}
+            onBlur={(e, selectedDate) => onBlur(new Date(selectedDate))}
           />
         )}
       />
