@@ -7,9 +7,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   cover: {
-    display: "flex",
     backgroundColor: "#f8f9fd",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   sectionTitle: {
     fontSize: 15,

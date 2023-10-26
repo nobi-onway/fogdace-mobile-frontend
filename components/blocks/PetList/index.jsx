@@ -58,6 +58,7 @@ const PetList = () => {
         )}
       />
       <FlatList
+        contentContainerStyle={{ paddingBottom: 200 }}
         data={filterData()}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
