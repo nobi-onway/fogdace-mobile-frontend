@@ -1,10 +1,10 @@
 import { View } from "react-native";
-import OrderCard from "../../../../../components/blocks/OrderCard";
+import CartList from '../../../../../components/blocks/CartList'
 
 const MyCart = () => {
   return (
     <View>
-      <OrderCard />
+      <CartList />
     </View>
   );
 };

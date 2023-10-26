@@ -14,5 +14,10 @@ import shopping from '../assets/images/shopping.png';
 import wallet from '../assets/images/wallet.png';
 import cancel from '../assets/images/cancel.png';
 import noData from '../assets/images/noData.png';
+import check from '../assets/images/check.png';
+import cathouse from '../assets/images/cathouse.jpg';
+import whiteCheck from '../assets/images/white_check.png';
+import banking from '../assets/images/banking.png';
+import cod from '../assets/images/cod.png';
 
-export default { cat_3D, coin_3D, logo, banner, pet_trading, heart_3D, favorite_3D, setting_3D, QA_3D, community_3D,location,order,shopping,wallet,cancel,noData }
+export default { cat_3D, coin_3D, logo, banner, pet_trading, heart_3D, favorite_3D, setting_3D, QA_3D, community_3D, location, order, shopping, wallet, cancel, check, noData, cathouse, whiteCheck, banking, cod }

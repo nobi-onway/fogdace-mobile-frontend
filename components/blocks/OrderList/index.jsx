@@ -1,5 +1,5 @@
 import { View, FlatList, ScrollView, Text, Image } from "react-native";
-import OrderCard from "../OrderCard";
+import OrderCard from '../../elements/OrderCard'
 import { FEEDS } from "../../../fakeData/feed";
 import { COLORS, FONTS, IMAGES } from "../../../constants";
 
