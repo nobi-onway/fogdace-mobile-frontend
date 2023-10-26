@@ -16,8 +16,10 @@ import PetList from "./PetList";
 import RadioGroup from "./RadioGroup";
 import PetBriefCard from "./PetBriefCard";
 import PetAppendProfileCard from "./PetAppendProfileCard";
+import CreatePetForm from "./CreatePetForm";
 
 export {
+  CreatePetForm,
   PetAppendProfileCard,
   PetBriefCard,
   UserBriefCard,

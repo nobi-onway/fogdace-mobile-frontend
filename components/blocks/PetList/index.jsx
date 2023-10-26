@@ -9,11 +9,12 @@ import {
 } from "react-native";
 import { petData } from "../../../fakeData/petData";
 import styles from "./style";
+import CreatePetForm from "../CreatePetForm";
 
-const renderItem = ({ item }) => (
+const PetSelection = ({ item, onItemSelected }) => (
   <TouchableOpacity
     style={styles.coverItem}
-    onPress={() => alert(`You selected ${item.type}`)}
+    onPress={() => onItemSelected(item)}
   >
     <TouchableHighlight style={styles.item}>
       <Image
@@ -30,6 +31,8 @@ const renderItem = ({ item }) => (
 
 const PetList = () => {
   const [selectedType, setSelectedType] = useState(petData[0].type);
+  const [petType, setPetType] = useState(undefined);
+
   const filterData = () => {
     const filteredItem = petData.find((item) => item.type === selectedType);
     return filteredItem ? filteredItem.list : [];
@@ -57,12 +60,24 @@ const PetList = () => {
           </TouchableHighlight>
         )}
       />
-      <FlatList
-        contentContainerStyle={{ paddingBottom: 200 }}
-        data={filterData()}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      {petType && (
+        <PetSelection
+          item={petType}
+          onItemSelected={() => setPetType(undefined)}
+        />
+      )}
+      {petType ? (
+        <CreatePetForm />
+      ) : (
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 200 }}
+          data={filterData()}
+          renderItem={({ item }) => (
+            <PetSelection item={item} onItemSelected={setPetType} />
+          )}
+          keyExtractor={(item) => item.id}
+        />
+      )}
     </View>
   );
 };
