@@ -12,14 +12,12 @@ function AuthenticateLayout() {
   useLayoutEffect(() => {
     AsyncStorage.getItem("user-storage").then((userStorage) => {
       const state = JSON.parse(userStorage).state;
-
       const { authentication } = state;
-
       if (!authentication) return;
-
       setAuthentication(authentication);
       go_to_feed();
     });
+    // AsyncStorage.clear();
   }, []);
 
   return (
