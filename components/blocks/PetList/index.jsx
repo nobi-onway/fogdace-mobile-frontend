@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import {
   FlatList,
   Image,
+  ScrollView,
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  View,
 } from "react-native";
 import { petData } from "../../../fakeData/petData";
 import styles from "./style";
+import CreatePetForm from "../CreatePetForm";
 
-const renderItem = ({ item }) => (
+const PetSelection = ({ item, onItemSelected }) => (
   <TouchableOpacity
     style={styles.coverItem}
-    onPress={() => alert(`You selected ${item.type}`)}
+    onPress={() => onItemSelected(item)}
   >
     <TouchableHighlight style={styles.item}>
       <Image
@@ -29,25 +30,24 @@ const renderItem = ({ item }) => (
 );
 
 const PetList = () => {
-  const [selectedType, setSelectedType] = useState(petData[0].type);
-  const filterData = () => {
-    const filteredItem = petData.find((item) => item.type === selectedType);
-    return filteredItem ? filteredItem.list : [];
-  };
+  const [petList, setPetList] = useState([]);
+  const [pet, setPet] = useState(undefined);
+  const [onSelecting, setOnSelecting] = useState(true);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.sectionTitle}></Text>
+    <ScrollView style={styles.container}>
       <FlatList
         style={[styles.cover, { alignSelf: "center" }]}
         data={petData}
         horizontal
-        contentContainerStyle={{ paddingHorizontal: 20 }}
         keyExtractor={(item) => item.id}
         renderItem={(item) => (
           <TouchableHighlight
             style={styles.headingButton}
-            onPress={() => setSelectedType(item.item.type)}
+            onPress={() => {
+              setOnSelecting(true);
+              setPetList(item.item.list);
+            }}
           >
             <Image
               style={styles.image}
@@ -59,12 +59,31 @@ const PetList = () => {
           </TouchableHighlight>
         )}
       />
-      <FlatList
-        data={filterData()}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
+      {onSelecting || (
+        <>
+          <PetSelection
+            item={pet}
+            onItemSelected={(pet) => {
+              setOnSelecting(true);
+              setPet(pet);
+            }}
+          />
+          <CreatePetForm pet_type={pet} />
+        </>
+      )}
+
+      {onSelecting &&
+        petList.map((item, index) => (
+          <PetSelection
+            key={`${item} + ${index}`}
+            item={item}
+            onItemSelected={(pet) => {
+              setOnSelecting(false);
+              setPet(pet);
+            }}
+          />
+        ))}
+    </ScrollView>
   );
 };
 

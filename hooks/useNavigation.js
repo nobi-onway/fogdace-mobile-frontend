@@ -15,8 +15,13 @@ function useNavigation() {
     const go_to_trading = () => router.push('/explore/trading')
     const go_to_chat = () => router.push('/menu/chat')
     const go_to_messages_with = (info) => router.push({ pathname: '/menu/chat/room-chat', params: { ...info } })
+    const go_to_add_profile_pet = () => router.push("/menu/add-profile-pet");
+    const go_to_pet_list = () => router.push("/menu/add-profile-pet/pet-list");
+    const go_to_menu = () => router.push("/menu")
 
     return {
+        go_to_chat,
+        go_to_messages_with,
         go_back,
         go_to_sign_in,
         go_to_feed,
@@ -27,8 +32,9 @@ function useNavigation() {
         go_to_knowledge_detail_of,
         go_to_trading,
         go_to_user_profile,
-        go_to_chat,
-        go_to_messages_with,
+        go_to_add_profile_pet,
+        go_to_pet_list,
+        go_to_menu,
     };
 }
 

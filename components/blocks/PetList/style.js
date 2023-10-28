@@ -4,12 +4,12 @@ import { FONTS } from "../../../constants";
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f8f9fd",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    height: "100%",
   },
   cover: {
-    display: "flex",
     backgroundColor: "#f8f9fd",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   sectionTitle: {
     fontSize: 15,

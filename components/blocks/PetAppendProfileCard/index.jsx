@@ -3,11 +3,16 @@ import React from "react";
 
 import styles from "./style";
 import { IMAGES } from "../../../constants";
+import useNavigation from "../../../hooks/useNavigation";
 
 export default function PetAppendProfileCard() {
+
+  const {go_to_add_profile_pet} = useNavigation();
+
   const handleAppendProfile = () => {
-    alert("đi đến tạo profile thú cưng");
+    go_to_add_profile_pet({});
   };
+
 
   return (
     <TouchableOpacity onPress={handleAppendProfile} style={styles.container}>

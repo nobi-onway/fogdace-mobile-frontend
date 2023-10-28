@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         height: height,
         alignItems: "center",
         justifyContent: "center",
+        
       }),
       image: {
         width: WIDTH_FULL,
