@@ -19,6 +19,21 @@ const COLORS = {
     gray: '#ecf0f6',
     lightGray: '#f0f3f8',
 
+    slategray: '#909ab3',
+    darkGrey: '#ecf0f8',
+    blackGrey: '#61677d',
+    primaryOrder: '#f6f8fc',
+
+    orange: '#f6651e',
+    slightOrange: '#fea000',
+    lightOrange: '#fe9f0e',
+
+    yellow: '#fda013',
+    lightYellow: '#ffcf4b',
+
+    cancel: '#ef5354',
+    red: '#f25156',
+
     brown: "rgba(150, 99, 72, 1)",
     opacityBrown: "rgba(150, 99, 72, 0.65)",
     lightBrown: "#a2654c",
