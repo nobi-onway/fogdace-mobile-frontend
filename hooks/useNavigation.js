@@ -14,7 +14,7 @@ function useNavigation() {
     const go_to_knowledge_detail_of = (info) => router.push({ pathname: '/explore/knowledge/detail', params: { ...info } })
     const go_to_trading = () => router.push('/explore/trading')
     const go_to_chat = () => router.push('/menu/chat')
-    const go_to_messages_with = (info) => router.push({ pathname: '/menu/chat/messages', params: { ...info } })
+    const go_to_messages_with = (info) => router.push({ pathname: '/menu/chat/room-chat', params: { ...info } })
 
     return {
         go_back,

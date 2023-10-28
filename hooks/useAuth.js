@@ -31,7 +31,7 @@ function useAuth() {
         await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
             .then(userCredential => {
                 const { user } = userCredential;
-                const { uid, email } = user;
+                const { uid, email } = user
 
                 set(ref(FIREBASE_DATABASE, 'users/' + uid), { uid, email })
                     .then(() => go_to_sign_in())
