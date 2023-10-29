@@ -1,6 +1,14 @@
 import React from "react";
-import { Slot } from "expo-router";
+import { Stack } from "expo-router";
+import { HeaderButton } from "../../../components/elements";
 
 export default function StackLayout() {
-  return <Slot />;
+  return (
+    <Stack
+      screenOptions={{
+        title: "",
+        headerLeft: () => <HeaderButton type={"back"} />,
+      }}
+    />
+  );
 }

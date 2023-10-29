@@ -11,6 +11,7 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import usePetDictionary from "../../../../../hooks/usePetDictionary";
 import useNavigation from "../../../../../hooks/useNavigation";
 import { useState } from "react";
+import liveSearch from "../../../../../utils/liveSearch";
 
 function Dictionary() {
   const { go_to_dictionary_detail_of } = useNavigation();
@@ -24,15 +25,7 @@ function Dictionary() {
   const [data, setData] = useState(list);
 
   const handleSearch = (value) => {
-    const searchValue = value.toLowerCase();
-
-    const searchedList = [];
-
-    list.map((info) => {
-      const isExisted = info.type.toLowerCase().includes(searchValue);
-      if (!isExisted) return;
-      searchedList.push(info);
-    });
+    const searchedList = liveSearch(value, list, "type");
 
     setData(searchedList);
   };

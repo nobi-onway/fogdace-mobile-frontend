@@ -5,40 +5,54 @@ import { uuidv4 } from "@firebase/util";
 import moment from "moment/moment";
 
 function useChat() {
-    const { authentication } = userStore()
+    const { info } = userStore()
 
-    const { uid: cur_user_id } = authentication;
+    const { _id: cur_user_id } = info;
 
-    const create_room_chat_with = (user) => {
+    const get_all_users = (callback) => {
+        const userRef = ref(FIREBASE_DATABASE, "users/");
+        onValue(
+            userRef,
+            (snapshot) => {
+                const data = Object.values(snapshot.val());
+                callback(data);
+            },
+            { onlyOnce: true }
+        );
+    }
+
+    const create_room_chat_with = async (user) => {
         const room_id = uuidv4();
 
-        update(
+        await update(
             ref(
                 FIREBASE_DATABASE,
-                "chat_list/" + user.uid + "/" + cur_user_id
+                "chat_list/" + user._id + "/" + cur_user_id
             ),
             {
                 room_id: room_id,
-                with_user: cur_user_id,
+                with_user: info,
                 last_message: {
                     message: ""
                 },
             }
         );
 
-        update(
+        await update(
             ref(
                 FIREBASE_DATABASE,
-                "chat_list/" + cur_user_id + "/" + user.uid
+                "chat_list/" + cur_user_id + "/" + user._id
             ),
             {
                 room_id: room_id,
-                with_user: user.uid,
+                with_user: user,
                 last_message: {
                     message: ""
                 },
             }
         );
+
+        return room_id;
     }
 
     const get_chat_list = (callback) => {
@@ -85,10 +99,18 @@ function useChat() {
                 ),
                 chat_list_update
             );
+
+            update(
+                ref(
+                    FIREBASE_DATABASE,
+                    "chat_list/" + user_id + "/" + cur_user_id
+                ),
+                chat_list_update
+            );
         });
     };
 
-    return { create_room_chat_with, get_chat_list, send_text_message_to };
+    return { create_room_chat_with, get_chat_list, send_text_message_to, get_all_users };
 }
 
 export default useChat;

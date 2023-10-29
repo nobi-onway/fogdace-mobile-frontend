@@ -6,8 +6,10 @@ export const userStore = create(
     persist((set, get) => (
         {
             authentication: null,
+            info: null,
 
-            setAuthentication: (authentication) => set({ authentication: authentication })
+            setAuthentication: (authentication) => set({ authentication: authentication }),
+            setUserInfo: (info) => set({ info: info })
         }
     ),
         {

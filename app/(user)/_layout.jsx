@@ -15,11 +15,8 @@ export default function UserLayout() {
   return (
     <Stack
       screenOptions={{
-        title: "",
-        headerLeft: () => <HeaderButton type={"back"} />,
+        headerShown: false,
       }}
-    >
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    />
   );
 }
