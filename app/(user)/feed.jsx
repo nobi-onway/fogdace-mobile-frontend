@@ -4,7 +4,6 @@ import { View, FlatList, RefreshControl } from "react-native";
 import { FEEDS } from "../../fakeData/feed";
 import NewsFeedItem from "../../components/blocks/NewsFeedItem";
 import UserComposition from "../../components/blocks/UserComposition";
-import { HeaderButton } from "../../components/elements";
 
 function Feed() {
   const [refresh, setRefresh] = useState(false);
@@ -19,7 +18,6 @@ function Feed() {
   return (
     <View style={{ flex: 1 }}>
       <UserComposition />
-      <HeaderButton type={"chat"} />
       <FlatList
         data={FEEDS}
         renderItem={({ item }) => <NewsFeedItem data={item} />}

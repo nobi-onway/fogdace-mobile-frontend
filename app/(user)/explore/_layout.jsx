@@ -11,30 +11,7 @@ function ExploreLayout() {
         headerLeft: () => <HeaderButton type="back" />,
       }}
     >
-      <Stack.Screen
-        name="index"
-        options={{
-          headerLeft: () => (
-            <View
-              style={{
-                borderBottomColor: COLORS.lightGray,
-                borderBottomWidth: 1,
-                flex: 1,
-                paddingVertical: 8,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: FONTS.bold,
-                  fontSize: 28,
-                }}
-              >
-                Khám phá
-              </Text>
-            </View>
-          ),
-        }}
-      />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
     </Stack>
   );
 }

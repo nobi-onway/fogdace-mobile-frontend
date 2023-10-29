@@ -30,7 +30,7 @@ function DefaultLayout() {
 
   if (!fontsLoaded) return null;
 
-  return <Slot initialRouteName="feed" onLayout={onLayoutRootView} />;
+  return <Slot onLayout={onLayoutRootView} />;
 }
 
 export default DefaultLayout;
