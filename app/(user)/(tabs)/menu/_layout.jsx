@@ -1,7 +1,5 @@
 import { Stack } from "expo-router";
-import { HeaderButton } from "../../../components/elements";
-import { View, Text } from "react-native";
-import { FONTS } from "../../../constants";
+import { HeaderButton } from "../../../../components/elements";
 
 function MenuLayout() {
   return (

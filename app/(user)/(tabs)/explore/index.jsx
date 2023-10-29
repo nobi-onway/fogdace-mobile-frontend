@@ -1,9 +1,9 @@
-import { ScrollableContentContainer } from "../../../components/elements";
-import { PetExploreList, PetTrading } from "../../../components/blocks";
-import usePetDictionary from "../../../hooks/usePetDictionary";
-import useNavigation from "../../../hooks/useNavigation";
-import usePetKnowledge from "../../../hooks/usePetKnowledge";
-import { COLORS } from "../../../constants";
+import { ScrollableContentContainer } from "../../../../components/elements";
+import { PetExploreList, PetTrading } from "../../../../components/blocks";
+import usePetDictionary from "../../../../hooks/usePetDictionary";
+import useNavigation from "../../../../hooks/useNavigation";
+import usePetKnowledge from "../../../../hooks/usePetKnowledge";
+import { COLORS } from "../../../../constants";
 
 function Explore() {
   const { pet_dictionary } = usePetDictionary();

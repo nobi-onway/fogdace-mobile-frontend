@@ -1,6 +1,6 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
-import { PetDictionaryDetail } from "../../../../components/blocks";
+import { PetDictionaryDetail } from "../../../../../components/blocks";
 
 function Detail() {
   const params = useLocalSearchParams();

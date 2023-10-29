@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { PetAddingCategory } from "../../../../components/blocks";
+import { PetAddingCategory } from "../../../../../components/blocks";
 import { useNavigation } from "expo-router";
 import { useEffect } from "react";
 

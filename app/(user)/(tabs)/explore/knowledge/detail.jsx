@@ -2,7 +2,7 @@ import React from "react";
 import {
   AnimationView,
   ContentContainer,
-} from "../../../../components/elements";
+} from "../../../../../components/elements";
 import { Stack, useLocalSearchParams } from "expo-router";
 
 export default function Detail() {

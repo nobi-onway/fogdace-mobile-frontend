@@ -16,7 +16,7 @@ function useHeaderButton() {
 
     const chat = {
         icon: ICONS.ionIcon_chat,
-        function: () => { go_to_chat() }
+        function: () => { go_to_chat(), alert('go to chat') }
     }
 
     const search = {
