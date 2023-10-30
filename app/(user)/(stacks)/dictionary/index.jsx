@@ -1,17 +1,14 @@
 import { FlatList, View } from "react-native";
-import {
-  ContentContainer,
-  SearchBar,
-} from "../../../../../components/elements";
+import { ContentContainer, SearchBar } from "../../../../components/elements";
 import {
   SearchingNotFound,
   PetDictionaryCard,
-} from "../../../../../components/blocks";
+} from "../../../../components/blocks";
 import { Stack, useLocalSearchParams } from "expo-router";
-import usePetDictionary from "../../../../../hooks/usePetDictionary";
-import useNavigation from "../../../../../hooks/useNavigation";
+import usePetDictionary from "../../../../hooks/usePetDictionary";
+import useNavigation from "../../../../hooks/useNavigation";
 import { useState } from "react";
-import liveSearch from "../../../../../utils/liveSearch";
+import liveSearch from "../../../../utils/liveSearch";
 
 function Dictionary() {
   const { go_to_dictionary_detail_of } = useNavigation();

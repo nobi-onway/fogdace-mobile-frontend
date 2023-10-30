@@ -4,14 +4,14 @@ import {
   RewardCard,
   ScrollableContentContainer,
   SupportItemCard,
-} from "../../../../components/elements";
+} from "../../../components/elements";
 import React from "react";
 import {
   PetAppendProfileCard,
   PetBriefCard,
   UserBriefCard,
-} from "../../../../components/blocks";
-import { COLORS } from "../../../../constants";
+} from "../../../components/blocks";
+import { COLORS } from "../../../constants";
 
 const SUPPORT_LIST = [
   "wish_list",

@@ -1,8 +1,8 @@
 import { FlatList, View } from "react-native";
-import { PetBlogCard } from "../../../../../components/blocks";
+import { PetBlogCard } from "../../../../components/blocks";
 import { Stack, useLocalSearchParams } from "expo-router";
-import usePetKnowledge from "../../../../../hooks/usePetKnowledge";
-import useNavigation from "../../../../../hooks/useNavigation";
+import usePetKnowledge from "../../../../hooks/usePetKnowledge";
+import useNavigation from "../../../../hooks/useNavigation";
 
 function Knowledge() {
   const { pet_knowledge_info_of } = usePetKnowledge();

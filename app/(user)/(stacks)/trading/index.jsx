@@ -1,13 +1,13 @@
 import { ImageBackground, View } from "react-native";
 import React from "react";
-import { COLORS, IMAGES } from "../../../../../constants";
+import { COLORS, IMAGES } from "../../../../constants";
 import { Stack } from "expo-router";
 import {
   HeaderButton,
   ScrollableContentContainer,
-} from "../../../../../components/elements";
-import { PetIdentifyCard } from "../../../../../components/blocks";
-import usePetTrading from "../../../../../hooks/usePetTrading";
+} from "../../../../components/elements";
+import { PetIdentifyCard } from "../../../../components/blocks";
+import usePetTrading from "../../../../hooks/usePetTrading";
 
 export default function Trading() {
   const { pets_trading } = usePetTrading();

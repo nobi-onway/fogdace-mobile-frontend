@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { PetList } from "../../../../../../components/blocks";
+import { PetList } from "../../../../../components/blocks";
 
 const PetListAddProfile = () => {
   return (

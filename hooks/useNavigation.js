@@ -6,17 +6,17 @@ function useNavigation() {
     const go_back = () => router.back();
     const go_to_sign_in = () => router.push('/sign-in');
     const go_to_sign_up = () => router.push('/sign-up');
-    const go_to_user_profile = () => router.push('/menu/user-profile')
+    const go_to_user_profile = () => router.push('/user-profile')
     const go_to_feed = () => router.push('/feed');
-    const go_to_dictionary_of = (id) => router.push({ pathname: '/explore/dictionary', params: { id: id } });
-    const go_to_dictionary_detail_of = (info) => router.push({ pathname: '/explore/dictionary/detail', params: info })
-    const go_to_knowledge_of = (id) => router.push({ pathname: '/explore/knowledge', params: { id: id } });
-    const go_to_knowledge_detail_of = (info) => router.push({ pathname: '/explore/knowledge/detail', params: info })
-    const go_to_trading = () => router.push('/explore/trading')
+    const go_to_dictionary_of = (id) => router.push({ pathname: '/dictionary', params: { id: id } });
+    const go_to_dictionary_detail_of = (info) => router.push({ pathname: '/dictionary/detail', params: info })
+    const go_to_knowledge_of = (id) => router.push({ pathname: '/knowledge', params: { id: id } });
+    const go_to_knowledge_detail_of = (info) => router.push({ pathname: '/knowledge/detail', params: info })
+    const go_to_trading = () => router.push('/trading')
     const go_to_chat = () => router.push('/chat')
     const go_to_room_chat_with = (info) => router.push({ pathname: '/chat/room-chat', params: info })
-    const go_to_add_profile_pet = () => router.push("/menu/add-profile-pet");
-    const go_to_pet_list = () => router.push("/menu/add-profile-pet/pet-list");
+    const go_to_add_profile_pet = () => router.push("/add-profile-pet");
+    const go_to_pet_list = () => router.push("/add-profile-pet/pet-list");
     const go_to_menu = () => router.push("/menu")
     const go_to_shopping_options = () => router.push("/shopping-option");
     const go_to_my_order = () => router.push("/shopping-option/my-order");

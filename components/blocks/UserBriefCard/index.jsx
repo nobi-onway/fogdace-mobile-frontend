@@ -4,12 +4,13 @@ import styles from "./style";
 import { Avatar } from "../../elements";
 import useUser from "../../../hooks/useUser";
 import useNavigation from "../../../hooks/useNavigation";
+import { userStore } from "../../../stores/userStore";
 
 export default function UserBriefCard() {
-  const { currentUser } = useUser();
+  const { info } = userStore();
   const { go_to_user_profile } = useNavigation();
 
-  const { avatar, name } = currentUser;
+  const { avatar, name } = info;
 
   return (
     <View style={styles.container}>

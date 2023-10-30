@@ -1,6 +1,5 @@
-import { Tabs, useSegments } from "expo-router";
+import { Tabs } from "expo-router";
 import { HeaderButton, TabIcon } from "../../../components/elements";
-import { useLayoutEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { FONTS } from "../../../constants";
 
@@ -21,14 +20,6 @@ const tabs = [
 ];
 
 function TabsLayout() {
-  const [onTabLayout, setOnTabLayout] = useState(true);
-
-  const segments = useSegments();
-
-  useLayoutEffect(() => {
-    setOnTabLayout(segments.length <= 3);
-  }, [segments]);
-
   return (
     <Tabs>
       {tabs.map((tab) => {
@@ -43,8 +34,6 @@ function TabsLayout() {
               tabBarIcon: ({ focused }) => (
                 <TabIcon activated={focused} name={page} />
               ),
-              tabBarStyle: { display: onTabLayout ? "flex" : "none" },
-              headerShown: onTabLayout,
               headerLeft: () => (
                 <Text
                   style={{
