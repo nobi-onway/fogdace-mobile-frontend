@@ -3,8 +3,7 @@ import { ProductCard } from "../../components/blocks";
 import PetHealthInfoCard from "../../components/blocks/PetHealthInfoCard";
 import { PET_HEALTH_INFO } from "../../fakeData/petHealthInfo";
 import PetInfoSectionCard from "../../components/blocks/PetInfoSectionCard";
-import { Banner } from "../../components/elements";
-import { COLORS, IMAGES } from "../../constants";
+import { COLORS } from "../../constants";
 import { FEEDS } from "../../fakeData/feed";
 import CarouselSlider from "../../components/elements/CarouselSlider";
 import { retailCarouselImages } from "../../fakeData/retailCarouselImages";
@@ -17,9 +16,8 @@ function Retail() {
 
   return (
     <View style={{ flex: 1 }}>
-      <Text>Retail page</Text>
       <View style={{height: 300}}>
-          <CarouselSlider carouselData={retailCarouselImages} autoplay />
+          <CarouselSlider carouselData={retailCarouselImages} />
 
         </View>
 
@@ -43,11 +41,12 @@ function Retail() {
             <ProductCard bottomSheetRef={bottomSheetRef} />
           )}
           keyExtractor={(item) => item.id}
-          // numColumns={2}
+          numColumns={2}
         />
       </View>
 
       {/* <FlatList data={PET_HEALTH_INFO} renderItem={({item}) => <PetHealthInfoCard type={item.type} mainInfo={item.mainInfo} subInfo={item.subInfo}/>} keyExtractor={item => item.id} horizontal/> */}
+
       <CustomBottomSheet ref={bottomSheetRef}>
         <Text>Hi</Text>
       </CustomBottomSheet>
