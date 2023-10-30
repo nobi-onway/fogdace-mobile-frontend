@@ -1,12 +1,16 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, Pressable } from "react-native";
 import { Icon2D } from "../../elements";
 
 import styles from "./style";
 
-const ProductCard = () => {
+const ProductCard = ({ bottomSheetRef }) => {
+  const handleOpenBottomSheet = () => {
+    bottomSheetRef.current?.expand();
+  };
+
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={() => handleOpenBottomSheet()}>
       <View style={styles.imageWrapper}>
         <Image
           source={{
@@ -28,7 +32,7 @@ const ProductCard = () => {
           <Icon2D name="productCart" activated />
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
