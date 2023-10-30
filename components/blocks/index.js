@@ -16,6 +16,7 @@ import PetList from "./PetList";
 import RadioGroup from "./RadioGroup";
 import PetBriefCard from "./PetBriefCard";
 import PetAppendProfileCard from "./PetAppendProfileCard";
+import StripePayment from "./StripePayment";
 
 export {
   PetAppendProfileCard,
@@ -35,5 +36,6 @@ export {
   PetAddingCategory,
   ProductCard,
   PetList,
-  RadioGroup
+  RadioGroup,
+  StripePayment,
 };

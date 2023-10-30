@@ -4,7 +4,7 @@ import {
   ContentContainer,
   LinkableButton,
 } from "../../components/elements";
-import { Welcome } from "../../components/blocks";
+import { StripePayment, Welcome } from "../../components/blocks";
 import { IMAGES } from "../../constants";
 import useNavigation from "../../hooks/useNavigation";
 import { useRouter } from "expo-router";
