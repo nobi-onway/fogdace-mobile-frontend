@@ -17,5 +17,6 @@ import SupportItemCard from "./SupportItemCard";
 import ScrollableContentContainer from "./ScrollableContentContainer";
 import FormInputDate from "./FormInputDate";
 import ToggleButton from "./ToggleButton";
+import ImageUploader from "./ImageUploader";
 
-export { ScrollableContentContainer, InteractiveIcon3D, SearchBar, AnimationView, Icon2D, Avatar, TabIcon, MenuOptionCard, RewardCard, SupportItemCard, LinkableButton, Banner, HeaderButton, ContentContainer, Logo, FormInput, CheckBox, FormInputDate, ToggleButton }
+export { ImageUploader, ScrollableContentContainer, InteractiveIcon3D, SearchBar, AnimationView, Icon2D, Avatar, TabIcon, MenuOptionCard, RewardCard, SupportItemCard, LinkableButton, Banner, HeaderButton, ContentContainer, Logo, FormInput, CheckBox, FormInputDate, ToggleButton }

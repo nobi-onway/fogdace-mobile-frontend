@@ -1,4 +1,10 @@
-import { View, Text, Dimensions, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { onValue, ref } from "@firebase/database";
@@ -85,14 +91,16 @@ export default function RoomChat() {
                 }}
                 key={`${from} + ${index}`}
               >
-                <MessageContainer messages={messages} user={user} isUser={is_user}/>
+                <MessageContainer
+                  messages={messages}
+                  user={user}
+                  isUser={is_user}
+                />
               </View>
             );
           })}
         </ScrollView>
-        <View>
-          <MessageComposer handleSendMessage={handleSendMessage} />
-        </View>
+        <MessageComposer handleSendMessage={handleSendMessage} />
       </View>
     </ContentContainer>
   );

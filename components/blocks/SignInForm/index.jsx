@@ -24,7 +24,8 @@ function SignInForm() {
         <TouchableOpacity style={{ alignSelf: "flex-end" }}>
           <Text style={styles.forgetPassword}>Quên mật khẩu?</Text>
         </TouchableOpacity>
-      </View>
+      </View>    
+
       <LinkableButton handlePress={handleSubmit(onSubmit)}>
         Đăng nhập
       </LinkableButton>

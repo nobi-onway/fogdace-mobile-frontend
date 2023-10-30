@@ -1,5 +1,10 @@
 import { Text, View } from "react-native";
-import { CheckBox, FormInput, LinkableButton } from "../../elements";
+import {
+  CheckBox,
+  FormInput,
+  ImageUploader,
+  LinkableButton,
+} from "../../elements";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 
@@ -44,6 +49,7 @@ function SignUpForm({ style }) {
       >
         Đăng ký
       </LinkableButton>
+      <ImageUploader />-0p
     </View>
   );
 }

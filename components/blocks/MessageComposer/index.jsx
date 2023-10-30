@@ -1,4 +1,9 @@
-import { View, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from "react-native";
 import React, { useState } from "react";
 import styles from "./style";
 import { Icon2D } from "../../elements";
@@ -13,7 +18,12 @@ export default function MessageComposer({ handleSendMessage }) {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={120}
+      enabled
+      behavior="padding"
+      style={styles.container}
+    >
       <TouchableOpacity>
         <Icon2D name={"threeDotsHorizontal"} />
       </TouchableOpacity>
@@ -27,6 +37,6 @@ export default function MessageComposer({ handleSendMessage }) {
       <TouchableOpacity onPress={onSend}>
         <Icon2D name={"pets"} />
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

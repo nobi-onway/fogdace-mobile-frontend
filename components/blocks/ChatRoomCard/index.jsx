@@ -7,12 +7,12 @@ import { userStore } from "../../../stores/userStore";
 import calcTimeFrom from "../../../utils/calcTimeFrom";
 
 export default function ChatRoomCard({ room }) {
-  const { authentication } = userStore();
+  const { info } = userStore();
   const { go_to_room_chat_with } = useNavigation();
   const { last_message, with_user, room_id } = room;
 
   const { avatar, name } = with_user;
-  const { uid: cur_user_id } = authentication;
+  const { _id: cur_user_id } = info;
 
   const last_message_of =
     last_message.from === cur_user_id ? "Bạn" : with_user.name;
