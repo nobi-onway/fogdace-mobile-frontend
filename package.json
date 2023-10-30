@@ -36,6 +36,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-web": "~0.19.6",
+    "stripe": "^14.2.0",
     "zustand": "^4.4.4"
   },
   "devDependencies": {
