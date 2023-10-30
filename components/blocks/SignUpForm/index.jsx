@@ -49,7 +49,7 @@ function SignUpForm({ style }) {
       >
         Đăng ký
       </LinkableButton>
-      <ImageUploader />-0p
+      <ImageUploader />
     </View>
   );
 }

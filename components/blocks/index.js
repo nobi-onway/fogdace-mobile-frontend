@@ -21,8 +21,12 @@ import CreatePetForm from "./CreatePetForm";
 import MessageComposer from "./MessageComposer";
 import MessageContainer from "./MessageContainer";
 import UserBubble from "./UserBubble";
+import MessageText from "./MessageText";
+import MessageOrder from "./MessageOrder";
 
 export {
+  MessageOrder,
+  MessageText,
   UserBubble,
   MessageContainer,
   MessageComposer,

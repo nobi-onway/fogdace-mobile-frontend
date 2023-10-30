@@ -22,45 +22,27 @@ export default function RoomChat() {
   const { info } = userStore();
   const { _id, name, avatar, username, room_id } = params;
 
-  const { send_text_message_to } = useChat();
+  const { send_message_to, listen_messages_in_room } = useChat();
 
   const [messages, setMessages] = useState([]);
 
   const handleSendMessage = async (message) => {
-    send_text_message_to(room_id, _id, message);
+    send_message_to(room_id, _id, message);
+  };
+
+  const handleRequestTrading = () => {
+    const message_data = {
+      pet_id: "6538c42c2202f8b2966680cd",
+      items: [{ name_product: "chuồng" }],
+      deposits: 100,
+      price: 10000,
+    };
+    send_message_to(room_id, _id, message_data, "order");
   };
 
   useEffect(() => {
-    const chatListRef = ref(FIREBASE_DATABASE, "messages/" + room_id);
-
-    const group_by_user = (list) => {
-      const result = [];
-      let cur_group = null;
-
-      list.forEach((item) => {
-        const { from, send_time, message } = item;
-
-        if (!cur_group || cur_group.from !== from) {
-          cur_group = {
-            from: from,
-            messages: [],
-            send_time: send_time,
-          };
-          result.push(cur_group);
-        }
-
-        cur_group.messages.push(message);
-      });
-
-      return result;
-    };
-
-    onValue(chatListRef, (snapshot) => {
-      if (!snapshot.val()) return;
-      const data = Object.values(snapshot.val());
-      const new_data = group_by_user(data);
-
-      setMessages(new_data);
+    listen_messages_in_room(room_id, (messages) => {
+      setMessages(messages);
     });
   }, []);
 
@@ -79,7 +61,7 @@ export default function RoomChat() {
       >
         <ScrollView>
           {messages.map((item, index) => {
-            const { from, messages } = item;
+            const { from } = item;
 
             const is_user = !(from === _id);
 
@@ -91,16 +73,15 @@ export default function RoomChat() {
                 }}
                 key={`${from} + ${index}`}
               >
-                <MessageContainer
-                  messages={messages}
-                  user={user}
-                  isUser={is_user}
-                />
+                <MessageContainer message={item} user={user} isUser={is_user} />
               </View>
             );
           })}
         </ScrollView>
-        <MessageComposer handleSendMessage={handleSendMessage} />
+        <MessageComposer
+          handleSendMessage={handleSendMessage}
+          handleRequestTrading={handleRequestTrading}
+        />
       </View>
     </ContentContainer>
   );

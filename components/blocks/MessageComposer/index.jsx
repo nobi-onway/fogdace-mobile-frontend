@@ -9,12 +9,19 @@ import styles from "./style";
 import { Icon2D } from "../../elements";
 import { COLORS } from "../../../constants";
 
-export default function MessageComposer({ handleSendMessage }) {
+export default function MessageComposer({
+  handleSendMessage,
+  handleRequestTrading,
+}) {
   const [message, setMessage] = useState("");
 
   const onSend = () => {
     handleSendMessage(message);
     setMessage("");
+  };
+
+  const onRequestTrading = () => {
+    handleRequestTrading();
   };
 
   return (
@@ -24,7 +31,7 @@ export default function MessageComposer({ handleSendMessage }) {
       behavior="padding"
       style={styles.container}
     >
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onRequestTrading}>
         <Icon2D name={"threeDotsHorizontal"} />
       </TouchableOpacity>
       <TextInput

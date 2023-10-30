@@ -28,8 +28,8 @@ const ImageUploader = () => {
         const formData = new FormData();
         formData.append("key", "373bc9b180e920e9c2ebceaa3b341eed");
         formData.append("image", {
-          uri: result.uri,
-          name: "test.jpg",
+          uri: result.assets[0].uri,
+          name: "test.jpg",  
           type: "image/jpeg",
         });
 
@@ -37,7 +37,8 @@ const ImageUploader = () => {
           "https://api.imgbb.com/1/upload",
           formData
         );
-        setImgUrl(result.uri);
+        console.log(response);
+        setImgUrl(response.data.data.url);
       }
     } catch (error) {
       console.error(error);
