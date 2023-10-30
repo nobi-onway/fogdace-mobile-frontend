@@ -1,6 +1,5 @@
 import { Tabs } from "expo-router";
 import { TabIcon } from "../../components/elements";
-import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 const tabs = [
   { page: "feed", name: "Bảng tin" },
@@ -12,7 +11,6 @@ const tabs = [
 
 function UserLayout() {
   return (
-    // <BottomSheetModalProvider>
     <Tabs>
       {tabs.map((tab) => {
         const { page, name } = tab;
@@ -31,7 +29,6 @@ function UserLayout() {
         );
       })}
     </Tabs>
-    // </BottomSheetModalProvider>
   );
 }
 
