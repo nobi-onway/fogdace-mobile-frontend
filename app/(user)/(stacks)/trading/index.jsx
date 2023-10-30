@@ -1,12 +1,4 @@
-import {
-  Text,
-  ImageBackground,
-  ScrollView,
-  View,
-  FlatList,
-  Button,
-  SafeAreaView,
-} from "react-native";
+import { ImageBackground, View } from "react-native";
 import React from "react";
 import { COLORS, IMAGES } from "../../../../constants";
 import { Stack } from "expo-router";

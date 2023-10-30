@@ -23,10 +23,11 @@ const fontAwesome_pills = "pills"
 const antDesign_right = "right"
 const materials_pet = "pets"
 const ionIcons_image = "image-outline"
-const fontAwesome_palette= "palette"
+const fontAwesome_palette = "palette"
+const ionIcons_cart = 'cart-outline'
 
 const born_img = require('../assets/icons/born.png')
 const pills_img = require('../assets/icons/pills.jpg')
 
 
-export default { ionIcon_chat, feather_activity, ionIcon_close, ionIcon_user, ionIcon_lock_closed, ionIcon_eye_open, ionIcon_eye_close, fa_home, ionIcon_paw, ionIcon_heart, fa_cart, ionIcon_menu, ionIcon_globe, ionIcon_comment, ionIcon_heart_full, ionIcon_ellipsis_horizontal_sharp, ionIcon_search, ionIcon_back, feather_product_cart, fontAwesome_pills, antDesign_right, born_img, pills_img, materials_pet, ionIcons_image, fontAwesome_palette,ionIcon_calendar,iconCheck }
+export default { ionIcons_cart, ionIcon_chat, feather_activity, ionIcon_close, ionIcon_user, ionIcon_lock_closed, ionIcon_eye_open, ionIcon_eye_close, fa_home, ionIcon_paw, ionIcon_heart, fa_cart, ionIcon_menu, ionIcon_globe, ionIcon_comment, ionIcon_heart_full, ionIcon_ellipsis_horizontal_sharp, ionIcon_search, ionIcon_back, feather_product_cart, fontAwesome_pills, antDesign_right, born_img, pills_img, materials_pet, ionIcons_image, fontAwesome_palette, ionIcon_calendar, iconCheck }

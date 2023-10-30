@@ -4,7 +4,7 @@ import { PetList } from "../../../../../components/blocks";
 const PetListAddProfile = () => {
   return (
     <View>
-        <PetList />
+      <PetList />
     </View>
   );
 };

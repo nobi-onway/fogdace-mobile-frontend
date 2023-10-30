@@ -1,19 +1,27 @@
 import { Text, View } from "react-native";
-import { CheckBox, FormInput, LinkableButton } from "../../elements";
+import {
+  CheckBox,
+  FormInput,
+  ImageUploader,
+  LinkableButton,
+} from "../../elements";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 
 import styles from "./style";
+import useAuth from "../../../hooks/useAuth";
 
 function SignUpForm({ style }) {
   const { control, handleSubmit, watch } = useForm();
   const [policyAccepted, setPolicyAccepted] = useState(false);
+  const { sign_up_with_email } = useAuth();
 
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
 
   const onSubmit = (data) => {
-    console.log("onSubmit: " + data);
+    const { username, password } = data;
+    sign_up_with_email(username, password);
   };
 
   return (
@@ -41,6 +49,7 @@ function SignUpForm({ style }) {
       >
         Đăng ký
       </LinkableButton>
+      <ImageUploader />-0p
     </View>
   );
 }
