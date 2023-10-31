@@ -25,7 +25,7 @@ export default function NewsFeedItem({ data }) {
       </View>
 
       <View style={styles.imageContainer}>
-        <CarouselSlider pagination autoplay type="feeds" carouselData={img} />
+        <CarouselSlider pagination type="feeds" carouselData={img} />
       </View>
 
       <View style={styles.interactionWrapper}>
