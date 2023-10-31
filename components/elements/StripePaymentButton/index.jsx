@@ -2,7 +2,6 @@ import { StripeProvider, useStripe } from "@stripe/stripe-react-native";
 import axios from "axios";
 import { Alert, Pressable, Text } from "react-native";
 import { BASE_URL } from "../../../constants/url";
-import { headerConfig } from "../../../config/headerConfig";
 import styles from "./style";
 
 const StripePayment = () => {
@@ -13,13 +12,9 @@ const StripePayment = () => {
 
   const onCheckout = async () => {
     // 1. Create a payment intent
-    const response = await axios.post(
-      `${BASE_URL}/payment/intents`,
-      {
-        amount: 12950,
-      },
-      headerConfig
-    );
+    const response = await axios.post(`${BASE_URL}/payment/intents`, {
+      amount: 12950,
+    });
     if (response.error) {
       Alert.alert("Something went wrong");
       return;

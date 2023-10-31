@@ -7,12 +7,9 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native";
-// import { petData } from "../../../fakeData/petData";
-import styles from "./style";
 import CreatePetForm from "../CreatePetForm";
-import axios from "axios";
-import { BASE_URL } from "../../../constants/url";
-import { headerConfig } from "../../../config/headerConfig";
+import styles from "./style";
+import usePet from "../../../hooks/usePet";
 
 const PetSelection = ({ item, onItemSelected }) => (
   <TouchableOpacity
@@ -38,10 +35,18 @@ const PetList = () => {
   const [onSelecting, setOnSelecting] = useState(true);
   const [petData, setPetData] = useState([]);
 
+  const { get_all_pet_types } = usePet();
+
   useEffect(() => {
-    axios.get(`${BASE_URL}/petType`, headerConfig)
-      .then(response => setPetData(response.data.metaData))
-      .catch(error => console.error('Error fetching data: ', error));
+    const fetchPetData = async () => {
+      try {
+        const data = await get_all_pet_types();
+        setPetData(data);
+      } catch (error) {
+        console.error("Error fetching pet types:", error);
+      }
+    };
+    fetchPetData();
   }, []);
 
   return (
