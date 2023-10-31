@@ -29,14 +29,15 @@ const TYPE = {
 };
 
 export default function CarouselSlider({ pagination = false, autoplay = false, carouselData = [], speed = 3000, type= 'default'}) {
+  console.log('carouselData', carouselData);
   const { itemWidth, padding, widthImg, heightImg } = TYPE[type];
   const [activeSlide, setActiveSlide] = useState(0);
   const carouselRef = useRef(null);
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.carouselItem(padding, widthImg, heightImg)}>
-        <Image source={{ uri: item.URI }} style={styles.image} />
+      <View style={styles.carouselItem(padding, widthImg, heightImg)} key={carouselData._id}>
+        <Image source={{ uri: item.image }} style={styles.image} />
       </View>
     );
   };

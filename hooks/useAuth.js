@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "@firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, getAuth } from "@firebase/auth";
 import { FIREBASE_AUTH } from "../config/firebase";
 import useNavigation from "./useNavigation";
 import { userStore } from "../stores/userStore";
@@ -6,6 +6,7 @@ import { FIREBASE_DATABASE } from "../config/firebase";
 import { set, ref } from "@firebase/database";
 import useFetch from "./useFetch";
 import { BASE_URL } from "../constants/url";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AUTH_URL = `${BASE_URL}/auth`
 const REGISTER_URL = `${AUTH_URL}/register`
@@ -76,7 +77,13 @@ function useAuth() {
     }
 
     const sign_out = () => {
-        signOut();
+        const auth = getAuth()
+        signOut(auth).then(async() => {
+            await AsyncStorage.clear()
+            setAuthentication(null)
+          }).catch((error) => {
+            alert('toan cho dien')
+          });
     }
 
     return { sign_up_with_app, sign_in_with_email, sign_up_with_email, sign_out, subscribe_auth_state_changed };

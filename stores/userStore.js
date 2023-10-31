@@ -9,7 +9,7 @@ export const userStore = create(
             info: null,
 
             setAuthentication: (authentication) => set({ authentication: authentication }),
-            setUserInfo: (info) => set({ info: info })
+            setUserInfo: (info) => set({ info: info }),
         }
     ),
         {
