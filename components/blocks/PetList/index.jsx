@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -7,9 +7,12 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native";
-import { petData } from "../../../fakeData/petData";
+// import { petData } from "../../../fakeData/petData";
 import styles from "./style";
 import CreatePetForm from "../CreatePetForm";
+import axios from "axios";
+import { BASE_URL } from "../../../constants/url";
+import { headerConfig } from "../../../config/headerConfig";
 
 const PetSelection = ({ item, onItemSelected }) => (
   <TouchableOpacity
@@ -20,7 +23,7 @@ const PetSelection = ({ item, onItemSelected }) => (
       <Image
         style={styles.imageItem}
         source={{
-          uri: item.url,
+          uri: item.image,
         }}
         alt="pet"
       />
@@ -33,6 +36,13 @@ const PetList = () => {
   const [petList, setPetList] = useState([]);
   const [pet, setPet] = useState(undefined);
   const [onSelecting, setOnSelecting] = useState(true);
+  const [petData, setPetData] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/petType`, headerConfig)
+      .then(response => setPetData(response.data.metaData))
+      .catch(error => console.error('Error fetching data: ', error));
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
@@ -40,7 +50,7 @@ const PetList = () => {
         style={[styles.cover, { alignSelf: "center" }]}
         data={petData}
         horizontal
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         renderItem={(item) => (
           <TouchableHighlight
             style={styles.headingButton}
@@ -53,7 +63,7 @@ const PetList = () => {
               style={styles.image}
               alt="bg_pet"
               source={{
-                uri: item.item.url,
+                uri: item.item.image,
               }}
             />
           </TouchableHighlight>

@@ -23,11 +23,11 @@ const styles = StyleSheet.create({
 
   button: {
     position: "absolute",
-    backgroundColor: "black",
+    backgroundColor: "#F8A209", 
     bottom: 30,
     width: "90%",
     alignSelf: "center",
-    padding: 20,
+    padding: 16,
     borderRadius: 100,
     alignItems: "center",
   },

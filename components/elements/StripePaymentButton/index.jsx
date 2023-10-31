@@ -1,7 +1,8 @@
 import { StripeProvider, useStripe } from "@stripe/stripe-react-native";
 import axios from "axios";
 import { Alert, Pressable, Text } from "react-native";
-import { BASE_URL } from "../constants/url";
+import { BASE_URL } from "../../../constants/url";
+import { headerConfig } from "../../../config/headerConfig";
 import styles from "./style";
 
 const StripePayment = () => {
@@ -10,21 +11,14 @@ const StripePayment = () => {
 
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      WithCreadentials: true,
-    },
-  };
-
   const onCheckout = async () => {
     // 1. Create a payment intent
     const response = await axios.post(
-      `${BASE_URL}/intents`,
+      `${BASE_URL}/payment/intents`,
       {
-        amount: 17950,
+        amount: 12950,
       },
-      config
+      headerConfig
     );
     if (response.error) {
       Alert.alert("Something went wrong");
@@ -34,7 +28,8 @@ const StripePayment = () => {
     // 2. Initialize the Payment sheet
     const initResponse = await initPaymentSheet({
       merchantDisplayName: "dev",
-      paymentIntentClientSecret: response.data.paymentIntent,
+      paymentIntentClientSecret: response.data.metaData,
+      returnURL: `${BASE_URL}/payment/intents`,
     });
     if (initResponse.error) {
       console.log(initResponse.error);
@@ -60,7 +55,7 @@ const StripePayment = () => {
   return (
     <StripeProvider publishableKey={STRIPE_KEY}>
       <Pressable onPress={onCheckout} style={styles.button}>
-        <Text style={styles.buttonText}>Checkout</Text>
+        <Text style={styles.buttonText}>Đặt hàng</Text>
       </Pressable>
     </StripeProvider>
   );
