@@ -23,5 +23,6 @@ import map_line from '../assets/images/map_line.png';
 import edit from '../assets/images/edit.png';
 import note from '../assets/images/note.png';
 import angle_circle_right from '../assets/images/angle_circle_right.png';
+import help_center from '../assets/images/help.png';
 
-export default { cat_3D, coin_3D, logo, banner, pet_trading, heart_3D, favorite_3D, setting_3D, QA_3D, community_3D, location, order, shopping, wallet, cancel, check, noData, cathouse, whiteCheck, banking, cod, map_line, edit,note,angle_circle_right }
+export default { cat_3D, coin_3D, logo, banner, pet_trading, heart_3D, favorite_3D, setting_3D, QA_3D, community_3D, location, order, shopping, wallet, cancel, check, noData, cathouse, whiteCheck, banking, cod, map_line, edit,note,angle_circle_right,help_center }

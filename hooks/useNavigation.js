@@ -20,6 +20,7 @@ function useNavigation() {
     const go_to_menu = () => router.push("/menu")
     const go_to_shopping_options = () => router.push("/shopping-option");
     const go_to_my_order = () => router.push("/shopping-option/my-order");
+    const go_to_order_status = () => router.push("/order-status");
     const go_to_my_cart = () => router.push("/shopping-option/cart");
     const go_to_address_book = () => router.push("/shopping-option/address-book");
     const go_to_payment_method = () => router.push("/shopping-option/payment-method");
@@ -52,6 +53,7 @@ function useNavigation() {
         go_to_checkout,
         go_to_create_order,
         go_to_add_address,
+        go_to_order_status,
     };
 }
 

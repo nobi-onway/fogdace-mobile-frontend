@@ -1,6 +1,6 @@
 import { View, ScrollView, Text } from "react-native";
 import { COLORS, FONTS } from "../../../../../constants";
-import AddAddress from "../../../../../components/blocks/AddAddress";
+import AddAddress from "../../../../../components/blocks/AddAddressForm";
 import { Stack } from "expo-router";
 const AddressNewAddress = () => {
 
