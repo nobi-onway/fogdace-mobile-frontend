@@ -4,7 +4,7 @@ import { FONTS, SIZES, COLORS, ROUNDED } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
       height: 280,
-      flex: 1,
+      width: '50%',
       paddingHorizontal: 10,
       backgroundColor: COLORS.white,
       borderRadius: 8,
