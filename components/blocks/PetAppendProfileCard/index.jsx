@@ -6,13 +6,11 @@ import { IMAGES } from "../../../constants";
 import useNavigation from "../../../hooks/useNavigation";
 
 export default function PetAppendProfileCard() {
-
-  const {go_to_add_profile_pet} = useNavigation();
+  const { go_to_add_profile_pet } = useNavigation();
 
   const handleAppendProfile = () => {
-    go_to_add_profile_pet({});
+    go_to_add_profile_pet();
   };
-
 
   return (
     <TouchableOpacity onPress={handleAppendProfile} style={styles.container}>

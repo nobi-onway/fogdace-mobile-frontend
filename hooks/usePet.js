@@ -10,7 +10,7 @@ function usePet() {
     const create_pet_profile = async (data) => {
         const pet = await post_fetcher(PET_URL, data)
             .then(pet => pet)
-            .catch((err) => alert(err));
+            .catch((err) => alert("Không tạo được pet " + err.message));
 
         const pet_id = pet._id;
 

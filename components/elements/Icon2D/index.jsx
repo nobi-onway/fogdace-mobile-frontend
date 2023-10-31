@@ -127,6 +127,12 @@ const types = {
     color: COLORS.black,
     size: SIZES.large,
   },
+  image_gallery_xl: {
+    component: Ionicons,
+    icon: ICONS.ionIcons_image,
+    color: COLORS.lightBlack,
+    size: 40,
+  },
 };
 
 const Icon2D = ({ activated, name }) => {

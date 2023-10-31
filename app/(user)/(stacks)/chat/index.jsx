@@ -12,12 +12,13 @@ import liveSearch from "../../../../utils/liveSearch";
 export default function Chat() {
   const [rooms, setRooms] = useState([]);
   const [users, setUsers] = useState([]);
+  const [searchedUserList, setSearchedUserList] = useState([]);
   const { info } = userStore();
   const { get_chat_list, get_all_users } = useChat();
 
   const handleSearchUser = (value) => {
     const searched_list = liveSearch(value, users, "name");
-    setUsers(searched_list);
+    setSearchedUserList(searched_list);
   };
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function Chat() {
       />
       <SearchBar onSearch={handleSearchUser} />
       <FlatList
-        data={users}
+        data={searchedUserList}
         contentContainerStyle={{ gap: 12 }}
         horizontal
         renderItem={({ item: user }) => <UserBubble user={user} />}
