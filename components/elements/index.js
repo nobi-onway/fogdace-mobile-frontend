@@ -1,5 +1,5 @@
 import LinkableButton from "./LinkableButton";
-import Banner from "./Banner"
+import Banner from "./Banner";
 import HeaderButton from "./HeaderButton";
 import ContentContainer from "./ContentContainer";
 import Logo from "./Logo";
@@ -18,5 +18,28 @@ import ScrollableContentContainer from "./ScrollableContentContainer";
 import FormInputDate from "./FormInputDate";
 import ToggleButton from "./ToggleButton";
 import ImageUploader from "./ImageUploader";
+import StripePayment from "./StripePaymentButton";
 
-export { ImageUploader, ScrollableContentContainer, InteractiveIcon3D, SearchBar, AnimationView, Icon2D, Avatar, TabIcon, MenuOptionCard, RewardCard, SupportItemCard, LinkableButton, Banner, HeaderButton, ContentContainer, Logo, FormInput, CheckBox, FormInputDate, ToggleButton }
+export {
+  ImageUploader,
+  ScrollableContentContainer,
+  InteractiveIcon3D,
+  SearchBar,
+  AnimationView,
+  Icon2D,
+  Avatar,
+  TabIcon,
+  MenuOptionCard,
+  RewardCard,
+  SupportItemCard,
+  LinkableButton,
+  Banner,
+  HeaderButton,
+  ContentContainer,
+  Logo,
+  FormInput,
+  CheckBox,
+  FormInputDate,
+  ToggleButton,
+  StripePayment,
+};
