@@ -1,3 +1,8 @@
+import { BASE_URL } from "../constants/url";
+import useFetch from "./useFetch";
+
+const FIND_TRADING_PETS_OF_URL = (owner_id) => `${BASE_URL}/pet/pettrading/${owner_id}`
+
 const PET_TRADING_DATA = [
     {
         id: '0000000000000001',
@@ -62,9 +67,12 @@ const PET_TRADING_DATA = [
 ]
 
 function usePetTrading() {
+    const { get_fetcher } = useFetch()
     const pets_trading = PET_TRADING_DATA;
 
-    return { pets_trading };
+    const get_trading_pets_of = async (owner_id) => await get_fetcher(FIND_TRADING_PETS_OF_URL(owner_id)).then(pets => pets)
+
+    return { pets_trading, get_trading_pets_of };
 }
 
 export default usePetTrading;

@@ -1,9 +1,17 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../../../constants";
+import { COLORS, FONTS } from "../../../constants";
 
 const styles = StyleSheet.create({
-    container: {
-
+    no_data_container: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginVertical: 8,
+    },
+    no_data_message: {
+        textAlign: 'center',
+        fontSize: 12,
+        fontFamily: FONTS.bold,
+        color: COLORS.tertiary,
     },
     pet_wrapper: (isSelected) => ({
         borderWidth: isSelected ? 2 : 0,
@@ -12,6 +20,8 @@ const styles = StyleSheet.create({
     }),
     error_message: {
         color: COLORS.danger,
+        fontFamily: FONTS.bold,
+        fontSize: 12,
     }
 });
 

@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         fontSize: SIZES.medium,
     },
     errorMessage: {
-        fontFamily: FONTS.regular,
-        fontSize: SIZES.small,
+        fontFamily: FONTS.bold,
+        fontSize: 12,
         color: COLORS.danger,
     },
     isKg: {

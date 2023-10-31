@@ -1,61 +1,29 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./style";
 import { FormInput, LinkableButton, ToggleButton } from "../../elements";
 import PetSelectionInput from "../PetSelectionInput";
-import useChat from "../../../hooks/useChat";
-
-const MY_PETS = [
-  {
-    _id: "1",
-    avatar:
-      "https://opet.com.vn/wp-content/uploads/2022/03/meo-anh-long-ngan-opet-15.jpg",
-    name: "Kem",
-    type: "Mèo Anh Lông ngắn",
-  },
-  {
-    _id: "2",
-    avatar:
-      "https://opet.com.vn/wp-content/uploads/2022/03/meo-anh-long-ngan-opet-15.jpg",
-    name: "Kem",
-    type: "Mèo Anh Lông ngắn",
-  },
-  {
-    _id: "3",
-    avatar:
-      "https://opet.com.vn/wp-content/uploads/2022/03/meo-anh-long-ngan-opet-15.jpg",
-    name: "Kem",
-    type: "Mèo Anh Lông ngắn",
-  },
-];
-const TRADING_PETS = [
-  {
-    _id: "653e2127382e236194c6309e",
-    avatar:
-      "https://matpetfamily.com/wp-content/uploads/2022/08/10016876d8a41dfa44b5.jpg",
-    name: "Su",
-    type: "Mèo Golden",
-  },
-  {
-    _id: "4",
-    avatar:
-      "https://matpetfamily.com/wp-content/uploads/2022/08/10016876d8a41dfa44b5.jpg",
-    name: "Su",
-    type: "Mèo Golden",
-  },
-  {
-    _id: "5",
-    avatar:
-      "https://matpetfamily.com/wp-content/uploads/2022/08/10016876d8a41dfa44b5.jpg",
-    name: "Su",
-    type: "Mèo Golden",
-  },
-];
+import usePetTrading from "../../../hooks/usePetTrading";
 
 export default function PetTradingForm({ requester, accepter, onSubmitForm }) {
   const [isFeePayer, setIsFeePayer] = useState(false);
+  const [requesterPets, setRequesterPets] = useState([]);
+  const [accepterPets, setAccepterPets] = useState([]);
+  const { get_trading_pets_of } = usePetTrading();
   const { control, handleSubmit } = useForm();
+
+  useEffect(() => {
+    const fetch_data = async () => {
+      const requester_pets = await get_trading_pets_of(requester._id);
+      const accepter_pets = await get_trading_pets_of(accepter._id);
+
+      setRequesterPets(requester_pets);
+      setAccepterPets(accepter_pets);
+    };
+
+    fetch_data();
+  }, []);
 
   const onSubmit = (value) => {
     const { money, requester_pet, accepter_pet, trading_item } = value;
@@ -89,13 +57,13 @@ export default function PetTradingForm({ requester, accepter, onSubmitForm }) {
       <PetSelectionInput
         control={control}
         name={"requester_pet"}
-        pets={MY_PETS}
+        pets={[...requesterPets, undefined]}
       />
       <Text style={styles.title}>Mèo bạn muốn nhận:</Text>
       <PetSelectionInput
         control={control}
         name={"accepter_pet"}
-        pets={TRADING_PETS}
+        pets={accepterPets}
       />
       <Text style={styles.title}>Bạn muốn trao đổi thêm:</Text>
       <FormInput control={control} type={"trading_item"} />
