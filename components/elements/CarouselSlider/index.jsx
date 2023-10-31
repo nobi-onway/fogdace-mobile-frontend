@@ -29,7 +29,6 @@ const TYPE = {
 };
 
 export default function CarouselSlider({ pagination = false, autoplay = false, carouselData = [], speed = 3000, type= 'default'}) {
-  console.log('carouselData', carouselData);
   const { itemWidth, padding, widthImg, heightImg } = TYPE[type];
   const [activeSlide, setActiveSlide] = useState(0);
   const carouselRef = useRef(null);

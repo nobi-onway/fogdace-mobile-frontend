@@ -4,7 +4,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import styles from './style'
 
 const CustomBottomSheet = forwardRef((props, ref) => {
-	const snapPoints = useMemo(() => ['50%', '70%'], []);
+	const snapPoints = useMemo(() => ['50%', '70%', '90%'], []);
 
     const initialIndex = props.initialIndex !== undefined ? props.initialIndex : -1;
 

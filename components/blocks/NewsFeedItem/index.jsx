@@ -1,11 +1,16 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
 
 import styles from "./style";
 import CarouselSlider from "../../elements/CarouselSlider";
 import { InteractiveIcon3D, Icon2D, Avatar } from "../../elements";
 
-export default function NewsFeedItem({ data }) {
+export default function NewsFeedItem({ data, bottomSheetRef }) {
   const { _id="", likes="", author_id, caption, images } = data;
+
+  const handleOpenBottomSheet = () => {
+    bottomSheetRef.current?.expand();
+  };
+
   return (
     <View style={styles.feedWrapper}>
       {/* Header */}
@@ -30,7 +35,9 @@ export default function NewsFeedItem({ data }) {
       <View style={styles.interactionWrapper}>
         <View style={styles.interactionRowGap}>
           <InteractiveIcon3D type="heart" />
-          <Icon2D name="comment" />
+          <Pressable onPress={handleOpenBottomSheet}>
+            <Icon2D name="comment" />
+          </Pressable>
         </View>
         <View>
           <InteractiveIcon3D type="favorite" />

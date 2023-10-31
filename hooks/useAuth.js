@@ -79,12 +79,14 @@ function useAuth() {
     const sign_out = () => {
         const auth = getAuth()
         signOut(auth).then(async() => {
-            await AsyncStorage.clear()
             setAuthentication(null)
+            console.log('sign_out...');
+            await AsyncStorage.clear()
           }).catch((error) => {
             alert('toan cho dien')
           });
     }
+
 
     return { sign_up_with_app, sign_in_with_email, sign_up_with_email, sign_out, subscribe_auth_state_changed };
 }

@@ -37,7 +37,6 @@ function SupportItemCard({ type }) {
   const props = TYPE[type];
   const SUPPORT_ITEM_CARD_FN = useSupportItemCard();
   const fnc = SUPPORT_ITEM_CARD_FN[type];
-console.log('fnc', fnc);
   const { icon, text } = props;
 
   return (
