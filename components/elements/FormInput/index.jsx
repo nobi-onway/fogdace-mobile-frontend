@@ -62,6 +62,20 @@ const TYPE = {
       },
     }),
   },
+  trading_item: {
+    placeholder: "Nhập mô tả ở đây",
+    rules: () => {},
+  },
+  money: {
+    placeholder: "Tiền bạn muốn trao đổi",
+    rules: () => ({
+      required: "Không được để trống",
+      pattern: {
+        value: /^[0-9]+$/,
+        message: "Vui lòng nhập đúng số tiền",
+      },
+    }),
+  },
 };
 
 function FormInput({ type, control, validated = true }) {

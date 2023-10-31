@@ -1,17 +1,20 @@
-import { Text, View, FlatList, ScrollView } from "react-native";
+import { Text, View, FlatList, ScrollView, Button } from "react-native";
 import { ProductCard } from "../../../components/blocks";
-import { COLORS, IMAGES } from "../../../constants";
+import { COLORS } from "../../../constants";
 import { FEEDS } from "../../../fakeData/feed";
 import CarouselSlider from "../../../components/elements/CarouselSlider";
 import { retailCarouselImages } from "../../../fakeData/retailCarouselImages";
 
+import { useRef } from "react";
+import CustomBottomSheet from "../../../components/elements/CustomBottomSheet";
+
 function Retail() {
+  const bottomSheetRef = useRef(null);
+
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <Text>Retail page</Text>
-      {/* <Banner source={IMAGES.banner} /> */}
+    <View style={{ flex: 1 }}>
       <View style={{ height: 300 }}>
-        <CarouselSlider carouselData={retailCarouselImages} autoplay />
+        <CarouselSlider carouselData={retailCarouselImages} />
       </View>
 
       <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
@@ -30,14 +33,20 @@ function Retail() {
         </View>
         <FlatList
           data={FEEDS}
-          renderItem={({ item }) => <ProductCard />}
+          renderItem={({ item }) => (
+            <ProductCard bottomSheetRef={bottomSheetRef} />
+          )}
           keyExtractor={(item) => item.id}
           numColumns={2}
         />
       </View>
 
       {/* <FlatList data={PET_HEALTH_INFO} renderItem={({item}) => <PetHealthInfoCard type={item.type} mainInfo={item.mainInfo} subInfo={item.subInfo}/>} keyExtractor={item => item.id} horizontal/> */}
-    </ScrollView>
+
+      <CustomBottomSheet ref={bottomSheetRef}>
+        <Text>Hi</Text>
+      </CustomBottomSheet>
+    </View>
   );
 }
 

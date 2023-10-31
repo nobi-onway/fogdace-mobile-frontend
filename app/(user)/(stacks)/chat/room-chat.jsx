@@ -5,7 +5,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { onValue, ref } from "@firebase/database";
 import { FIREBASE_DATABASE } from "../../../../config/firebase";
@@ -14,8 +14,10 @@ import { ContentContainer } from "../../../../components/elements";
 import {
   MessageComposer,
   MessageContainer,
+  PetTradingForm,
 } from "../../../../components/blocks";
 import { userStore } from "../../../../stores/userStore";
+import CustomBottomSheet from "../../../../components/elements/CustomBottomSheet";
 
 export default function RoomChat() {
   const params = useLocalSearchParams();
@@ -26,18 +28,21 @@ export default function RoomChat() {
 
   const [messages, setMessages] = useState([]);
 
+  const order_trading_sheet = useRef(null);
+
   const handleSendMessage = async (message) => {
     send_message_to(room_id, _id, message);
   };
 
   const handleRequestTrading = () => {
-    const message_data = {
-      pet_id: "6538c42c2202f8b2966680cd",
-      items: [{ name_product: "chuồng" }],
-      deposits: 100,
-      price: 10000,
-    };
-    send_message_to(room_id, _id, message_data, "order");
+    order_trading_sheet.current.expand();
+    // const message_data = {
+    //   request_pet_id: "6538c42c2202f8b2966680cd",
+    //   items: [{ name_product: "chuồng" }],
+    //   deposits: 100,
+    //   price: 10000,
+    // };
+    // send_message_to(room_id, _id, message_data, "order");
   };
 
   useEffect(() => {
@@ -82,6 +87,16 @@ export default function RoomChat() {
           handleSendMessage={handleSendMessage}
           handleRequestTrading={handleRequestTrading}
         />
+
+        <CustomBottomSheet ref={order_trading_sheet}>
+          <KeyboardAvoidingView
+            enabled
+            keyboardVerticalOffset={350}
+            behavior="position"
+          >
+            <PetTradingForm />
+          </KeyboardAvoidingView>
+        </CustomBottomSheet>
       </View>
     </ContentContainer>
   );

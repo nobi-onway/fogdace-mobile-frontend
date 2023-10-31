@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         color: COLORS.black,
         fontFamily: FONTS.bold,
     },
-    date:{
+    date: {
         flex: 1,
         fontFamily: FONTS.regular,
         fontSize: SIZES.medium,

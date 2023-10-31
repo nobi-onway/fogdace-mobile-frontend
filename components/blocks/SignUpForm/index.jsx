@@ -49,7 +49,6 @@ function SignUpForm({ style }) {
       >
         Đăng ký
       </LinkableButton>
-      <ImageUploader />
     </View>
   );
 }

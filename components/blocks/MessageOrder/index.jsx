@@ -2,9 +2,9 @@ import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import React from "react";
 
 import styles from "./style";
-import { Avatar } from "../../elements";
+import { Avatar, Icon2D } from "../../elements";
 
-const PET_DATA = {
+const REQUESTER_PET_DATA = {
   id: "0000000000000005",
   name: "Bella",
   gender: "Cái",
@@ -18,22 +18,46 @@ const PET_DATA = {
   },
 };
 
+const ACCEPTER_PET_DATA = {
+  id: "0000000000000001",
+  name: "Bún Bò",
+  gender: "Đực",
+  type: "Shiba Inu",
+  birthday: "20/10/2023",
+  avatar:
+    "https://i.pinimg.com/236x/8a/ce/9f/8ace9fe1a86e9fc2b5dced5ea7feb0d7.jpg",
+  pet_health_profile: {
+    triet_san: "Chưa triệt sản",
+    weight: 2,
+  },
+};
+
+const PetBriefInfo = ({ pet, end }) => {
+  const { name, avatar, type } = pet;
+
+  return (
+    <View style={styles.pet_info_wrapper(end)}>
+      <View style={styles.pet_info}>
+        <Text style={styles.pet_name(end)}>{name}</Text>
+        <Text style={styles.pet_type(end)}>{type}</Text>
+      </View>
+      <View>
+        <Avatar src={avatar} />
+      </View>
+    </View>
+  );
+};
+
 export default function MessageOrder({ message, isUser }) {
   const { deposits, items, pet_id, price } = message;
   return (
     <View style={styles.container(isUser)}>
       <View style={styles.trading_info_wrapper}>
-        <View>
-          <Text style={styles.price}>Tiền trao đổi: {price}</Text>
-          <Text style={styles.deposit}>Đặt cọc: {deposits}</Text>
+        <PetBriefInfo pet={ACCEPTER_PET_DATA} end={false} />
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <Icon2D name={"activity"} />
         </View>
-        <View style={styles.pet_info_wrapper}>
-          <View style={styles.pet_info}>
-            <Text style={styles.pet_name}>{PET_DATA.name}</Text>
-            <Text style={styles.pet_type}>{PET_DATA.type}</Text>
-          </View>
-          <Avatar src={PET_DATA.avatar} />
-        </View>
+        <PetBriefInfo pet={REQUESTER_PET_DATA} end={true} />
       </View>
       <FlatList
         data={items}

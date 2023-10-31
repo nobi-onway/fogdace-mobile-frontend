@@ -23,8 +23,12 @@ import MessageContainer from "./MessageContainer";
 import UserBubble from "./UserBubble";
 import MessageText from "./MessageText";
 import MessageOrder from "./MessageOrder";
+import PetTradingForm from "./PetTradingForm";
+import PetSelectionInput from "./PetSelectionInput";
 
 export {
+  PetSelectionInput,
+  PetTradingForm,
   MessageOrder,
   MessageText,
   UserBubble,

@@ -14,26 +14,27 @@ const styles = StyleSheet.create({
     }),
     trading_info_wrapper: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
     },
-    pet_info_wrapper: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-    },
+    pet_info_wrapper: (end) => ({
+        flexDirection: end ? 'row' : 'row-reverse',
+        alignItems: 'center',
+        justifySelf: 'flex-start',
+    }),
     pet_info: {
         marginHorizontal: 4,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    pet_name: {
+    pet_name: (end) => ({
         fontFamily: FONTS.bold,
-        alignSelf: 'flex-end',
-    },
-    pet_type: {
-        alignSelf: 'flex-end',
+        alignSelf: end ? 'flex-end' : 'flex-start',
+    }),
+    pet_type: (end) => ({
+        alignSelf: end ? 'flex-end' : 'flex-start',
         fontFamily: FONTS.medium,
-        fontSize: 12,
-    },
+        fontSize: 10,
+    }),
     bonus_info_wrapper: {
         backgroundColor: COLORS.gray,
         alignItems: 'center',

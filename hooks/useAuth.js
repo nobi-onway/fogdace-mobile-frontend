@@ -40,12 +40,9 @@ function useAuth() {
     const sign_up_with_email = async (email, password) => {
         await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
             .then(userCredential => {
-                const { user } = userCredential;
-                const { uid } = user
 
-                return uid
             })
-            .catch(() => { alert('sign up fail') })
+            .catch(() => { alert('email not found') })
     }
 
     const sign_in_with_app = async (username, password) => {
@@ -57,22 +54,20 @@ function useAuth() {
         })
     }
 
-    const sign_up_with_app = async ({ user_info }) => {
+    const sign_up_with_app = async (user_info) => {
         const { email, password, confirmPassword, name, avatar } = user_info;
 
-        post_fetcher(REGISTER_URL, {
+        await post_fetcher(REGISTER_URL, {
             username: email,
             password: password,
             confirmPassword: confirmPassword,
             name: name,
             avatar: avatar,
-        }).then(user => {
-            const { _id, username, name, avatar } = user
-
-            set(ref(FIREBASE_DATABASE, 'users/' + _id), { _id, username, name, avatar })
+        }).then(_id => {
+            set(ref(FIREBASE_DATABASE, 'users/' + _id), { _id, email, name, avatar })
                 .then(() => go_to_sign_in())
                 .catch(err => alert(err.message))
-        })
+        }).catch(err => alert(err.message))
     }
 
     const sign_out = () => {
