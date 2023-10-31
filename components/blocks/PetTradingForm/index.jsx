@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import styles from "./style";
 import { FormInput, LinkableButton, ToggleButton } from "../../elements";
 import PetSelectionInput from "../PetSelectionInput";
+import useChat from "../../../hooks/useChat";
 
 const MY_PETS = [
   {
@@ -52,30 +53,34 @@ const TRADING_PETS = [
   },
 ];
 
-export default function PetTradingForm({ requester_id, accepter_id }) {
+export default function PetTradingForm({ requester, accepter, onSubmitForm }) {
   const [isFeePayer, setIsFeePayer] = useState(false);
   const { control, handleSubmit } = useForm();
 
   const onSubmit = (value) => {
     const { money, requester_pet, accepter_pet, trading_item } = value;
 
-    const request_data = {
-      code: "tradding1",
+    const trading_order_data = {
+      code: `PTO-${requester._id.substring(0, 3)}-${accepter._id.substring(
+        0,
+        3
+      )}-${money}`,
       requester: {
-        requester_id: requester_id,
+        ...requester,
         pet_id: requester_pet._id,
-        items: trading_item,
         deposits: 100,
       },
       accepter: {
-        accepter_id: accepter_id,
-        pet_id: accepter_pet,
+        ...accepter,
+        pet_id: accepter_pet._id,
         deposits: 100,
       },
-      fee_payer: "653e2127382e236194c6309e",
+      items: trading_item,
+      fee_payer: isFeePayer ? requester._id : accepter._id,
+      fee_payer_name: isFeePayer ? requester.name : accepter.name,
       price: money,
     };
-    console.log(request_data);
+    onSubmitForm(trading_order_data);
   };
 
   return (

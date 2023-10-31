@@ -3,6 +3,9 @@ import React from "react";
 
 import styles from "./style";
 import { Avatar, Icon2D } from "../../elements";
+import formatCurrency from "../../../utils/formatCurrency";
+import { userStore } from "../../../stores/userStore";
+import useOrder from "../../../hooks/useOrder";
 
 const REQUESTER_PET_DATA = {
   id: "0000000000000005",
@@ -48,31 +51,48 @@ const PetBriefInfo = ({ pet, end }) => {
   );
 };
 
-export default function MessageOrder({ message, isUser }) {
-  const { deposits, items, pet_id, price } = message;
+export default function MessageOrder({ message }) {
+  const { create_trading_order } = useOrder();
+  const {
+    deposits,
+    items,
+    accepter,
+    requester,
+    accepter_pet_id,
+    requester_pet_id,
+    fee_payer,
+    fee_payer_name,
+    price,
+  } = message;
+
+  const { info } = userStore();
+
+  const handleConfirmTradingOrder = () => {
+    create_trading_order(message);
+  };
+
   return (
-    <View style={styles.container(isUser)}>
+    <View style={styles.container}>
       <View style={styles.trading_info_wrapper}>
         <PetBriefInfo pet={ACCEPTER_PET_DATA} end={false} />
         <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <Icon2D name={"activity"} />
+          <Icon2D name={"swap"} />
         </View>
         <PetBriefInfo pet={REQUESTER_PET_DATA} end={true} />
       </View>
-      <FlatList
-        data={items}
-        contentContainerStyle={{ gap: 4 }}
-        horizontal
-        style={{ paddingVertical: 8 }}
-        renderItem={({ item }) => (
-          <View key={item.id} style={styles.bonus_info_wrapper}>
-            <Text style={styles.bonus_info}>{item.name_product}</Text>
-          </View>
-        )}
-      />
-      <TouchableOpacity style={styles.confirm_button}>
-        <Text style={styles.confirm_button_text}>Xác nhận trao đổi</Text>
-      </TouchableOpacity>
+      <View style={styles.bonus_info_wrapper}>
+        <Text style={styles.bonus_info}>Trao đổi thêm: {items}</Text>
+      </View>
+      <Text style={styles.fee_payer}>Boss thanh toán: {fee_payer_name}</Text>
+      <Text style={styles.price}>Giá: {formatCurrency(price)}</Text>
+      {accepter === info._id && (
+        <TouchableOpacity
+          onPress={handleConfirmTradingOrder}
+          style={styles.confirm_button}
+        >
+          <Text style={styles.confirm_button_text}>Xác nhận trao đổi</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

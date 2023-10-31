@@ -3,23 +3,22 @@ import { COLORS, FONTS } from "../../../constants";
 import GLOBAL_STYLES from "../../../app/global.style"
 
 const styles = StyleSheet.create({
-    container: (isUser) => ({
+    container: {
         padding: 8,
         backgroundColor: COLORS.white,
         borderRadius: 8,
         width: 280,
-        maxHeight: 160,
         marginVertical: 8,
         ...GLOBAL_STYLES.shadow
-    }),
+    },
     trading_info_wrapper: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 8,
     },
     pet_info_wrapper: (end) => ({
         flexDirection: end ? 'row' : 'row-reverse',
         alignItems: 'center',
-        justifySelf: 'flex-start',
     }),
     pet_info: {
         marginHorizontal: 4,
@@ -36,16 +35,15 @@ const styles = StyleSheet.create({
         fontSize: 10,
     }),
     bonus_info_wrapper: {
-        backgroundColor: COLORS.gray,
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 24,
-        paddingHorizontal: 8,
+        justifyContent: 'space-between',
         borderRadius: 12,
+        flexDirection: 'row',
+        marginVertical: 2,
     },
     bonus_info: {
         fontFamily: FONTS.medium,
-        fontSize: 12,
+        flexWrap: 'wrap',
+        fontSize: 10,
     },
     deposit: {
         fontFamily: FONTS.bold,
@@ -55,9 +53,16 @@ const styles = StyleSheet.create({
     },
     price: {
         fontFamily: FONTS.bold,
-        fontSize: 12,
-        marginVertical: 2,
+        fontSize: 10,
+        flexWrap: "wrap",
         color: COLORS.success,
+        marginVertical: 2,
+    },
+    fee_payer: {
+        fontFamily: FONTS.bold,
+        fontSize: 10,
+        flexWrap: "wrap",
+        marginVertical: 2,
     },
     confirm_button: {
         height: 24,
@@ -65,6 +70,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 4,
+        marginTop: 8,
     },
     confirm_button_text: {
         fontFamily: FONTS.bold,

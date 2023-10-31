@@ -16,7 +16,7 @@ const TYPE = {
 };
 
 export default function MessageContainer({ message, user, isUser }) {
-  const { avatar, name } = user;
+  const { avatar } = user;
 
   const { messages } = message;
 
