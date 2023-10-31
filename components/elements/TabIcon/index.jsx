@@ -4,29 +4,34 @@ import { View, Text } from "react-native";
 
 import styles from "./style";
 
-const types = {
+const TYPE = {
   feed: {
     component: FontAwesome5,
+    name: "Bảng tin",
     icon: ICONS.fa_home,
     color: COLORS.primary,
   },
   explore: {
     component: Ionicons,
+    name: "Khám phá",
     icon: ICONS.ionIcon_paw,
     color: COLORS.secondary,
   },
   care: {
     component: Ionicons,
+    name: "Dịch vụ",
     icon: ICONS.ionIcon_heart,
     color: COLORS.danger,
   },
   retail: {
     component: FontAwesome5,
+    name: "Mua sắm",
     icon: ICONS.fa_cart,
     color: COLORS.tertiary,
   },
   menu: {
     component: Ionicons,
+    name: "Menu",
     icon: ICONS.ionIcon_menu,
     color: COLORS.info,
   },
@@ -53,18 +58,18 @@ const types = {
 };
 
 function TabIcon({ activated, name, size = SIZES.xxLarge }) {
-  const Icon = types[name].component;
-  const color = activated ? types[name].color : COLORS.gray;
+  const Icon = TYPE[name].component;
+  const color = activated ? TYPE[name].color : COLORS.gray;
 
   return (
     <View style={styles.wrapper}>
       <Icon
         style={styles.icon}
-        name={types[name].icon}
+        name={TYPE[name].icon}
         color={color}
         size={size}
       />
-      <Text style={styles.label(color)}>{name}</Text>
+      <Text style={styles.label(color)}>{TYPE[name].name}</Text>
     </View>
   );
 }

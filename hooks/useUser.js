@@ -4,8 +4,8 @@ const USER_DATA = {
 }
 
 function useUser() {
-    const currentUser = USER_DATA
-    return { currentUser };
+    const cur_user = USER_DATA
+    return { cur_user };
 }
 
 export default useUser;

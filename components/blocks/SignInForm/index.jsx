@@ -4,12 +4,16 @@ import styles from "./style";
 import { useForm } from "react-hook-form";
 import { SIZES } from "../../../constants";
 import useNavigation from "../../../hooks/useNavigation";
+import useAuth from "../../../hooks/useAuth";
+
 function SignInForm() {
   const { control, handleSubmit } = useForm();
   const { go_to_sign_up } = useNavigation();
+  const { sign_in_with_email } = useAuth();
 
-  const onSubmit = () => {
-    console.log("onSubmit");
+  const onSubmit = (data) => {
+    const { username, password } = data;
+    sign_in_with_email(username, password);
   };
 
   return (
@@ -20,7 +24,8 @@ function SignInForm() {
         <TouchableOpacity style={{ alignSelf: "flex-end" }}>
           <Text style={styles.forgetPassword}>Quên mật khẩu?</Text>
         </TouchableOpacity>
-      </View>
+      </View>    
+
       <LinkableButton handlePress={handleSubmit(onSubmit)}>
         Đăng nhập
       </LinkableButton>
