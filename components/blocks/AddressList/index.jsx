@@ -1,9 +1,11 @@
 
 import React from 'react';
-import { ScrollView, Text, View,TouchableOpacity } from 'react-native';
+import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import AddressCard from '../../elements/AddressCard'
 import { useState } from "react";
-import { COLORS } from '../../../constants';
+import { COLORS, FONTS } from '../../../constants';
+import useNavigation from '../../../hooks/useNavigation';
+
 const addressData = [
     {
         name: 'Trường Giang',
@@ -19,13 +21,14 @@ const addressData = [
 
 
 function AddressList() {
+    const { go_to_add_address } = useNavigation();
     const [selectedAddress, setSelectedAddress] = useState(0);
 
     const handleAddressSelect = (index) => {
         setSelectedAddress(index);
     };
     return (
-        <ScrollView>
+        <View>
             {addressData.map((address, index) => (
                 <AddressCard
                     key={index}
@@ -34,11 +37,14 @@ function AddressList() {
                     onSelect={() => handleAddressSelect(index)}
                 />
             ))}
-            <TouchableOpacity style={{ alignItems: 'center',backgroundColor:COLORS.darkGrey,marginHorizontal:18,borderRadius:6,paddingVertical:12,marginTop:20 }}>
-                <Text>Thêm</Text>
+            <TouchableOpacity
+                style={{ alignItems: 'center', backgroundColor: COLORS.darkGrey, marginHorizontal: 18, borderRadius: 6, paddingVertical: 12, marginTop: 20 }}
+                onPress={() => { go_to_add_address({}) }}
+            >
+                <Text style={{ fontFamily: FONTS.bold }}>Thêm</Text>
             </TouchableOpacity>
 
-        </ScrollView>
+        </View>
     );
 }
 

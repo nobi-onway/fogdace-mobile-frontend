@@ -20,7 +20,7 @@ function PaymentList() {
     };
 
     return (
-        <ScrollView>
+        <View>
             <CodCard
                 selectedPayment={selectedPayment}
                 isPressed={isPressed}
@@ -31,7 +31,7 @@ function PaymentList() {
                 isPressed={isPressed}
                 onPress={() => handlePress(1)}
             />
-        </ScrollView>
+        </View>
     );
 }
 

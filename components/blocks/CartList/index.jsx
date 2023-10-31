@@ -3,6 +3,7 @@ import { ScrollView, Text, View, TouchableOpacity, Image, Button } from 'react-n
 import CartCard from '../../elements/CartCard'
 import { COLORS, IMAGES } from '../../../constants';
 import styles from './style';
+import useNavigation from '../../../hooks/useNavigation'
 
 const cartData = [
     {
@@ -29,6 +30,8 @@ function CartList() {
 
     const [selectedCarts, setSelectedCarts] = useState([]);
     const [selectAllSelected, setSelectAllSelected] = useState(false);
+
+    const { go_to_checkout } = useNavigation();
 
     const handleCartSelect = (index) => {
         const updatedSelection = [...selectedCarts];
@@ -83,7 +86,12 @@ function CartList() {
                     </TouchableOpacity>
                     <Text style={styles.textCheck}>Chọn mua tất cả</Text>
                 </View>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        go_to_checkout({});
+                    }}
+                >
                     <Text style={styles.textCheckout}>Trang thanh toán </Text>
                     <View style={styles.dot}></View>
                     <Text style={styles.textCheckout}> 3.000.000đ </Text>

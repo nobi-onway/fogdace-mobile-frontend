@@ -6,7 +6,7 @@ import { COLORS, FONTS, IMAGES } from "../../../constants";
 
 const OrderList = () => {
     return (
-        <ScrollView style={{ height: '100%', backgroundColor: COLORS.primaryOrder }}>
+        <View style={{ height: '100%', backgroundColor: COLORS.primaryOrder }}>
             {FEEDS.length <= 0 ? (
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Image resizeMode="cover" style={{ width: 150, height: 150, marginTop: 150 }} source={IMAGES.noData} />
@@ -22,7 +22,7 @@ const OrderList = () => {
                     numColumns={1}
                 />
             )}
-        </ScrollView>
+        </View>
     );
 };
 
