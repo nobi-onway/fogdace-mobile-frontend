@@ -10,7 +10,7 @@ export default function UserLayout() {
 
   useLayoutEffect(() => {
     if (!authentication) go_to_sign_in();
-  }, []);
+  }, [authentication]);
 
   return (
     <Stack

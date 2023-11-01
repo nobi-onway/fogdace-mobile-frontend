@@ -1,20 +1,30 @@
-import { View, Text, TouchableOpacity } from "react-native";
-
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import { useRef } from "react";
 import styles from "./style";
 import CarouselSlider from "../../elements/CarouselSlider";
 import { InteractiveIcon3D, Icon2D, Avatar } from "../../elements";
+import CustomBottomSheet from "../../elements/CustomBottomSheet";
 
-export default function NewsFeedItem({ data }) {
-  const { id, username, avatar, content, img, likes } = data;
+export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) {
+  const { _id="", likes="", author_id, caption, images, top_comment } = data;
+  const bottomSheetReffff = useRef(null);
+
+  const handleOpenBottomSheet = () => {
+
+  
+    openBottomSheet(top_comment)
+  };
+
+
 
   return (
     <View style={styles.feedWrapper}>
       {/* Header */}
       <View style={styles.row}>
-        <Avatar src={avatar} shape="rounded" size="default" />
+        <Avatar src={author_id.avatar} shape="rounded" size="default" />
 
         <View style={styles.userInfoWrapper}>
-          <Text style={styles.username}>{username}</Text>
+          <Text style={styles.username}>{author_id.name}</Text>
         </View>
         <View style={styles.threeDotsWrapper}>
           <TouchableOpacity style={styles.followBtn}>
@@ -25,13 +35,15 @@ export default function NewsFeedItem({ data }) {
       </View>
 
       <View style={styles.imageContainer}>
-        <CarouselSlider pagination type="feeds" carouselData={img} />
+        <CarouselSlider pagination type="feeds" carouselData={images} />
       </View>
 
       <View style={styles.interactionWrapper}>
         <View style={styles.interactionRowGap}>
           <InteractiveIcon3D type="heart" />
-          <Icon2D name="comment" />
+          <Pressable onPress={handleOpenBottomSheet}>
+            <Icon2D name="comment" />
+          </Pressable>
         </View>
         <View>
           <InteractiveIcon3D type="favorite" />
@@ -39,16 +51,21 @@ export default function NewsFeedItem({ data }) {
       </View>
 
       {/* Reactions */}
-      <View style={styles.reactionWrapper}>
+      {likes ?(
+        <View style={styles.reactionWrapper}>
         <Icon2D name="heart" activated="red" />
-        <Text>{likes} others people reacted</Text>
+        <Text>{likes} other people reacted</Text>
       </View>
+      ) : null}
+      
 
       <View style={styles.contentWrapper}>
         <Text>
-          <Text style={styles.username}>{username}</Text>: {content}
+          <Text style={styles.username}>{author_id.name}</Text>: {caption}
         </Text>
       </View>
+
+
     </View>
   );
 }

@@ -20,6 +20,7 @@ const SUPPORT_LIST = [
   "following",
   "assistance",
   "setting",
+  "log_out",
 ];
 
 const OPTION_RIGHT_LIST = ["NFC", "shopping_options", "pet_services", "clubs"];
