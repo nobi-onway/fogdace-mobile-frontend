@@ -4,8 +4,8 @@ import { FONTS, SIZES, COLORS, ROUNDED } from "../../../constants";
 const styles = StyleSheet.create({
     container: {
       height: 280,
-      width: '50%',
-      paddingHorizontal: 10,
+      width: '48%',
+      paddingHorizontal: 6,
       backgroundColor: COLORS.white,
       borderRadius: 8,
       flexDirection: "column",
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     imageWrapper: {
       width: "100%",
       height: "70%",
+      padding: 3
     },
     image: {
       width: "100%",
