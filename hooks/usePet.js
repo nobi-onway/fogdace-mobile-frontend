@@ -41,10 +41,16 @@ function usePet() {
     return pet_types;
   };
 
+  const get_all_pet_products = async () => {
+    const pet_products = await get_fetcher(`${BASE_URL}/product?limit=14&page=1`);
+    return pet_products;
+  };
+
   return {
     create_pet_profile,
     update_pet_health_profile_of,
     get_all_pet_types,
+    get_all_pet_products,
   };
 }
 

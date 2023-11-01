@@ -4,17 +4,29 @@ import { Icon2D } from "../../elements";
 
 import styles from "./style";
 
-const ProductCard = ({ bottomSheetRef }) => {
+const ProductCard = ({ data, bottomSheetRef }) => {
   const handleOpenBottomSheet = () => {
     bottomSheetRef.current?.expand();
   };
+
+  const {
+    _id,
+    name,
+    image,
+    price,
+    quantity,
+    rating,
+    sold_quantity,
+    status,
+    topComment,
+  } = data;
 
   return (
     <Pressable style={styles.container} onPress={() => handleOpenBottomSheet()}>
       <View style={styles.imageWrapper}>
         <Image
           source={{
-            uri: "https://m.media-amazon.com/images/I/61mwpRSoTeL._AC_UF1000,1000_QL80_.jpg",
+            uri: image,
           }}
           style={styles.image}
         />
@@ -22,12 +34,12 @@ const ProductCard = ({ bottomSheetRef }) => {
 
       <View>
         <Text numberOfLines={2} ellipsizeMode="tail">
-          Pate cho chó hỗ trợ dinh dương, điều trị Mongeeeeeeeeeeeee
+          {name}
         </Text>
       </View>
 
       <View style={styles.rowActions}>
-        <Text style={styles.price}>đ37,000</Text>
+        <Text style={styles.price}>${price}</Text>
         <View style={styles.shoppingCartWrapper}>
           <Icon2D name="productCart" activated />
         </View>
