@@ -1,15 +1,25 @@
-import { Text, View, FlatList, ScrollView } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { FlatList, ScrollView, Text, View } from "react-native";
 import { ProductCard } from "../../../components/blocks";
-import { COLORS, IMAGES } from "../../../constants";
-import { FEEDS } from "../../../fakeData/feed";
 import CarouselSlider from "../../../components/elements/CarouselSlider";
 import { retailCarouselImages } from "../../../fakeData/retailCarouselImages";
+import usePet from "../../../hooks/usePet";
 
 function Retail() {
+  const [products, setProducts] = useState();
+  const { get_all_pet_products } = usePet();
+  const bottomSheetRef = useRef(null);
+
+  useEffect(() => {
+    const fetchPetData = async () => {
+      const data = await get_all_pet_products();
+      setProducts(data);
+    };
+    fetchPetData();
+  }, []);
+
   return (
     <ScrollView style={{ flex: 1 }}>
-      <Text>Retail page</Text>
-      {/* <Banner source={IMAGES.banner} /> */}
       <View style={{ height: 300 }}>
         <CarouselSlider carouselData={retailCarouselImages} autoplay />
       </View>
@@ -24,14 +34,16 @@ function Retail() {
           }}
         >
           <Text style={{ fontWeight: "bold", fontSize: 22 }}>
-            Sản phẩm nổi bật
+            Pet thích bạn cũng thế
           </Text>
-          <Text style={{ color: COLORS.lightBlack }}>Xem toàn bộ</Text>
+          {/* <Text style={{ color: COLORS.lightBlack }}>Xem toàn bộ</Text> */}
         </View>
         <FlatList
-          data={FEEDS}
-          renderItem={({ item }) => <ProductCard />}
-          keyExtractor={(item) => item.id}
+          data={products}
+          renderItem={({ item }) => (
+            <ProductCard data={item} bottomSheetRef={bottomSheetRef} />
+          )}
+          keyExtractor={(item) => item._id}
           numColumns={2}
         />
       </View>
