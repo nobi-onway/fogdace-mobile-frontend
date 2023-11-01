@@ -35,8 +35,8 @@ export default function CarouselSlider({ pagination = false, autoplay = false, c
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.carouselItem(padding, widthImg, heightImg)}>
-        <Image source={{ uri: item.URI }} style={styles.image} />
+      <View style={styles.carouselItem(padding, widthImg, heightImg)} key={carouselData._id}>
+        <Image source={{ uri: item.image }} style={styles.image} />
       </View>
     );
   };

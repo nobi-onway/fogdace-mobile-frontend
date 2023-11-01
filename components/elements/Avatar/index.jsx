@@ -24,6 +24,10 @@ const AVATAR_SIZES = {
     width: SIZES.xxLarge,
     height: SIZES.xxLarge,
   },
+  medium:{
+    width: SIZES.jumbo,
+    height: SIZES.jumbo,
+  },
   default: {
     width: SIZES.xxxLarge,
     height: SIZES.xxxLarge,

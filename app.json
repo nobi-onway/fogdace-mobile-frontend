@@ -4,6 +4,10 @@
     "web": {
       "bundler": "metro"
     },
+    "android": {
+      "package": "com.fogdace.fogdace",
+      "versionCode": 1
+  },
     "plugins": [
       "expo-router"
     ],
