@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { FONTS, SIZES, COLORS, ROUNDED } from "../../../constants";
 
 const styles = StyleSheet.create({
+   
     centeredView: {
         flex: 1,
         justifyContent: 'center',
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 10,
-        padding: 20,
+        padding: 25,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -21,16 +22,22 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
+    modalClose:{
+        display: 'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+    },
     button: {
-        borderRadius: 20,
+        borderRadius: 6,
         padding: 10,
         elevation: 2,
+        marginTop: 20,
     },
     buttonOpen: {
-        backgroundColor: COLORS.lightOrange,
+        backgroundColor: COLORS.slightOrange,
     },
     buttonClose: {
-        backgroundColor: COLORS.lightOrange,
+        backgroundColor: COLORS.slightOrange,
     },
     textStyle: {
         color: 'white',
@@ -48,13 +55,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     modalTextPrice: {
-        marginBottom: 15,
+        marginBottom: 45,
     },
     wrapperQuantity: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
     },
     priceText: {
         fontFamily: FONTS.bold,
@@ -64,12 +71,21 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        gap: 20,
     },
     circleMinus: {
-        
+        backgroundColor: COLORS.darkGrey,
+        borderRadius: 20,
+        padding: 6,
+    },
+    quantity: {
+        fontFamily: FONTS.bold,
+        fontSize: 18,
     },
     circlePlus: {
-
+        backgroundColor: COLORS.slightOrange,
+        borderRadius: 20,
+        padding: 4,
     },
 });
 

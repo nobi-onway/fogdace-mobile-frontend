@@ -2,39 +2,44 @@
 import React from 'react';
 import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import AddressCard from '../../elements/AddressCard'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { COLORS, FONTS } from '../../../constants';
 import useNavigation from '../../../hooks/useNavigation';
-
-const addressData = [
-    {
-        name: 'Trường Giang',
-        phone: '0981890260',
-        address: 'Tân Lập, Phường Hiệp Phú, Quận 9, Thành phố Hồ Chí Minh',
-    },
-    {
-        name: 'Việt ngu',
-        phone: '1234567890',
-        address: 'Quốc lộ 51, thị xã Mỹ Tho, huyện Phú Giáo Vương quốc Bình Dương',
-    },
-];
-
+import useAddress from '../../../hooks/useAddress';
+import { userStore } from '../../../stores/userStore';
 
 function AddressList() {
+    
     const { go_to_add_address } = useNavigation();
-    const [selectedAddress, setSelectedAddress] = useState(0);
+
+    const { info } = userStore();
+
+    const [addressData, setAddressData] = useState();
+    const [selectedAddress, setSelectedAddress] = useState();
+
+    const { get_address_by_id, set_default_address } = useAddress();
+
+    useEffect(() => {
+        const addressList = async () => {
+            const data = await get_address_by_id(info._id);
+            setAddressData(data);
+        };
+        addressList();
+    }, [selectedAddress]);
 
     const handleAddressSelect = (index) => {
         setSelectedAddress(index);
     };
     return (
         <View>
-            {addressData.map((address, index) => (
+            {addressData?.map((address) => (
                 <AddressCard
-                    key={index}
+                    userId={info._id}
+                    key={address._id}
                     address={address}
-                    isSelected={selectedAddress === index}
-                    onSelect={() => handleAddressSelect(index)}
+                    isSelected={address.is_default === true}
+                    onSelect={() => handleAddressSelect(address._id)}
+                    set_default_address={set_default_address}
                 />
             ))}
             <TouchableOpacity

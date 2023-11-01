@@ -62,31 +62,31 @@ const TYPE = {
       },
     }),
   },
-  received_username: {
+  name_user: {
     placeholder: "Đăng Hoàng Việt",
     rules: () => ({
       required: "Vui lòng nhập tên của bạn! ",
     }),
   },
-  received_phone: {
+  phone_user: {
     placeholder: "0981890262",
     rules: () => ({
       required: "Yêu cầu số điện thoại! ",
     }),
   },
-  received_province: {
+  province: {
     placeholder: "Hồ Chính Minh",
     editable: false,
     rules: () => ({
     }),
   },
-  received_district: {
+  district: {
     placeholder: "Chọn quận",
     rules: () => ({
       required: "Vui lòng chọn địa chỉ!",
     }),
   },
-  received_address: {
+  home_address: {
     placeholder: "VD: 123 Lê Đức Thọ, Phường Linh Trung",
     rules: () => ({
       required: "Vui lòng nhập địa chỉ cụ thể!",

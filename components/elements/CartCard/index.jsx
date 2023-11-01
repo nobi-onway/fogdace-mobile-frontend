@@ -3,13 +3,11 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { IMAGES } from '../../../constants';
 import styles from './style';
 import CartQuantityModal from '../../blocks/CartQuantityModal';
-function CartCard({ cart, isSelected, onSelect }) {
+function CartCard({ cart, isSelected, onSelect, modalVisible, setModalVisible }) {
 
   const handlePress = () => {
     onSelect();
   };
-
-  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View
@@ -32,7 +30,7 @@ function CartCard({ cart, isSelected, onSelect }) {
           )}
         </TouchableOpacity>
         <TouchableOpacity style={styles.wrapperContent}
-          onPress={() => setModalVisible(true)}
+          onPress={() => setModalVisible(cart.id)}
         >
           <Image
             resizeMode="cover"
@@ -41,7 +39,7 @@ function CartCard({ cart, isSelected, onSelect }) {
           />
           <View style={styles.wrapperProduct}>
             <Text style={styles.text}>{cart.name}</Text>
-            <Text style={styles.textPrice}>{cart.price}</Text>
+            <Text style={styles.textPrice}>{cart.price * cart.quantity}$</Text>
           </View>
           <View style={styles.wrapperQuantity}>
             <Text style={styles.textQuantity}>
@@ -50,7 +48,13 @@ function CartCard({ cart, isSelected, onSelect }) {
           </View>
         </TouchableOpacity>
       </View>
-      <CartQuantityModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
+      <View style={styles.overlay}>
+        <CartQuantityModal
+          cart={cart}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
+      </View>
     </View>
   );
 }

@@ -1,35 +1,47 @@
-import { Alert, Modal, Text, Pressable, View, Image } from 'react-native';
+import { Alert, Modal, Text, Pressable, View, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
 import styles from './style';
 import { AntDesign } from '@expo/vector-icons';
+import { ICONS } from '../../../constants';
+import { useState } from 'react';
 
-function CartQuantityModal({ modalVisible, setModalVisible }) {
+function CartQuantityModal({ modalVisible, setModalVisible, cart}) {
 
-
+    
     return (
         <View style={styles.centeredView}>
             <Modal
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                    setModalVisible(!modalVisible);
-                }}>
+            >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Số lượng</Text>
-                        <Text style={styles.modalTextDes}>Nhà cây cho mèo kèm lồng kính CH030</Text>
-                        <Text style={styles.modalTextPrice}>Đơn giá: 1.300.000đ</Text>
+                        <View style={styles.modalClose}>
+                            <Text style={styles.modalText}>Số lượng</Text>
+                            <TouchableOpacity
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <AntDesign name={ICONS.antDesign_close} size={20} color="black" />
+                            </TouchableOpacity>
+                        </View>
+                        <Text style={styles.modalTextDes}>{cart.name}</Text>
+                        <Text style={styles.modalTextPrice}>Đơn giá: {cart.price}</Text>
                         <View style={styles.wrapperQuantity}>
-                            <Text style={styles.priceText}>2.600.000đ</Text>
+                            <Text style={styles.priceText}>{cart.quantity * cart.price}</Text>
                             <View style={styles.wrapperAdjust}>
-                                <View style={styles.circleMinus}>
-                                    <AntDesign name="minus" size={20} color="black" />
-                                </View>
-                                <Text>2</Text>
-                                <View style={styles.circlePlus}>
-                                    <AntDesign name="plus" size={20} color="black" />
-                                </View>
+                                <TouchableOpacity
+                                    onPress={() => setQuantity(quantity - 1)}
+                                    style={styles.circleMinus}
+                                >
+                                    <AntDesign name={ICONS.antDesign_plus} size={20} color="white" />
+                                </TouchableOpacity>
+                                <Text style={styles.quantity}>{cart.quantity}</Text>
+                                <TouchableOpacity
+                                    onPress={() => setQuantity(quantity + 1)}
+                                    style={styles.circlePlus}
+                                >
+                                    <AntDesign name={ICONS.antDesign_plus} size={20} color="white" />
+                                </TouchableOpacity>
                             </View>
                         </View>
                         <Pressable

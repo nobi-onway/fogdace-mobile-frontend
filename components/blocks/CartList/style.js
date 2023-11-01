@@ -2,6 +2,15 @@ import { StyleSheet } from "react-native";
 import { FONTS, SIZES, COLORS, ROUNDED } from "../../../constants";
 
 const styles = StyleSheet.create({
+    overlay:{
+        height:'100%',
+        position:'absolute',
+        top:0,
+        bottom:0,
+        left:0,
+        right:0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
     wrapperButton: {
         alignItems: 'center',
         backgroundColor: COLORS.darkGrey,
