@@ -1,12 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { COLORS, FONTS } from "../../../constants";
 
-const SCREEN_WIDTH = Dimensions.get('screen').width
-
 const styles = StyleSheet.create({
     container: {
-        width: SCREEN_WIDTH,
-        paddingHorizontal: 20,
     },
     title: {
         fontSize: 12,

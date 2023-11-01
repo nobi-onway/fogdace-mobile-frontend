@@ -34,7 +34,7 @@ export default function RoomChat() {
     send_message_to(room_id, _id, message);
   };
 
-  const handleRequestTrading = (form_data) => {
+  const handleRequestTrading = async (form_data) => {
     const {
       accepter,
       code,
@@ -57,7 +57,10 @@ export default function RoomChat() {
       fee_payer_name: fee_payer_name,
       code: code,
     };
-    send_message_to(room_id, _id, message_data, "order");
+
+    await send_message_to(room_id, _id, message_data, "order");
+
+    order_trading_sheet.current.close();
   };
 
   useEffect(() => {
@@ -106,7 +109,7 @@ export default function RoomChat() {
         <CustomBottomSheet ref={order_trading_sheet}>
           <KeyboardAvoidingView
             enabled
-            keyboardVerticalOffset={350}
+            keyboardVerticalOffset={200}
             behavior="position"
           >
             <PetTradingForm

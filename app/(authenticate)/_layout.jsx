@@ -10,14 +10,14 @@ function AuthenticateLayout() {
   const { go_to_feed } = useNavigation();
 
   useEffect(() => {
-    AsyncStorage.getItem("user-storage").then((userStorage) => {
-      const state = JSON.parse(userStorage).state;
-      const { authentication } = state;
-      if (!authentication) return;
-      setAuthentication(authentication);
-      go_to_feed();
-    });
-    // AsyncStorage.clear();
+    // AsyncStorage.getItem("user-storage").then((userStorage) => {
+    //   const state = JSON.parse(userStorage).state;
+    //   const { authentication } = state;
+    //   if (!authentication) return;
+    //   setAuthentication(authentication);
+    //   go_to_feed();
+    // });
+    AsyncStorage.clear();
   }, []);
 
   return (

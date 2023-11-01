@@ -1,7 +1,7 @@
 import { BASE_URL } from "../constants/url";
 import useFetch from "./useFetch";
 
-const TRADING_ORDER_URL = `${BASE_URL}/traddinOrder`
+const TRADING_ORDER_URL = `${BASE_URL}/traddingOrder`
 
 function useOrder() {
     const { post_fetcher } = useFetch();

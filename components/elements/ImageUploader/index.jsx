@@ -7,7 +7,7 @@ import styles from "./style";
 import Icon2D from "../Icon2D";
 
 const ImageUploader = ({ onUpload }) => {
-  const [imgURL, setImgUrl] = useState("https://i.ibb.co/xJNGByS/test.jpg");
+  const [imgURL, setImgUrl] = useState(null);
 
   const handleUploadImage = async () => {
     try {

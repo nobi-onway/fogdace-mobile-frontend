@@ -53,13 +53,13 @@ export default function PetTradingForm({ requester, accepter, onSubmitForm }) {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Mèo bạn muốn đổi:</Text>
+      <Text style={styles.title}>Thú cưng bạn muốn đổi:</Text>
       <PetSelectionInput
         control={control}
         name={"requester_pet"}
         pets={[...requesterPets, undefined]}
       />
-      <Text style={styles.title}>Mèo bạn muốn nhận:</Text>
+      <Text style={styles.title}>Thú cưng bạn muốn nhận:</Text>
       <PetSelectionInput
         control={control}
         name={"accepter_pet"}

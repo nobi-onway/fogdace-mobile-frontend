@@ -18,6 +18,9 @@ const types = {
     },
     disable: {
         backgroundColor: COLORS.lightGray,
+    },
+    cancel: {
+        backgroundColor: COLORS.lightGray,
     }
 }
 

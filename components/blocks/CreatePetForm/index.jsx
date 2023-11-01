@@ -17,6 +17,7 @@ import { userStore } from "../../../stores/userStore";
 export default function CreatePetForm({ pet_type }) {
   const { control, handleSubmit } = useForm();
   const [avatar, setAvatar] = useState("");
+  const { go_to_menu } = useNavigation();
   const { info } = userStore();
   const { create_pet_profile, update_pet_health_profile_of } = usePet();
 
@@ -44,12 +45,16 @@ export default function CreatePetForm({ pet_type }) {
 
     const health_profile_id = await create_pet_profile(pet_data);
 
+    console.log(health_profile_id);
+
     await update_pet_health_profile_of(health_profile_id, {
       weight: pet_weight,
     });
     await update_pet_health_profile_of(health_profile_id, {
       triet_san: is_triet_san,
     });
+
+    go_to_menu();
   };
 
   return (

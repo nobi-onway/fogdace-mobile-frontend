@@ -133,6 +133,12 @@ const types = {
     color: COLORS.lightBlack,
     size: 40,
   },
+  share_social: {
+    component: Ionicons,
+    icon: ICONS.ionIcons_share_social,
+    color: COLORS.lightGray,
+    size: SIZES.xxLarge,
+  },
 };
 
 const Icon2D = ({ activated, name }) => {

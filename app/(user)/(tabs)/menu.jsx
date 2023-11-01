@@ -13,6 +13,7 @@ import {
 } from "../../../components/blocks";
 import { COLORS } from "../../../constants";
 import useUser from "../../../hooks/useUser";
+import useNavigation from "../../../hooks/useNavigation";
 
 const SUPPORT_LIST = [
   "wish_list",
@@ -26,29 +27,16 @@ const SUPPORT_LIST = [
 const OPTION_RIGHT_LIST = ["NFC", "shopping_options", "pet_services", "clubs"];
 const OPTION_LEFT_LIST = ["pet_report_lost"];
 
-const MY_PETS_DATA = [
-  {
-    component: PetAppendProfileCard,
-    props: {},
-  },
-];
-
 function Menu() {
-  const [myPets, setMyPets] = useState(MY_PETS_DATA);
+  const { go_to_pet_profile_of } = useNavigation();
+  const [myPets, setMyPets] = useState([]);
   const { get_my_pets } = useUser();
 
   useEffect(() => {
     const fetch_data = async () => {
       const pets_data = await get_my_pets();
 
-      const formatted_data = pets_data.map((pet) => ({
-        component: PetBriefCard,
-        props: {
-          pet: pet,
-        },
-      }));
-
-      setMyPets((cur_pets) => [...formatted_data, ...cur_pets]);
+      setMyPets([...pets_data, undefined]);
     };
 
     fetch_data();
@@ -63,9 +51,15 @@ function Menu() {
         contentContainerStyle={{ columnGap: 12 }}
         style={{ paddingVertical: 16, paddingLeft: 4 }}
         renderItem={({ item: pet }) => {
-          const { component: Component, props } = pet;
+          if (!pet) return <PetAppendProfileCard />;
 
-          return <Component key={pet.id} {...props} />;
+          return (
+            <PetBriefCard
+              key={pet.id}
+              pet={pet}
+              onPress={() => go_to_pet_profile_of(pet._id)}
+            />
+          );
         }}
       />
       <View style={{ flexDirection: "row", columnGap: 12, marginTop: 40 }}>

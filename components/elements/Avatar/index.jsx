@@ -20,11 +20,15 @@ const AVATAR_SIZES = {
     width: 80,
     height: 80,
   },
+  supper_mega: {
+    width: 160,
+    height: 160,
+  },
   small: {
     width: SIZES.xxLarge,
     height: SIZES.xxLarge,
   },
-  medium:{
+  medium: {
     width: SIZES.jumbo,
     height: SIZES.jumbo,
   },

@@ -1,11 +1,13 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./style";
 import { Avatar, Icon2D } from "../../elements";
 import formatCurrency from "../../../utils/formatCurrency";
 import { userStore } from "../../../stores/userStore";
 import useOrder from "../../../hooks/useOrder";
+import usePetTrading from "../../../hooks/usePetTrading";
+import usePet from "../../../hooks/usePet";
 
 const REQUESTER_PET_DATA = {
   id: "0000000000000005",
@@ -52,7 +54,12 @@ const PetBriefInfo = ({ pet, end }) => {
 };
 
 export default function MessageOrder({ message }) {
+  const [requesterPet, setRequesterPet] = useState({});
+  const [accepterPet, setAccepterPet] = useState({});
   const { create_trading_order } = useOrder();
+  const { get_pet_detail_of } = usePet();
+  const { info } = userStore();
+
   const {
     deposits,
     items,
@@ -65,7 +72,17 @@ export default function MessageOrder({ message }) {
     price,
   } = message;
 
-  const { info } = userStore();
+  useEffect(() => {
+    const fetch_data = async () => {
+      const requester_pet = await get_pet_detail_of(requester_pet_id);
+      const accepter_pet = await get_pet_detail_of(accepter_pet_id);
+
+      setRequesterPet(requester_pet);
+      setAccepterPet(accepter_pet);
+    };
+
+    fetch_data();
+  }, []);
 
   const handleConfirmTradingOrder = () => {
     create_trading_order(message);
@@ -74,11 +91,11 @@ export default function MessageOrder({ message }) {
   return (
     <View style={styles.container}>
       <View style={styles.trading_info_wrapper}>
-        <PetBriefInfo pet={ACCEPTER_PET_DATA} end={false} />
+        <PetBriefInfo pet={accepterPet} end={false} />
         <View style={{ alignItems: "center", justifyContent: "center" }}>
           <Icon2D name={"swap"} />
         </View>
-        <PetBriefInfo pet={REQUESTER_PET_DATA} end={true} />
+        <PetBriefInfo pet={requesterPet} end={true} />
       </View>
       <View style={styles.bonus_info_wrapper}>
         <Text style={styles.bonus_info}>Trao đổi thêm: {items}</Text>

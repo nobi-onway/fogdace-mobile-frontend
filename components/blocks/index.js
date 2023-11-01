@@ -25,8 +25,14 @@ import MessageText from "./MessageText";
 import MessageOrder from "./MessageOrder";
 import PetTradingForm from "./PetTradingForm";
 import PetSelectionInput from "./PetSelectionInput";
+import ProfileBriefInfo from "./ProfileBriefInfo";
+import PetHealthProfile from "./PetHealthProfile";
+import PetInfoSectionCard from "./PetInfoSectionCard";
 
 export {
+  PetInfoSectionCard,
+  PetHealthProfile,
+  ProfileBriefInfo,
   PetSelectionInput,
   PetTradingForm,
   MessageOrder,
