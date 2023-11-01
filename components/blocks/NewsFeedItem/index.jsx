@@ -1,15 +1,21 @@
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
-
+import { useRef } from "react";
 import styles from "./style";
 import CarouselSlider from "../../elements/CarouselSlider";
 import { InteractiveIcon3D, Icon2D, Avatar } from "../../elements";
+import CustomBottomSheet from "../../elements/CustomBottomSheet";
 
-export default function NewsFeedItem({ data, bottomSheetRef }) {
-  const { _id="", likes="", author_id, caption, images } = data;
+export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) {
+  const { _id="", likes="", author_id, caption, images, top_comment } = data;
+  const bottomSheetReffff = useRef(null);
 
   const handleOpenBottomSheet = () => {
-    bottomSheetRef.current?.expand();
+
+  
+    openBottomSheet(top_comment)
   };
+
+
 
   return (
     <View style={styles.feedWrapper}>
@@ -58,6 +64,8 @@ export default function NewsFeedItem({ data, bottomSheetRef }) {
           <Text style={styles.username}>{author_id.name}</Text>: {caption}
         </Text>
       </View>
+
+
     </View>
   );
 }
