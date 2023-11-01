@@ -25,21 +25,34 @@ function usePet() {
         await get_fetcher(PET_HEALTH_PROFILE_OF_URL(id))
             .then(health_profile => health_profile)
 
-    const get_all_pet_types = async () => {
-        const pet_types = await get_fetcher(`${BASE_URL}/petType`);
-        return pet_types;
-    };
-
     const get_pet_detail_of = async (id) =>
         await get_fetcher(PET_DETAIL_OF_URL(id)).then(pet => pet)
 
 
+    const get_all_pet_types = async () => {
+        const pet_types = await get_fetcher(`${BASE_URL}/petType`)
+            .then((res) => res)
+            .catch((err) => alert(err));
+        return pet_types;
+    };
+
+    const get_all_pet_products = async () => {
+        const pet_products = await get_fetcher(
+            `${BASE_URL}/product?limit=14&page=1`
+        )
+            .then((res) => res)
+            .catch((err) => alert(err));
+
+        return pet_products;
+    };
+
     return {
+        get_pet_health_profile_of,
         get_pet_detail_of,
         create_pet_profile,
         update_pet_health_profile_of,
         get_all_pet_types,
-        get_pet_health_profile_of,
+        get_all_pet_products,
     };
 }
 
