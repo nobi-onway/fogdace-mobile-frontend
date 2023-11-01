@@ -35,7 +35,7 @@ const Comment = ({ data }) => {
 const Comments = ({ data }) => {
   const [newComment, setNewComment] = useState("");
   const handleAddComment = () => {
-    console.log("New Comment:", newComment);
+
     setNewComment("");
   };
   return (
