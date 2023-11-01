@@ -16,19 +16,13 @@ function Feed() {
   const {get_all_feeds} = useFeeds();
   const [feeds, setFeeds] = useState([])
   const [refresh, setRefresh] = useState(false);
-  const topCommentLists = feeds?.map((metaData) => metaData.top_comment);
-
-  console.log('topCommentLists', topCommentLists);
 
   const handleRefreshFeeds = async () => {
     setRefresh(true);
 
-    try {
       const feeds_fetch = await get_all_feeds();
       setFeeds(feeds_fetch)
-    } catch (error) {
-      alert(error.message);
-    }
+   
 
     setRefresh(false);
   };
@@ -36,15 +30,12 @@ function Feed() {
   useEffect(() => {
     let cleanUpFn = true;
     const fetchData = async () => {
-      try {
         const feeds_fetch = await get_all_feeds();
         if (cleanUpFn) {
           setFeeds(feeds_fetch);
-          console.log('feeds', feeds_fetch);
 
         }
-      } catch (error) {
-      }
+  
     };
 
     fetchData();
@@ -55,7 +46,6 @@ function Feed() {
   }, [])
 
   const openBottomSheet = (topComment) => {
-    console.log('topComment', topComment);
     setTopCommentByFeed(topComment)
     bottomSheetRef.current?.expand();
   }
