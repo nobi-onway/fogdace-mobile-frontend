@@ -12,12 +12,8 @@ function Retail() {
 
   useEffect(() => {
     const fetchPetData = async () => {
-      try {
-        const data = await get_all_pet_products();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching pet types:", error);
-      }
+      const data = await get_all_pet_products();
+      setProducts(data);
     };
     fetchPetData();
   }, []);
