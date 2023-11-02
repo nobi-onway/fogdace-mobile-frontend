@@ -29,8 +29,6 @@ export default function NewsFeedItem({
   const { mutate: likeFeeds, data: likedData } = useLikedFeeds();
   const { mutate: unlikedFeeds, data: unLikedData } = useUnLikedFeeds();
 
-  // const hasLiked = info.liked_post.some((likedPost) => likedPost === _id);
-
   const handleOpenBottomSheet = () => {
     openBottomSheet(top_comment);
   };
@@ -39,15 +37,11 @@ export default function NewsFeedItem({
     const action = status ? likeFeeds : unlikedFeeds;
     action({ _id, userId: info._id });
 
-    if (status) {
-      setUserInfo({ ...info, liked_post: likedData });
-    } else {
-      setUserInfo({ ...info, liked_post: unLikedData });
-    }
+    setLiked(status);
   };
 
   useEffect(() => {
-    setLiked(info.liked_post.include(_id));
+    setLiked(info.liked_post?.includes(_id));
   }, [info]);
 
   return (

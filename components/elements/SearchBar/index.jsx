@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextInput, View } from "react-native";
 
 import styles from "./style";
@@ -10,8 +10,8 @@ const DEFAULT_STATE = {
   placeholder: "Tìm kiếm",
 };
 
-function SearchBar({ onSearch }) {
-  const [searchValue, setSearchValue] = useState(DEFAULT_STATE.value);
+function SearchBar({ onSearch, initSearchValue = "" }) {
+  const [searchValue, setSearchValue] = useState(initSearchValue);
   const { placeholder } = DEFAULT_STATE;
 
   const handleOnChange = (value) => {

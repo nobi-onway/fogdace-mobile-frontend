@@ -5,11 +5,13 @@ import { Avatar, Icon2D, LinkableButton } from "../../elements";
 
 import styles from "./style";
 import usePetTrading from "../../../hooks/usePetTrading";
+import { userStore } from "../../../stores/userStore";
 
 export default function ProfileBriefInfo({ info }) {
   const [isTrading, setIsTrading] = useState(false);
   const { request_trading_pet_with, cancel_trading_pet_with } = usePetTrading();
-  const { avatar, name, description } = info;
+  const { avatar, name, description, pet_owner } = info;
+  const { info: userInfo } = userStore();
 
   useEffect(() => {
     setIsTrading(info.isTrading);
@@ -51,25 +53,31 @@ export default function ProfileBriefInfo({ info }) {
           <Text style={styles.social_sub_text}>Ảnh</Text>
         </View>
       </View>
-      <View style={styles.following_wrapper}>
-        <View style={{ flex: 1 }}>
-          {isTrading ? (
-            <LinkableButton handlePress={handleCancelTradingPet} type="cancel">
-              Bỏ trao đổi thú cưng
-            </LinkableButton>
-          ) : (
-            <LinkableButton handlePress={handleTradingPet}>
-              Trao đổi thú cưng
-            </LinkableButton>
-          )}
+      {userInfo._id === pet_owner && (
+        <View style={styles.following_wrapper}>
+          <View style={{ flex: 1 }}>
+            {isTrading ? (
+              <LinkableButton
+                handlePress={handleCancelTradingPet}
+                type="cancel"
+              >
+                Bỏ trao đổi thú cưng
+              </LinkableButton>
+            ) : (
+              <LinkableButton handlePress={handleTradingPet}>
+                Trao đổi thú cưng
+              </LinkableButton>
+            )}
+          </View>
+
+          <TouchableOpacity style={styles.functional_wrapper}>
+            <Icon2D name={"threeDotsHorizontal"} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.functional_wrapper}>
+            <Icon2D name={"share_social"} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.functional_wrapper}>
-          <Icon2D name={"threeDotsHorizontal"} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.functional_wrapper}>
-          <Icon2D name={"share_social"} />
-        </TouchableOpacity>
-      </View>
+      )}
     </View>
   );
 }

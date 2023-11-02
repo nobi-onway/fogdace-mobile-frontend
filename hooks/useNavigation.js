@@ -14,6 +14,7 @@ function useNavigation() {
     const go_to_knowledge_detail_of = (info) => router.push({ pathname: '/knowledge/detail', params: info })
     const go_to_trading = () => router.push('/trading')
     const go_to_chat = () => router.push('/chat')
+    const go_to_chat_with = (info) => router.push({ pathname: '/chat', params: info });
     const go_to_room_chat_with = (info) => router.push({ pathname: '/chat/room-chat', params: info })
     const go_to_add_profile_pet = () => router.push("/add-profile-pet");
     const go_to_pet_list = () => router.push("/add-profile-pet/pet-list");
@@ -32,6 +33,7 @@ function useNavigation() {
 
 
     return {
+        go_to_chat_with,
         go_to_completing_profile,
         go_to_pet_profile_of,
         go_to_chat,

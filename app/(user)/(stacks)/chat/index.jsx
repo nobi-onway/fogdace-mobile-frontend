@@ -6,29 +6,45 @@ import { userStore } from "../../../../stores/userStore";
 import { ChatRoomCard, UserBubble } from "../../../../components/blocks";
 import { ContentContainer, SearchBar } from "../../../../components/elements";
 import useChat from "../../../../hooks/useChat";
-import { Stack } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import liveSearch from "../../../../utils/liveSearch";
 
 export default function Chat() {
   const [rooms, setRooms] = useState([]);
   const [users, setUsers] = useState([]);
   const [searchedUserList, setSearchedUserList] = useState([]);
+  const [searchedRoomList, setSearchedRoomList] = useState([]);
   const { info } = userStore();
   const { get_chat_list, get_all_users } = useChat();
 
-  const handleSearchUser = (value) => {
+  const { name, _id } = useLocalSearchParams();
+
+  const handleSearchUser = (value = "") => {
     const searched_list = liveSearch(value, users, "name");
+    const searched_list_room = liveSearch(
+      value,
+      rooms.map((room) => ({ ...room, name: room.with_user.name })),
+      "name"
+    );
     setSearchedUserList(searched_list);
+    setSearchedRoomList(searched_list_room);
   };
 
   useEffect(() => {
     get_all_users((users) => {
-      const filter_data = users.filter((user) => user._id !== info._id);
+      const filter_data = _id
+        ? users.filter((user) => user._id === _id)
+        : users.filter((user) => user._id !== info._id);
+
       setSearchedUserList(filter_data);
       setUsers(filter_data);
     });
     get_chat_list((rooms) => {
-      setRooms(rooms);
+      const filter_data = _id
+        ? rooms.filter((room) => room.with_user._id === _id)
+        : rooms;
+      setSearchedRoomList(filter_data);
+      setRooms(filter_data);
     });
   }, []);
 
@@ -39,7 +55,7 @@ export default function Chat() {
           title: "Tin nhắn",
         }}
       />
-      <SearchBar onSearch={handleSearchUser} />
+      <SearchBar initSearchValue={name} onSearch={handleSearchUser} />
       <FlatList
         data={searchedUserList}
         contentContainerStyle={{ gap: 12 }}
@@ -63,7 +79,7 @@ export default function Chat() {
         )}
       />
       <FlatList
-        data={rooms}
+        data={searchedRoomList}
         contentContainerStyle={{ gap: 12 }}
         renderItem={({ item: room }) => <ChatRoomCard room={room} />}
       />
