@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
         fontSize: 28,
         marginVertical: 8,
     },
+    description: {
+        fontFamily: FONTS.medium,
+        fontSize: 12,
+        color: COLORS.blackGrey,
+        marginVertical: 8,
+    },
     trading_status_message: {
         color: COLORS.danger,
         fontFamily: FONTS.bold,

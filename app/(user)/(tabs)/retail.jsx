@@ -4,8 +4,6 @@ import { ProductCard } from "../../../components/blocks";
 import CarouselSlider from "../../../components/elements/CarouselSlider";
 import { retailCarouselImages } from "../../../fakeData/retailCarouselImages";
 import usePet from "../../../hooks/usePet";
-
-import { useRef } from "react";
 import CustomBottomSheet from "../../../components/elements/CustomBottomSheet";
 
 function Retail() {

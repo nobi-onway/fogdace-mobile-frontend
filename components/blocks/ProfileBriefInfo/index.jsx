@@ -9,7 +9,7 @@ import usePetTrading from "../../../hooks/usePetTrading";
 export default function ProfileBriefInfo({ info }) {
   const [isTrading, setIsTrading] = useState(false);
   const { request_trading_pet_with, cancel_trading_pet_with } = usePetTrading();
-  const { avatar, name } = info;
+  const { avatar, name, description } = info;
 
   useEffect(() => {
     setIsTrading(info.isTrading);
@@ -31,6 +31,7 @@ export default function ProfileBriefInfo({ info }) {
         <Avatar shape="rounded" size="supper_mega" src={avatar} />
       </View>
       <Text style={styles.name}>{name}</Text>
+      <Text style={styles.description}>{description}</Text>
       {isTrading && (
         <Text style={styles.trading_status_message}>
           Thú cưng đang chờ chủ nhận mới

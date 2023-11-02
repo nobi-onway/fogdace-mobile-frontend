@@ -23,13 +23,13 @@ function useOrder() {
             "code": code,
             "requester": {
                 "requester_id": requester,
-                "pet_id": accepter_pet_id,
+                "pet_id": requester_pet_id,
                 "items": items,
                 "deposits": deposits
             },
             "accepter": {
                 "accepter_id": accepter,
-                "pet_id": requester_pet_id,
+                "pet_id": accepter_pet_id,
                 "deposits": deposits
             },
             "fee_payer": fee_payer,

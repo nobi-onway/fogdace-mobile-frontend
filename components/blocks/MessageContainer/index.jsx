@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Avatar } from "../../elements";
 
@@ -25,11 +25,13 @@ export default function MessageContainer({ message, user, isUser }) {
       <Avatar shape="rounded" size="small" src={avatar} />
       <View style={styles.message_wrapper(isUser)}>
         {messages.map((item, index) => {
-          const { type, message } = item;
+          const { type, message, room_id, message_key } = item;
           const Component = TYPE[type].component;
 
           return (
             <Component
+              room_id={room_id}
+              message_key={message_key}
               key={`${message} + ${index}`}
               message={JSON.parse(message)}
               isUser={isUser}

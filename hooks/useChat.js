@@ -7,6 +7,7 @@ import moment from "moment/moment";
 const USER_REF = ref(FIREBASE_DATABASE, "users/");
 const CHAT_LIST_REF = (from, to) => ref(FIREBASE_DATABASE, "chat_list/" + from + "/" + to);
 const MESSAGES_IN_ROOM_REF = (room_id) => ref(FIREBASE_DATABASE, "messages/" + room_id);
+const MESSAGE_REF = (room_id, key) => ref(FIREBASE_DATABASE, "messages/" + room_id + "/" + key);
 
 function useChat() {
     const { info } = userStore()
@@ -60,7 +61,7 @@ function useChat() {
             let cur_group = null;
 
             list.forEach((item) => {
-                const { from, send_time, message, type } = item;
+                const { from, send_time, message, type, room_id, id } = item;
 
                 if (!cur_group || cur_group.from !== from) {
                     cur_group = {
@@ -71,7 +72,7 @@ function useChat() {
                     result.push(cur_group);
                 }
 
-                cur_group.messages.push({ message: JSON.stringify(message), type: type });
+                cur_group.messages.push({ message: JSON.stringify(message), room_id, type, message_key: id });
             });
 
             return result;
@@ -84,6 +85,15 @@ function useChat() {
 
             callback(new_data);
         });
+    }
+
+    const update_message = async (room_id, message_key, message) => {
+        const message_data = {
+            message: message,
+            send_time: moment().format(),
+        };
+
+        update(MESSAGE_REF(room_id, message_key), message_data)
     }
 
     const send_message_to = async (room_id, user_id, message, type = 'text') => {
@@ -122,7 +132,7 @@ function useChat() {
         });
     };
 
-    return { create_room_chat_with, get_chat_list, send_message_to, get_all_users, listen_messages_in_room };
+    return { update_message, create_room_chat_with, get_chat_list, send_message_to, get_all_users, listen_messages_in_room };
 }
 
 export default useChat;

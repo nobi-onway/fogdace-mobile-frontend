@@ -1,10 +1,9 @@
 import { Controller } from "react-hook-form";
 import PetBriefCard from "../PetBriefCard";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList } from "react-native";
 
 import styles from "./style";
 import PetAppendProfileCard from "../PetAppendProfileCard";
-import { AnimationView } from "../../elements";
 
 const PetSelectionInput = ({ pets, control, name }) => {
   const HAVE_DATE = pets.length > 0;
@@ -22,7 +21,7 @@ const PetSelectionInput = ({ pets, control, name }) => {
     <Controller
       control={control}
       name={name}
-      rules={{ required: "Vui lòng chọn thú cưng bạn muốn trao đổi" }}
+      // rules={{ required: "Vui lòng chọn thú cưng bạn muốn trao đổi" }}
       render={({ field: { value, onChange }, fieldState: { error } }) => (
         <>
           <FlatList
@@ -37,7 +36,9 @@ const PetSelectionInput = ({ pets, control, name }) => {
                 <View style={styles.pet_wrapper(value?._id === pet._id)}>
                   <PetBriefCard
                     onPress={(pet) => {
-                      onChange(pet);
+                      const selectValue =
+                        value?._id === pet._id ? undefined : pet;
+                      onChange(selectValue);
                     }}
                     pet={pet}
                     key={pet.id}

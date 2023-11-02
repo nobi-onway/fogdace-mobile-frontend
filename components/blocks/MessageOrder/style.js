@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     deposit: {
         fontFamily: FONTS.bold,
-        fontSize: 12,
+        fontSize: 10,
         marginVertical: 2,
         color: COLORS.danger,
     },
@@ -73,6 +73,19 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     confirm_button_text: {
+        fontFamily: FONTS.bold,
+        fontSize: 12,
+        color: COLORS.white,
+    },
+    confirm_button_success: {
+        height: 24,
+        backgroundColor: COLORS.gray,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        marginTop: 8,
+    },
+    confirm_button__success_text: {
         fontFamily: FONTS.bold,
         fontSize: 12,
         color: COLORS.white,

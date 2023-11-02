@@ -7,8 +7,6 @@ import {
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { onValue, ref } from "@firebase/database";
-import { FIREBASE_DATABASE } from "../../../../config/firebase";
 import useChat from "../../../../hooks/useChat";
 import { ContentContainer } from "../../../../components/elements";
 import {
@@ -46,16 +44,17 @@ export default function RoomChat() {
     } = form_data;
 
     const message_data = {
-      requester_pet_id: requester.pet_id,
-      accepter_pet_id: accepter.pet_id,
+      requester_pet_id: requester.pet_id || "",
+      accepter_pet_id: accepter.pet_id || "",
       requester: requester._id,
       accepter: accepter._id,
-      items: items,
+      items: items.length > 0 ? items : "Không có",
       deposits: 100,
       price: price,
       fee_payer: fee_payer,
       fee_payer_name: fee_payer_name,
       code: code,
+      status: 0,
     };
 
     await send_message_to(room_id, _id, message_data, "order");

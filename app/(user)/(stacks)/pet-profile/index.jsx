@@ -41,7 +41,7 @@ export default function PetProfile() {
         <View style={{ position: "absolute", top: -100, left: 0, right: 0 }}>
           <ProfileBriefInfo info={pet} />
         </View>
-        <View style={{ marginTop: 260 }}></View>
+        <View style={{ marginTop: 300 }}></View>
       </ContentContainer>
       <PetHealthProfile pet={pet} />
     </ScrollView>

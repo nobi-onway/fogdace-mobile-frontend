@@ -35,12 +35,12 @@ export default function PetTradingForm({ requester, accepter, onSubmitForm }) {
       )}-${money}`,
       requester: {
         ...requester,
-        pet_id: requester_pet._id,
+        pet_id: requester_pet?._id,
         deposits: 100,
       },
       accepter: {
         ...accepter,
-        pet_id: accepter_pet._id,
+        pet_id: accepter_pet?._id,
         deposits: 100,
       },
       items: trading_item,
@@ -48,6 +48,7 @@ export default function PetTradingForm({ requester, accepter, onSubmitForm }) {
       fee_payer_name: isFeePayer ? requester.name : accepter.name,
       price: money,
     };
+
     onSubmitForm(trading_order_data);
   };
 
