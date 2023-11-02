@@ -34,9 +34,28 @@ function useCart() {
     }
   };
 
+  const updateQuantity = async (product) => {
+    try {
+      const cart = await AsyncStorage.getItem("cart");
+      let cartArray = cart ? JSON.parse(cart) : [];
+
+      const existingProductIndex = cartArray.findIndex((item) => item._id === product._id);
+
+      if (existingProductIndex !== -1) {
+        cartArray[existingProductIndex].quantity = product.quantity;
+      } 
+      await AsyncStorage.setItem("cart", JSON.stringify(cartArray));
+      // Alert.alert("Thông báo", "Sản phẩm đã được thêm vào giỏ hàng.");
+
+    } catch (error) {
+      console.error("Add error", error);
+    }
+  };
+
   return {
     addToCart,
-    getCart
+    getCart,
+    updateQuantity
   }
 }
 

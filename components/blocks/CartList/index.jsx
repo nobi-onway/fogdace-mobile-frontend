@@ -12,18 +12,32 @@ function CartList({ modalVisible, setModalVisible }) {
 
     const { getCart } = useCart();
     const [cartData, setCartData] = useState([]);
+    const [cartUpdated, setCartUpdated] = useState(false);
 
     const [selectedCarts, setSelectedCarts] = useState([]);
     const [selectAllSelected, setSelectAllSelected] = useState(false);
 
     const [totalPrice, setTotalPrice] = useState(0);
 
+    // useEffect(() => {
+    //     getCart().then((cartItems) => {
+    //         setCartData(cartItems);
+    //     });
+    //     // AsyncStorage.clear()
+    // }, []);
+
     useEffect(() => {
-        getCart().then((cartItems) => {
-            setCartData(cartItems);
-        });
-        // AsyncStorage.clear()
-    }, []);
+        const fetchCartData = async () => {
+            try {
+                const cartItems = await getCart();
+                setCartData(cartItems);
+            } catch (error) {
+                console.error('Error fetching cart data', error);
+            }
+        };
+
+        fetchCartData();
+    }, [cartUpdated]);
 
     const handleCartSelect = (index) => {
         const updatedSelection = [...selectedCarts];
@@ -58,6 +72,10 @@ function CartList({ modalVisible, setModalVisible }) {
         return total;
     };
 
+    const handleCartUpdate = () => {
+        setCartUpdated((prev) => !prev);
+    };
+
     return (
         <View style={{ height: '100%', backgroundColor: COLORS.primaryOrder }}>
             {cartData.length < 1 && <Empty />}
@@ -70,6 +88,7 @@ function CartList({ modalVisible, setModalVisible }) {
                         onSelect={() => handleCartSelect(index)}
                         modalVisible={modalVisible === cart._id}
                         setModalVisible={(id) => setModalVisible(id)}
+                        handleCartUpdate={handleCartUpdate}
                     />
                 ))}
             </ScrollView>

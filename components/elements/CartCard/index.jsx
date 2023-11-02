@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { IMAGES } from '../../../constants';
-import styles from './style';
-import CartQuantityModal from '../../blocks/CartQuantityModal';
-function CartCard({ cart, isSelected, onSelect, modalVisible, setModalVisible }) {
-
+import React from "react";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import { IMAGES } from "../../../constants";
+import CartQuantityModal from "../../blocks/CartQuantityModal";
+import styles from "./style";
+function CartCard({
+  cart,
+  isSelected,
+  onSelect,
+  modalVisible,
+  setModalVisible,
+  handleCartUpdate,
+}) {
   const handlePress = () => {
     onSelect();
   };
 
   return (
-    <View
-      style={styles.content}
-    >
+    <View style={styles.content}>
       <View style={styles.bodyContent}>
         <TouchableOpacity
           style={[
@@ -29,7 +33,8 @@ function CartCard({ cart, isSelected, onSelect, modalVisible, setModalVisible })
             />
           )}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.wrapperContent}
+        <TouchableOpacity
+          style={styles.wrapperContent}
           onPress={() => setModalVisible(cart._id)}
         >
           <Image
@@ -44,9 +49,7 @@ function CartCard({ cart, isSelected, onSelect, modalVisible, setModalVisible })
             <Text style={styles.textPrice}>{cart.price * cart.quantity}$</Text>
           </View>
           <View style={styles.wrapperQuantity}>
-            <Text style={styles.textQuantity}>
-              x{cart.quantity}
-            </Text>
+            <Text style={styles.textQuantity}>x{cart.quantity}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -55,6 +58,7 @@ function CartCard({ cart, isSelected, onSelect, modalVisible, setModalVisible })
           cart={cart}
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
+          handleCartUpdate={handleCartUpdate}
         />
       </View>
     </View>
