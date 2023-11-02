@@ -1,44 +1,59 @@
 
 import React from 'react';
-import { ScrollView, Text, View,TouchableOpacity } from 'react-native';
+import { ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import AddressCard from '../../elements/AddressCard'
-import { useState } from "react";
-import { COLORS } from '../../../constants';
-const addressData = [
-    {
-        name: 'Trường Giang',
-        phone: '0981890260',
-        address: 'Tân Lập, Phường Hiệp Phú, Quận 9, Thành phố Hồ Chí Minh',
-    },
-    {
-        name: 'Việt ngu',
-        phone: '1234567890',
-        address: 'Quốc lộ 51, thị xã Mỹ Tho, huyện Phú Giáo Vương quốc Bình Dương',
-    },
-];
+import { useState, useEffect } from "react";
+import { COLORS, FONTS } from '../../../constants';
+import useNavigation from '../../../hooks/useNavigation';
+import useAddress from '../../../hooks/useAddress';
+import { userStore } from '../../../stores/userStore';
 
+function AddressList({ onAddressSelect }) {
 
-function AddressList() {
-    const [selectedAddress, setSelectedAddress] = useState(0);
+    const { go_to_add_address } = useNavigation();
+
+    const { info } = userStore();
+
+    const [addressData, setAddressData] = useState();
+    const [selectedAddress, setSelectedAddress] = useState();
+
+    const { get_address_by_id, set_default_address } = useAddress();
+
+    useEffect(() => {
+        const addressList = async () => {
+            const data = await get_address_by_id(info._id);
+            setAddressData(data);
+        };
+        addressList();
+    }, [selectedAddress]);
 
     const handleAddressSelect = (index) => {
         setSelectedAddress(index);
+        if (onAddressSelect) {
+            onAddressSelect(index);
+        }
     };
+
     return (
-        <ScrollView>
-            {addressData.map((address, index) => (
+        <View>
+            {addressData?.map((address) => (
                 <AddressCard
-                    key={index}
+                    userId={info._id}
+                    key={address._id}
                     address={address}
-                    isSelected={selectedAddress === index}
-                    onSelect={() => handleAddressSelect(index)}
+                    isSelected={address.is_default === true}
+                    onSelect={() => handleAddressSelect(address._id)}
+                    set_default_address={set_default_address}
                 />
             ))}
-            <TouchableOpacity style={{ alignItems: 'center',backgroundColor:COLORS.darkGrey,marginHorizontal:18,borderRadius:6,paddingVertical:12,marginTop:20 }}>
-                <Text>Thêm</Text>
+            <TouchableOpacity
+                style={{ alignItems: 'center', backgroundColor: COLORS.darkGrey, marginHorizontal: 18, borderRadius: 6, paddingVertical: 12, marginTop: 20 }}
+                onPress={() => { go_to_add_address({}) }}
+            >
+                <Text style={{ fontFamily: FONTS.bold }}>Thêm</Text>
             </TouchableOpacity>
 
-        </ScrollView>
+        </View>
     );
 }
 

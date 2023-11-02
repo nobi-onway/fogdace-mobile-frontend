@@ -4,16 +4,16 @@ import styles from "./style";
 import useStripePayment from "../../../hooks/useStripePayment";
 import { STRIPE_KEY } from "../../../constants/keys";
 
-const StripePayment = () => {
-  const { onCheckout } = useStripePayment();
+const StripePayment = ({ total, id }) => {
+  const { onCheckout } = useStripePayment(id);
 
   return (
     <StripeProvider publishableKey={STRIPE_KEY}>
       <Pressable
-        onPress={() => onCheckout({ amount: 123 })}
+        onPress={() => onCheckout({ amount: total * 100+2200 })}
         style={styles.button}
       >
-        <Text style={styles.buttonText}>Đặt hàng</Text>
+        <Text style={styles.buttonText}>Tiếp tục thanh toán</Text>
       </Pressable>
     </StripeProvider>
   );

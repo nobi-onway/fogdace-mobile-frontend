@@ -3,17 +3,23 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { IMAGES } from '../../../constants';
 import styles from './style';
 
-function AddressCard({ address, isSelected, onSelect }) {
+function AddressCard({ address, isSelected, onSelect, userId, set_default_address }) {
 
   const [isPressed, setIsPressed] = useState(false);
 
-  const handlePress = () => {
+  const handlePress = async () => {
     setIsPressed(true);
-
-    setTimeout(() => {
+    try {
+      await set_default_address(userId, {
+        address_id: address._id,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
       onSelect();
       setIsPressed(false);
-    }, 1000);
+    }
+
   };
 
   return (
@@ -28,9 +34,9 @@ function AddressCard({ address, isSelected, onSelect }) {
       <View style={styles.bodyContent}>
         <View style={styles.wrapperContent}>
           <View style={styles.wrapperAddress}>
-            <Text style={styles.text}>{address.name}</Text>
-            <Text style={styles.text}>{address.phone}</Text>
-            <Text style={styles.textAddress}>{address.address}</Text>
+            <Text style={styles.text}>{address.name_user}</Text>
+            <Text style={styles.text}>{address.phone_user}</Text>
+            <Text style={styles.textAddress}>{`${address.home_address}, ${address.address}`}</Text>
           </View>
           <View style={styles.wrapperCheck}>
             {isSelected && (
