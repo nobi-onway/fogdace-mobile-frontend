@@ -53,9 +53,9 @@ function CartQuantityModal({
               </TouchableOpacity>
             </View>
             <Text style={styles.modalTextDes}>{cart.name}</Text>
-            <Text style={styles.modalTextPrice}>Đơn giá: {cart.price}</Text>
+            <Text style={styles.modalTextPrice}>Đơn giá: {cart.price}.0$</Text>
             <View style={styles.wrapperQuantity}>
-              <Text style={styles.priceText}>{quantity * cart.price}</Text>
+              <Text style={styles.priceText}>{quantity * cart.price}.0$</Text>
               <View style={styles.wrapperAdjust}>
                 <TouchableOpacity
                   onPress={decreaseQuantity}

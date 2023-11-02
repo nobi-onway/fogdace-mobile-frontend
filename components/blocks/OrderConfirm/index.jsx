@@ -6,19 +6,61 @@ import { IMAGES, FONTS, COLORS, } from '../../../constants';
 import useNavigation from '../../../hooks/useNavigation'
 import { useLocalSearchParams } from "expo-router";
 import { userStore } from '../../../stores/userStore';
-import useAddress from '../../../hooks/useAddress';
-import AddressList from '../AddressList';
-import CustomBottomSheet from '../../elements/CustomBottomSheet';
+import useCheckout from '../../../hooks/useCheckout'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function OrderConfirm({ handleOpenBottomSheet, addressData }) {
+export default function OrderConfirm({ handleOpenAddressBottomSheet, handleOpenPaymentBottomSheet, addressData, payment }) {
 
-
-    const { go_to_create_order } = useNavigation();
+    const { info } = userStore();
 
     const params = useLocalSearchParams();
 
-    const cartData = params;
+    const {totalPrice } = params;
 
+
+    const totalPriceNumber = parseFloat(totalPrice);
+
+    const { create_order } = useCheckout();
+
+
+    const checkoutData = JSON.parse(params.cartItems);
+
+    const products = checkoutData?.map((item) => ({
+        product_id: item._id,
+        product_name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+    }));
+
+
+
+    const address = {
+        name_user: addressData?.name_user,
+        phone_user: addressData?.phone_user,
+        address: addressData?.address,
+        home_address: addressData?.home_address,
+    }
+
+    const handleCheckout = async () => {
+        try {
+            await create_order({
+                user: info._id,
+                products: products,
+                total: totalPrice,
+                price_ship: 22,
+                address,
+            });
+            const cart = await AsyncStorage.getItem("cart");
+            let cartArray = cart ? JSON.parse(cart) : [];
+            checkoutData.forEach((productToCheckout) => {
+                const productIdToCheckout = productToCheckout._id;
+                cartArray = cartArray.filter((item) => item._id !== productIdToCheckout);
+            });
+            await AsyncStorage.setItem("cart", JSON.stringify(cartArray));
+        } catch (error) {
+            console.error("Checkout error", error);
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -30,34 +72,15 @@ export default function OrderConfirm({ handleOpenBottomSheet, addressData }) {
                         source={IMAGES.map_line}
                         style={styles.bgImage}
                     />
-                    {addressData?.map((address) => (
-                        <TouchableOpacity
-                            key={address._id}  // Đảm bảo có key duy nhất cho mỗi phần tử
-                            style={styles.textContainer}
-                            onPress={() => handleOpenBottomSheet()}
-                        >
-                            <Text style={styles.textName}>{address.name_user}</Text>
-                            <Text style={styles.textPhone}>{address.phone_user}</Text>
-                            <Text style={styles.textAddress}>{`${address.home_address}, ${address.address}`}</Text>
-                        </TouchableOpacity>
-                    ))}
-
-                    {/* {addressData?.map((address) => {
-                        if (address.is_default) {
-                            return (
-                                <TouchableOpacity
-                                    key={address.id}  // Đảm bảo có key duy nhất cho mỗi phần tử
-                                    style={styles.textContainer}
-                                    onPress={() => { go_to_address_book({}) }}
-                                >
-                                    <Text style={styles.textName}>{address.name_user}</Text>
-                                    <Text style={styles.textPhone}>{address.phone_user}</Text>
-                                    <Text style={styles.textAddress}>{`${address.home_address}, ${address.address}`}</Text>
-                                </TouchableOpacity>
-                            );
-                        }
-                        return null; // Không hiển thị nếu không có địa chỉ mặc định
-                    })} */}
+                    <TouchableOpacity
+                        key={addressData?._id}  // Đảm bảo có key duy nhất cho mỗi phần tử
+                        style={styles.textContainer}
+                        onPress={() => handleOpenAddressBottomSheet()}
+                    >
+                        <Text style={styles.textName}>{addressData?.name_user}</Text>
+                        <Text style={styles.textPhone}>{addressData?.phone_user}</Text>
+                        <Text style={styles.textAddress}>{`${addressData?.home_address}, ${addressData?.address}`}</Text>
+                    </TouchableOpacity>
                     <Image
                         source={IMAGES.edit}
                         style={styles.editImage}
@@ -71,29 +94,46 @@ export default function OrderConfirm({ handleOpenBottomSheet, addressData }) {
                     <Text style={styles.flatRate}>Flat rate</Text>
                     <Text style={styles.priceShip}>22.000đ</Text>
                 </View>
-
-                <View style={styles.wrapperPayment}>
-                    <View style={styles.wrapperPaymentImg}>
-                        <Image
-                            source={IMAGES.cod}
-                            style={styles.paymentImg}
-                        />
-                    </View>
-                    <Text style={styles.paymentText}>Thanh toán khi giao hàng (COD)</Text>
-                </View>
+                {payment === "COD" ? (
+                    <TouchableOpacity
+                        style={styles.wrapperPayment}
+                        onPress={() => handleOpenPaymentBottomSheet()}
+                    >
+                        <View style={styles.wrapperPaymentImg}>
+                            <Image
+                                source={IMAGES.cod}
+                                style={styles.paymentImg}
+                            />
+                        </View>
+                        <Text style={styles.paymentText}>Thanh toán khi giao hàng (COD)</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableOpacity
+                        style={styles.wrapperPayment}
+                        onPress={() => handleOpenPaymentBottomSheet()}
+                    >
+                        <View style={styles.wrapperPaymentImg}>
+                            <Image
+                                source={IMAGES.visa}
+                                style={styles.paymentImg}
+                            />
+                        </View>
+                        <Text style={styles.paymentText}>Thanh toán bằng thẻ quốc tế (VISA)</Text>
+                    </TouchableOpacity>
+                )}
 
                 <View style={styles.wrapperSummary}>
                     <View style={styles.wrapperCount}>
                         <Text style={styles.priceText}>Giá tạm tính</Text>
-                        <Text style={styles.price}>2.000.000đ</Text>
+                        <Text style={styles.price}>{totalPrice}.0$</Text>
                     </View>
                     <View style={styles.wrapperCount}>
                         <Text style={styles.priceText}>Phí vận chuyển</Text>
-                        <Text style={styles.price}>22.000đ</Text>
+                        <Text style={styles.price}>22.0$</Text>
                     </View>
                     <View style={styles.wrapperTotal}>
                         <Text style={styles.totalText}>Tổng</Text>
-                        <Text style={styles.totalPrice}>2.022.000đ</Text>
+                        <Text style={styles.totalPrice}>{totalPriceNumber + 22}.0$</Text>
                     </View>
                 </View>
 
@@ -117,7 +157,7 @@ export default function OrderConfirm({ handleOpenBottomSheet, addressData }) {
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
-                        go_to_create_order({});
+                        handleCheckout()
                     }}
                 >
                     <Text style={styles.textCheckout}> Đặt hàng </Text>

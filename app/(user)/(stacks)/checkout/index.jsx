@@ -4,54 +4,88 @@ import { COLORS, FONTS } from "../../../../constants";
 import CustomBottomSheet from "../../../../components/elements/CustomBottomSheet";
 import { useRef, useState, useEffect } from "react";
 import AddressBook from "../shopping-option/address-book";
+import PaymentMethod from "../shopping-option/payment-method"
 import useAddress from "../../../../hooks/useAddress";
 import { userStore } from "../../../../stores/userStore";
+import PaymentList from "../../../../components/blocks/PaymentList";
+import usePayment from "../../../../hooks/usePayment";
+
 const Checkout = () => {
 
-  const bottomSheetRef = useRef(null);
+  const bottomAddressSheetRef = useRef(null);
+  const bottomPaymentSheetRef = useRef(null);
+
   const { info } = userStore();
+  const { get_address_by_id } = useAddress();
+  const { setDefaultPayment, getDefaultPayment } = usePayment();
+
+
   const [addressData, setAddressData] = useState();
   const [addressId, setAddressId] = useState();
-  const { get_address_by_id } = useAddress();
 
-  const handleOpenBottomSheet = () => {
-    bottomSheetRef.current?.expand();
+  const [selectedPayment, setSelectedPayment] = useState();
+
+  const handleOpenAddressBottomSheet = () => {
+    bottomAddressSheetRef.current?.expand();
+  }
+
+  const handleOpenPaymentBottomSheet = () => {
+    bottomPaymentSheetRef.current?.expand();
   }
 
   const handleAddressSelection = (selectedAddress) => {
-    console.log("ê", selectedAddress);
     setAddressId(selectedAddress)
   };
 
+  const handlePaymentSelection = (selectedPayment) => {
+    setDefaultPayment(selectedPayment)
+    setSelectedPayment(selectedPayment)
+  };
 
+  useEffect(() => {
+    const fetchCartData = async () => {
+      const currentPayment = await getDefaultPayment();
+      setSelectedPayment(currentPayment);
+    };
+
+    fetchCartData();
+  }, [selectedPayment]);
 
   useEffect(() => {
     const addressList = async () => {
       const data = await get_address_by_id(info._id);
-      
+
       if (addressId) {
-        // Nếu có địa chỉ được chọn, sử dụng địa chỉ đã chọn
         const selectedAddress = data.find((address) => address._id === addressId);
         if (selectedAddress) {
-          setAddressData([selectedAddress]);
+          setAddressData(selectedAddress);
         }
       } else {
-        // Nếu không có địa chỉ được chọn, tìm địa chỉ có is_default === true
         const defaultAddress = data.find((address) => address.is_default === true);
         if (defaultAddress) {
-          setAddressData([defaultAddress]);
+          setAddressData(defaultAddress);
         }
       }
-      console.log("address:", addressData);
     };
     addressList();
   }, [addressId]);
+
   return (
     <View style={{ height: '100%', backgroundColor: COLORS.white }}>
-      <OrderConfirm handleOpenBottomSheet={handleOpenBottomSheet} addressData={addressData} />
-      <CustomBottomSheet ref={bottomSheetRef}>
+      <OrderConfirm
+        handleOpenAddressBottomSheet={handleOpenAddressBottomSheet}
+        handleOpenPaymentBottomSheet={handleOpenPaymentBottomSheet}
+        addressData={addressData}
+        payment={selectedPayment}
+      />
+      <CustomBottomSheet ref={bottomAddressSheetRef}>
         <AddressBook
           onAddressSelect={(selectedAddress) => handleAddressSelection(selectedAddress)}
+        />
+      </CustomBottomSheet>
+      <CustomBottomSheet ref={bottomPaymentSheetRef}>
+        <PaymentMethod
+          onPaymentSelect={(selectedPayment) => handlePaymentSelection(selectedPayment)}
         />
       </CustomBottomSheet>
     </View>

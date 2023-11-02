@@ -1,14 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './style'
 import { ScrollView, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
-import { ScrollableContentContainer } from '../../elements';
 import { IMAGES, FONTS, COLORS, ANIMATIONS } from '../../../constants';
 import { Stack } from "expo-router";
 import LottieView from "lottie-react-native";
 import useNavigation from '../../../hooks/useNavigation';
+import StripePayment from '../../elements/StripePaymentButton'
+import usePayment from '../../../hooks/usePayment';
 
-export default function CreateOrder() {
+export default function CreateOrder({ data }) {
+
+    const [payment, setPayment] = useState();
+
     const { go_to_feed } = useNavigation();
+
+    const { getDefaultPayment } = usePayment();
+
+    const createdDate = data.createdAt.split("T")[0];
+    
+
+    useEffect(() => {
+        const fetchCartData = async () => {
+            const currentPayment = await getDefaultPayment();
+            setPayment(currentPayment);
+        };
+
+        fetchCartData();
+    }, []);
+
     return (
         <View style={styles.container}>
             <Stack.Screen
@@ -46,46 +65,48 @@ export default function CreateOrder() {
                 <ScrollView >
                     <View style={styles.bodyContent}>
                         <View style={styles.addressContent}>
-                            <Text style={styles.addressContentName}>Trường Giang</Text>
-                            <Text style={styles.addressContentDes}>Tân Lập, Phường Hiệp Phú, Quận 9, Thành Phố Hồ Chí Minh</Text>
+                            <Text style={styles.addressContentName}>{data.address.name_user}</Text>
+                            <Text style={styles.addressContentDes}>{`${data.address.home_address}, ${data.address.address}`}</Text>
                         </View>
                         <View style={styles.codeContent}>
                             <Text style={styles.codeContentName}>Mã đơn hàng</Text>
-                            <Text style={styles.codeContentDes}>34315</Text>
+                            <Text style={styles.codeContentDes}>{data._id}</Text>
                         </View>
                         <View style={styles.paymentContent}>
                             <Text style={styles.paymentContentName}>Phương thức thanh toán</Text>
-                            <Text style={styles.paymentContentDes}>Thanh toán thẻ Visa</Text>
+                            <Text style={styles.paymentContentDes}>
+                                {payment === "COD" ? 'Thanh toán khi nhận hàng' : 'Thanh toán thẻ Visa'}
+                            </Text>
                         </View>
                         <View style={styles.dateCreateContent}>
                             <Text style={styles.dateCreateContentName}>Ngày tạo</Text>
-                            <Text style={styles.dateCreateContentDes}>vài giây trước (31/10/2023)</Text>
+                            <Text style={styles.dateCreateContentDes}>vài giây trước ({createdDate})</Text>
                         </View>
 
                         <View style={styles.productContent}>
-                            <Text style={styles.productContentName}>Trường Giang</Text>
-                            <View style={styles.wrapperProductContent}>
-                                <Text style={styles.productName}>Nhà cây cho mèo kèm lồng kính CH030 x 1</Text>
-                                <Text style={styles.productDes}>2.020.000đ</Text>
-                            </View>
-                            {/* <View style={styles.wrapperProductContent}>
-                                <Text style={styles.productName}>Nhà cây cho mèo kèm lồng kính CH030 x 1</Text>
-                                <Text style={styles.productDes}>2.020.000đ</Text>
-                            </View> */}
+                            <Text style={styles.productContentName}>{data.address.name_user}</Text>
+                            {data.products.map((product) => (
+                                <View key={product._id} style={styles.wrapperProductContent}>
+                                    <Text style={styles.productName}>{product.product_name} <Text style={{ color: COLORS.black, fontFamily: FONTS.bold }}>x{product.quantity}</Text></Text>
+                                    <Text style={styles.productDes}>{product.price}.0$</Text>
+                                </View>
+                            ))}
                         </View>
                         <View style={styles.dateCreateContent}>
                             <Text style={styles.dateCreateContentName}>Thông tin vận chuyển <Text style={{ fontFamily: FONTS.bold, fontSize: 14, }}>Flat rate</Text></Text>
-                            <Text style={styles.dateCreateContentDes}>22.000đ</Text>
+                            <Text style={styles.dateCreateContentDes}>22.0$</Text>
                         </View>
                         <View style={styles.borderLine}></View>
                         <View style={styles.totalContent}>
                             <Text style={styles.totalContentName}>Tổng tiền</Text>
-                            <Text style={styles.totalContentDes}>2.020.000đ</Text>
+                            <Text style={styles.totalContentDes}>{data.total + 22}.0$</Text>
                         </View>
 
-                        <TouchableOpacity style={styles.payButton}>
-                            <Text style={styles.payText}>Tiếp tục thanh toán</Text>
-                        </TouchableOpacity>
+                        {payment === 'COD'
+                            ? null :
+                            (
+                                <StripePayment total={data.total} id={data._id}/>
+                            )}
 
                         <TouchableOpacity
                             style={styles.closeButton}

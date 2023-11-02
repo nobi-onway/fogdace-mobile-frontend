@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS, FONTS } from "../../../constants";
 
 const styles = StyleSheet.create({
   totalsContainer: {
@@ -22,19 +23,18 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    position: "absolute",
-    backgroundColor: "#F8A209", 
-    bottom: 30,
-    width: "90%",
-    alignSelf: "center",
-    padding: 16,
-    borderRadius: 100,
-    alignItems: "center",
+    backgroundColor: COLORS.slightOrange,
+    marginTop: 21,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 13,
+    borderRadius: 5,
   },
   buttonText: {
-    color: "white",
-    fontWeight: "500",
-    fontSize: 16,
+    fontSize: 14,
+    color: COLORS.white,
+    fontFamily: FONTS.bold
   },
 });
 

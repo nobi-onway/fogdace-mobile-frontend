@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     },
     idText: {
         fontFamily: FONTS.bold,
-        fontSize: 38,
+        fontSize: 18,
         letterSpacing: 0.1,
         color: COLORS.black,
         paddingTop: 10,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         paddingTop: 21,
     },
     wrapperIcon: {
-        width: 88,
+        width: 130,
         flexDirection: 'row',
         backgroundColor: COLORS.cancel,
         alignItems: 'center',
@@ -43,10 +43,30 @@ const styles = StyleSheet.create({
         marginTop: 21,
     },
     icon: {
+        width: 18,
+        height: 18,
+    },
+    text: {
+        fontSize: 14,
+        fontFamily: FONTS.bold,
+        color: COLORS.white,
+    },
+    wrapperIconDone: {
+        width: 88,
+        flexDirection: 'row',
+        backgroundColor: COLORS.green,
+        alignItems: 'center',
+        gap: 10,
+        paddingVertical: 6,
+        paddingHorizontal: 7,
+        borderRadius: 8,
+        marginTop: 21,
+    },
+    iconDone: {
         width: 19,
         height: 19,
     },
-    text: {
+    textDone: {
         fontSize: 14,
         fontFamily: FONTS.bold,
         color: COLORS.white,

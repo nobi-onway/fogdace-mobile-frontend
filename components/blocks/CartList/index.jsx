@@ -10,21 +10,15 @@ import Empty from '../../elements/Empty'
 function CartList({ modalVisible, setModalVisible }) {
     const { go_to_checkout } = useNavigation();
 
-    const { getCart } = useCart();
+    const { getCart, getSelectedItemsFromCart } = useCart();
     const [cartData, setCartData] = useState([]);
     const [cartUpdated, setCartUpdated] = useState(false);
 
     const [selectedCarts, setSelectedCarts] = useState([]);
+
     const [selectAllSelected, setSelectAllSelected] = useState(false);
 
     const [totalPrice, setTotalPrice] = useState(0);
-
-    // useEffect(() => {
-    //     getCart().then((cartItems) => {
-    //         setCartData(cartItems);
-    //     });
-    //     // AsyncStorage.clear()
-    // }, []);
 
     useEffect(() => {
         const fetchCartData = async () => {
@@ -76,6 +70,15 @@ function CartList({ modalVisible, setModalVisible }) {
         setCartUpdated((prev) => !prev);
     };
 
+    const handleCheckout = async () => {
+        const selectedItems = await getSelectedItemsFromCart(selectedCarts);
+        const checkoutData = {
+            cartItems: JSON.stringify(selectedItems),
+            totalPrice: totalPrice
+        };
+        go_to_checkout(checkoutData);
+    };
+
     return (
         <View style={{ height: '100%', backgroundColor: COLORS.primaryOrder }}>
             {cartData.length < 1 && <Empty />}
@@ -111,25 +114,25 @@ function CartList({ modalVisible, setModalVisible }) {
                     </TouchableOpacity>
                     <Text style={styles.textCheck}>Chọn mua tất cả</Text>
                 </View>
-                {cartData.length < 1 ?
+                {cartData.length < 1 || selectedCarts.length < 1 ?
                     (
                         <View
                             style={[styles.button, { backgroundColor: COLORS.darkGrey }]}
                         >
                             <Text style={[styles.textCheckout, { color: COLORS.slategray }]}>Trang thanh toán </Text>
                             <View style={[styles.dot, { backgroundColor: COLORS.slategray }]}></View>
-                            <Text style={[styles.textCheckout, { color: COLORS.slategray }]}> {totalPrice}$ </Text>
+                            <Text style={[styles.textCheckout, { color: COLORS.slategray }]}> {totalPrice}.0$ </Text>
                         </View>
                     ) : (
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => {
-                                go_to_checkout(cartData);
+                                handleCheckout();
                             }}
                         >
                             <Text style={styles.textCheckout}>Trang thanh toán </Text>
                             <View style={styles.dot}></View>
-                            <Text style={styles.textCheckout}> {totalPrice}$ </Text>
+                            <Text style={styles.textCheckout}> {totalPrice}.0$ </Text>
                         </TouchableOpacity>)}
             </View>
         </View>

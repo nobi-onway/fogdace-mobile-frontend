@@ -46,7 +46,7 @@ function CartCard({
           />
           <View style={styles.wrapperProduct}>
             <Text style={styles.text}>{cart.name}</Text>
-            <Text style={styles.textPrice}>{cart.price * cart.quantity}$</Text>
+            <Text style={styles.textPrice}>{cart.price * cart.quantity}.0$</Text>
           </View>
           <View style={styles.wrapperQuantity}>
             <Text style={styles.textQuantity}>x{cart.quantity}</Text>
