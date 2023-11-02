@@ -1,12 +1,37 @@
 import React from "react";
-import { View, Image, Text, Pressable } from "react-native";
+import { View, Image, Text, Pressable, TouchableOpacity } from "react-native";
 import { Icon2D } from "../../elements";
-
 import styles from "./style";
+import useCart from '../../../hooks/useCart';
 
-const ProductCard = ({ bottomSheetRef }) => {
+const ProductCard = ({ data, bottomSheetRef }) => {
+
+  const { addToCart } = useCart();
+
   const handleOpenBottomSheet = () => {
     bottomSheetRef.current?.expand();
+  };
+
+  const {
+    _id,
+    name,
+    image,
+    price,
+    quantity,
+    rating,
+    sold_quantity,
+    status,
+    topComment,
+  } = data;
+
+  const handleAddToCart = () => {
+    const product = {
+      _id,
+      image,
+      name,
+      price,
+    };
+    addToCart(product);
   };
 
   return (
@@ -14,7 +39,7 @@ const ProductCard = ({ bottomSheetRef }) => {
       <View style={styles.imageWrapper}>
         <Image
           source={{
-            uri: "https://m.media-amazon.com/images/I/61mwpRSoTeL._AC_UF1000,1000_QL80_.jpg",
+            uri: image,
           }}
           style={styles.image}
         />
@@ -22,14 +47,18 @@ const ProductCard = ({ bottomSheetRef }) => {
 
       <View>
         <Text numberOfLines={2} ellipsizeMode="tail">
-          Pate cho chó hỗ trợ dinh dương, điều trị Mongeeeeeeeeeeeee
+          {name}
         </Text>
       </View>
 
       <View style={styles.rowActions}>
-        <Text style={styles.price}>đ37,000</Text>
+        <Text style={styles.price}>${price}</Text>
         <View style={styles.shoppingCartWrapper}>
-          <Icon2D name="productCart" activated />
+          <TouchableOpacity
+            onPress={handleAddToCart}
+          >
+            <Icon2D name="productCart" activated />
+          </TouchableOpacity>
         </View>
       </View>
     </Pressable>

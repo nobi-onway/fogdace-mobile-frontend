@@ -9,8 +9,8 @@ function CodCard({ selectedPayment, isPressed, onPress }) {
         <TouchableOpacity
             style={[
                 styles.content,
-                selectedPayment === 0 ? styles.clickContent : null,
-                isPressed && selectedPayment === 1 ? { opacity: 0.3 } : null,
+                selectedPayment === "COD" ? styles.clickContent : null,
+                isPressed && selectedPayment === "Online Payment" ? { opacity: 0.3 } : null,
             ]}
             onPress={onPress}
         >
@@ -25,7 +25,7 @@ function CodCard({ selectedPayment, isPressed, onPress }) {
                     </Text>
                 </View>
                 <View style={styles.wrapperCheck}>
-                    {selectedPayment === 0 && (
+                    {selectedPayment === "COD" && (
                         <Image
                             resizeMode="cover"
                             style={{ width: 20, height: 20 }}

@@ -16,5 +16,7 @@ import shopping from "../assets/animations/shopping.json"
 import pet_service from "../assets/animations/pet_service.json"
 import social from "../assets/animations/social.json"
 import emergency from "../assets/animations/emergency.json"
+import confetti from "../assets/animations/confetti.json"
+import empty_cart from "../assets/animations/empty_cart.json"
 
-export default { emergency, social, pet_service, shopping, NFC, diamond, coding_working_on, welcome, heart, favorite, browsing, phone, fireHeart, coin, ballons, birthday, chemical, born }
+export default { emergency, social, pet_service, shopping, NFC, diamond, coding_working_on, welcome, heart, favorite, browsing, phone, fireHeart, coin, ballons, birthday, chemical, born, confetti,empty_cart }

@@ -62,6 +62,36 @@ const TYPE = {
       },
     }),
   },
+  name_user: {
+    placeholder: "Đăng Hoàng Việt",
+    rules: () => ({
+      required: "Vui lòng nhập tên của bạn! ",
+    }),
+  },
+  phone_user: {
+    placeholder: "0981890262",
+    rules: () => ({
+      required: "Yêu cầu số điện thoại! ",
+    }),
+  },
+  province: {
+    placeholder: "Hồ Chính Minh",
+    editable: false,
+    rules: () => ({
+    }),
+  },
+  district: {
+    placeholder: "Chọn quận",
+    rules: () => ({
+      required: "Vui lòng chọn địa chỉ!",
+    }),
+  },
+  home_address: {
+    placeholder: "VD: 123 Lê Đức Thọ, Phường Linh Trung",
+    rules: () => ({
+      required: "Vui lòng nhập địa chỉ cụ thể!",
+    }),
+  },
 };
 
 function FormInput({ type, control, validated = true }) {
@@ -90,6 +120,7 @@ function FormInput({ type, control, validated = true }) {
               placeholderTextColor={COLORS.lightBlack}
               secureTextEntry={isSecure}
               value={value}
+              editable={TYPE[type].editable}
               onChangeText={onChange}
               onBlur={onBlur}
             />

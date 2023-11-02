@@ -1,8 +1,8 @@
 export const retailCarouselImages = [
-  { id: 1, URI: "https://media-cldnry.s-nbcnews.com/image/upload/newscms/2023_13/3600519/230329-dog-food-allergy-bd-2x1.jpg" },
-  { id: 2, URI: "https://www.cesar.ca/sites/g/files/fnmzdf2136/files/migrate-product-files/images/vueagylorr5ctmnung4u.png" },
+  { id: 1, URI: "https://img.freepik.com/free-vector/cat-lover-pattern-background-design_53876-100662.jpg?w=1380&t=st=1698818226~exp=1698818826~hmac=f12be2334a662d72326e25243fd51d9f15fa77692ec18412d413f3c6a38faf44" },
+  { id: 2, URI: "https://img.freepik.com/free-vector/flat-international-dog-day-background_52683-127727.jpg?w=1380&t=st=1698818156~exp=1698818756~hmac=27849a700d54bf1ad074eeba419216b3425e43d4e291867033c82db207bd3e54" },
   {
     id: 3,
-    URI: "https://www.thesprucepets.com/thmb/oIwXQE7td3o6hIjKtIEyx8QB7xA=/4495x0/filters:no_upscale():strip_icc()/homemade-cat-food-recipes-551946-hero-c47c3d1892434b589968ad769143c5a6.JPG",
+    URI: "https://img.freepik.com/free-vector/cute-pets-illustration_53876-112522.jpg?w=1480&t=st=1698818193~exp=1698818793~hmac=fac10d668913a1b7489de2b25504a6627cf77b83f831518edbc9b042598bc245",
   },
 ];

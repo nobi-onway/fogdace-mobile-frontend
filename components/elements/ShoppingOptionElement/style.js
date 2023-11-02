@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
     },
     icon: {
-        width: 28,
+        width: 34,
         height: 28,
         flex: 1
     },

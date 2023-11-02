@@ -1,36 +1,65 @@
 import React from 'react'
-import { Text, View, Image, ScrollView } from 'react-native'
-import { IMAGES } from '../../../constants';
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { COLORS, ICONS, IMAGES, SIZES } from '../../../constants';
 import styles from './style';
+import useNavigation from '../../../hooks/useNavigation';
+import { FontAwesome5 } from '@expo/vector-icons';
 
-function OrderCard() {
+function OrderCard({ data }) {
+
+  const { go_to_order_status_detail_of } = useNavigation();
+
+  const createdDate = data.createdAt.split("T")[0].split("-");
+  const formattedDate = `${createdDate[2]}-${createdDate[1]}-${createdDate[0]}`;
+
+  const handleGoToOrderDetail = async () => {
+    const orderData = {
+      detailData: JSON.stringify(data),
+    };
+    go_to_order_status_detail_of(orderData);
+  };
+
+
   return (
-      <View style={styles.content}>
-        <View style={styles.headerContent}>
-          <View style={styles.wrapperIcon}>
-            <Image resizeMode="cover" style={styles.icon} source={IMAGES.cancel} />
-            <Text style={styles.text}>Đã hủy</Text>
-          </View>
-          <Text style={styles.textDate}>26-10-2023</Text>
-        </View>
-        <View style={styles.bodyContent}>
-          <View style={styles.wrapperContent}>
+    <TouchableOpacity style={styles.content}
+      onPress={() => { handleGoToOrderDetail() }}
+    >
+      <View style={styles.headerContent}>
+
+        {data.is_done === false ?
+          (
+            <View style={styles.wrapperIcon}>
+              <Image resizeMode="cover" style={styles.icon} source={IMAGES.cancel} />
+              <Text style={styles.text}>Chờ xác nhận</Text>
+            </View>
+          ) : (
+            <View style={styles.wrapperIconDone}>
+              <FontAwesome5 name={ICONS.iconCheck} style={styles.icon} size={SIZES.large} color={COLORS.white} />
+              <Text style={styles.textDone}>Đã giao</Text>
+            </View>
+          )}
+        <Text style={styles.textDate}>{formattedDate}</Text>
+      </View>
+      <View style={styles.bodyContent}>
+        {data.products.map((product) => (
+          <View key={product._id} style={styles.wrapperContent}>
             <View style={styles.wrapperProduct}>
-              <Text style={styles.textProduct}>Combo 5 gói pate Catchy vị Việt stupid 70g</Text>
-              <Text style={styles.textPrice}>80$</Text>
+              <Text style={styles.textProduct}>{product.product_name}</Text>
+              <Text style={styles.textPrice}>{product.price}.0$</Text>
             </View>
             <View style={styles.wrapperQuantity}>
               <Text style={styles.textQuantity}>
-                1
+                {product.quantity}
               </Text>
             </View>
           </View>
-        </View>
-        <View style={styles.bodyBottom}>
-          <Text style={styles.textPrice}>Tổng tiền:</Text>
-          <Text style={styles.textTotalPrice}>80$</Text>
-        </View>
+        ))}
       </View>
+      <View style={styles.bodyBottom}>
+        <Text style={styles.textPrice}>Tổng tiền:</Text>
+        <Text style={styles.textTotalPrice}>{data.total + 22}.0$</Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 export default OrderCard;

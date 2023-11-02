@@ -37,14 +37,27 @@ function usePet() {
   };
 
   const get_all_pet_types = async () => {
-    const pet_types = await get_fetcher(`${BASE_URL}/petType`);
+    const pet_types = await get_fetcher(`${BASE_URL}/petType`)
+      .then((res) => res)
+      .catch((err) => alert(err));
     return pet_types;
+  };
+
+  const get_all_pet_products = async () => {
+    const pet_products = await get_fetcher(
+      `${BASE_URL}/product?limit=14&page=1`
+    )
+      .then((res) => res)
+      .catch((err) => alert(err));
+
+    return pet_products;
   };
 
   return {
     create_pet_profile,
     update_pet_health_profile_of,
     get_all_pet_types,
+    get_all_pet_products,
   };
 }
 

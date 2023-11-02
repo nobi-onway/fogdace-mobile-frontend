@@ -1,29 +1,54 @@
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./style";
 import CarouselSlider from "../../elements/CarouselSlider";
 import { InteractiveIcon3D, Icon2D, Avatar } from "../../elements";
 import CustomBottomSheet from "../../elements/CustomBottomSheet";
-import { useLikedFeeds, useUnLikedFeeds } from "../../../services/feeds/services";
+import {
+  useLikedFeeds,
+  useUnLikedFeeds,
+} from "../../../services/feeds/services";
 import { userStore } from "../../../stores/userStore";
 
-export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) {
-  const { _id="", likes="", author_id, caption, images, top_comment } = data;
-  const { info } = userStore();
+export default function NewsFeedItem({
+  data,
+  bottomSheetRef,
+  openBottomSheet,
+}) {
+  const {
+    _id = "",
+    likes = "",
+    author_id,
+    caption,
+    images,
+    top_comment,
+  } = data;
+  const { info, setUserInfo } = userStore();
 
-  const {mutate: likeFeeds} = useLikedFeeds()
-  const {mutate: unlikedFeeds} = useUnLikedFeeds()
+  const [liked, setLiked] = useState(false);
+  const { mutate: likeFeeds, data: likedData } = useLikedFeeds();
+  const { mutate: unlikedFeeds, data: unLikedData } = useUnLikedFeeds();
 
-  const hasLiked = info.liked_post.some((likedPost) => likedPost === _id);
+  // const hasLiked = info.liked_post.some((likedPost) => likedPost === _id);
 
   const handleOpenBottomSheet = () => {
-    openBottomSheet(top_comment)
+    openBottomSheet(top_comment);
   };
 
   const handleLikeFeed = (status) => {
     const action = status ? likeFeeds : unlikedFeeds;
-  action({ _id, userId: info._id });
-  }
+    action({ _id, userId: info._id });
+
+    if (status) {
+      setUserInfo({ ...info, liked_post: likedData });
+    } else {
+      setUserInfo({ ...info, liked_post: unLikedData });
+    }
+  };
+
+  useEffect(() => {
+    setLiked(info.liked_post.include(_id));
+  }, [info]);
 
   return (
     <View style={styles.feedWrapper}>
@@ -48,7 +73,11 @@ export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) 
 
       <View style={styles.interactionWrapper}>
         <View style={styles.interactionRowGap}>
-          <InteractiveIcon3D type="heart" callbackFn={handleLikeFeed} isActive={hasLiked}/>
+          <InteractiveIcon3D
+            type="heart"
+            callbackFn={handleLikeFeed}
+            isActive={liked}
+          />
           <Pressable onPress={handleOpenBottomSheet}>
             <Icon2D name="comment" />
           </Pressable>
@@ -59,21 +88,18 @@ export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) 
       </View>
 
       {/* Reactions */}
-      {likes ?(
+      {likes ? (
         <View style={styles.reactionWrapper}>
-        <Icon2D name="heart" activated="red" />
-        <Text>{likes} other people reacted</Text>
-      </View>
+          <Icon2D name="heart" activated="red" />
+          <Text>{likes} other people reacted</Text>
+        </View>
       ) : null}
-      
 
       <View style={styles.contentWrapper}>
         <Text>
           <Text style={styles.username}>{author_id.name}</Text>: {caption}
         </Text>
       </View>
-
-
     </View>
   );
 }

@@ -34,6 +34,9 @@ const COLORS = {
     cancel: '#ef5354',
     red: '#f25156',
 
+    green:'#5ac274',
+    lightGreen:'#46c775',
+
     brown: "rgba(150, 99, 72, 1)",
     opacityBrown: "rgba(150, 99, 72, 0.65)",
     lightBrown: "#a2654c",
