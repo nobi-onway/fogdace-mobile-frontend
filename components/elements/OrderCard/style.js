@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     wrapperIcon: {
-        flex: 0.3,
+        flex: 0.45,
         flexDirection: 'row',
         backgroundColor: COLORS.cancel,
         alignItems: 'center',
@@ -30,10 +30,29 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     icon: {
+        width: 18,
+        height: 18,
+    },
+    text: {
+        fontSize: 14,
+        fontFamily: FONTS.bold,
+        color: COLORS.white,
+    },
+    wrapperIconDone: {
+        flex: 0.3,
+        flexDirection: 'row',
+        backgroundColor: COLORS.green,
+        alignItems: 'center',
+        gap: 10,
+        padding: 5,
+        paddingHorizontal: 7,
+        borderRadius: 10,
+    },
+    iconDone: {
         width: 19,
         height: 19,
     },
-    text: {
+    textDone: {
         fontSize: 14,
         fontFamily: FONTS.bold,
         color: COLORS.white,

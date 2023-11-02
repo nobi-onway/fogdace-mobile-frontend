@@ -10,8 +10,6 @@ export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) 
   const bottomSheetReffff = useRef(null);
 
   const handleOpenBottomSheet = () => {
-
-  
     openBottomSheet(top_comment)
   };
 

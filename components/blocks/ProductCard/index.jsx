@@ -1,10 +1,13 @@
 import React from "react";
-import { View, Image, Text, Pressable } from "react-native";
+import { View, Image, Text, Pressable, TouchableOpacity } from "react-native";
 import { Icon2D } from "../../elements";
-
 import styles from "./style";
+import useCart from '../../../hooks/useCart';
 
 const ProductCard = ({ data, bottomSheetRef }) => {
+
+  const { addToCart } = useCart();
+
   const handleOpenBottomSheet = () => {
     bottomSheetRef.current?.expand();
   };
@@ -20,6 +23,16 @@ const ProductCard = ({ data, bottomSheetRef }) => {
     status,
     topComment,
   } = data;
+
+  const handleAddToCart = () => {
+    const product = {
+      _id,
+      image,
+      name,
+      price,
+    };
+    addToCart(product);
+  };
 
   return (
     <Pressable style={styles.container} onPress={() => handleOpenBottomSheet()}>
@@ -41,7 +54,11 @@ const ProductCard = ({ data, bottomSheetRef }) => {
       <View style={styles.rowActions}>
         <Text style={styles.price}>${price}</Text>
         <View style={styles.shoppingCartWrapper}>
-          <Icon2D name="productCart" activated />
+          <TouchableOpacity
+            onPress={handleAddToCart}
+          >
+            <Icon2D name="productCart" activated />
+          </TouchableOpacity>
         </View>
       </View>
     </Pressable>

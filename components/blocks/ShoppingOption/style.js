@@ -45,10 +45,8 @@ const styles = StyleSheet.create({
     mainContain: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
         gap: 20,
-        paddingHorizontal: 20,
+        justifyContent: 'center',
         paddingTop: 40,
     },
     bottomContent: {
