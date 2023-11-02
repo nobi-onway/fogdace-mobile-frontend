@@ -1,12 +1,25 @@
 import React from 'react'
 import styles from './style'
+import { useState, useEffect, useRef } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
 import { IMAGES, FONTS, COLORS, } from '../../../constants';
 import useNavigation from '../../../hooks/useNavigation'
+import { useLocalSearchParams } from "expo-router";
+import { userStore } from '../../../stores/userStore';
+import useAddress from '../../../hooks/useAddress';
+import AddressList from '../AddressList';
+import CustomBottomSheet from '../../elements/CustomBottomSheet';
 
-export default function OrderConfirm() {
+export default function OrderConfirm({ handleOpenBottomSheet, addressData }) {
+
 
     const { go_to_create_order } = useNavigation();
+
+    const params = useLocalSearchParams();
+
+    const cartData = params;
+
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -17,11 +30,34 @@ export default function OrderConfirm() {
                         source={IMAGES.map_line}
                         style={styles.bgImage}
                     />
-                    <View style={styles.textContainer}>
-                        <Text style={styles.textName}>Trường Giang</Text>
-                        <Text style={styles.textPhone}>0981890260</Text>
-                        <Text style={styles.textAddress}>Tân Lập, Phường Hiệp Phú, Quận 9, Thành phố Hồ Chí Minh</Text>
-                    </View>
+                    {addressData?.map((address) => (
+                        <TouchableOpacity
+                            key={address._id}  // Đảm bảo có key duy nhất cho mỗi phần tử
+                            style={styles.textContainer}
+                            onPress={() => handleOpenBottomSheet()}
+                        >
+                            <Text style={styles.textName}>{address.name_user}</Text>
+                            <Text style={styles.textPhone}>{address.phone_user}</Text>
+                            <Text style={styles.textAddress}>{`${address.home_address}, ${address.address}`}</Text>
+                        </TouchableOpacity>
+                    ))}
+
+                    {/* {addressData?.map((address) => {
+                        if (address.is_default) {
+                            return (
+                                <TouchableOpacity
+                                    key={address.id}  // Đảm bảo có key duy nhất cho mỗi phần tử
+                                    style={styles.textContainer}
+                                    onPress={() => { go_to_address_book({}) }}
+                                >
+                                    <Text style={styles.textName}>{address.name_user}</Text>
+                                    <Text style={styles.textPhone}>{address.phone_user}</Text>
+                                    <Text style={styles.textAddress}>{`${address.home_address}, ${address.address}`}</Text>
+                                </TouchableOpacity>
+                            );
+                        }
+                        return null; // Không hiển thị nếu không có địa chỉ mặc định
+                    })} */}
                     <Image
                         source={IMAGES.edit}
                         style={styles.editImage}

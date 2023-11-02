@@ -8,8 +8,8 @@ import useNavigation from '../../../hooks/useNavigation';
 import useAddress from '../../../hooks/useAddress';
 import { userStore } from '../../../stores/userStore';
 
-function AddressList() {
-    
+function AddressList({ onAddressSelect }) {
+
     const { go_to_add_address } = useNavigation();
 
     const { info } = userStore();
@@ -29,7 +29,11 @@ function AddressList() {
 
     const handleAddressSelect = (index) => {
         setSelectedAddress(index);
+        if (onAddressSelect) {
+            onAddressSelect(index);
+        }
     };
+
     return (
         <View>
             {addressData?.map((address) => (

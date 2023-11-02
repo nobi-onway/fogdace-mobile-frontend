@@ -1,41 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, View, TouchableOpacity, Image } from 'react-native';
 import CartCard from '../../elements/CartCard';
 import { COLORS, IMAGES } from '../../../constants';
 import styles from './style';
 import useNavigation from '../../../hooks/useNavigation';
-
-const cartData = [
-    {
-        id: 1,
-        image: IMAGES.cathouse,
-        name: 'Nhà cây cho mèo kèm lồng kính CH030',
-        price: 100,
-        quantity: 1,
-    },
-    {
-        id: 2,
-        image: IMAGES.cathouse,
-        name: 'Nhà cây cho mèo - Cat trê CT016',
-        price: 30,
-        quantity: 2,
-    },
-    {
-        id: 3,
-        image: IMAGES.cathouse,
-        name: 'Nhà cây cho mèo - Việt ngu 1234',
-        price: 1400,
-        quantity: 2,
-    },
-];
+import useCart from '../../../hooks/useCart';
+import Empty from '../../elements/Empty'
 
 function CartList({ modalVisible, setModalVisible }) {
     const { go_to_checkout } = useNavigation();
+
+    const { getCart } = useCart();
+    const [cartData, setCartData] = useState([]);
 
     const [selectedCarts, setSelectedCarts] = useState([]);
     const [selectAllSelected, setSelectAllSelected] = useState(false);
 
     const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        getCart().then((cartItems) => {
+            setCartData(cartItems);
+        });
+        // AsyncStorage.clear()
+    }, []);
 
     const handleCartSelect = (index) => {
         const updatedSelection = [...selectedCarts];
@@ -64,7 +52,7 @@ function CartList({ modalVisible, setModalVisible }) {
     const calculateTotalPrice = (selectedIndexes, products) => {
         let total = 0;
         selectedIndexes.forEach((index) => {
-            const product = products.find((item) => item.id === cartData[index].id);
+            const product = products[index];
             total += parseFloat(product.price) * parseInt(product.quantity);
         });
         return total;
@@ -72,14 +60,15 @@ function CartList({ modalVisible, setModalVisible }) {
 
     return (
         <View style={{ height: '100%', backgroundColor: COLORS.primaryOrder }}>
-            <ScrollView>
+            {cartData.length < 1 && <Empty />}
+            <ScrollView style={{ marginBottom: 105, height: '100%' }}>
                 {cartData.map((cart, index) => (
                     <CartCard
                         key={index}
                         cart={cart}
                         isSelected={selectedCarts.includes(index)}
                         onSelect={() => handleCartSelect(index)}
-                        modalVisible={modalVisible === cart.id}
+                        modalVisible={modalVisible === cart._id}
                         setModalVisible={(id) => setModalVisible(id)}
                     />
                 ))}
@@ -103,16 +92,26 @@ function CartList({ modalVisible, setModalVisible }) {
                     </TouchableOpacity>
                     <Text style={styles.textCheck}>Chọn mua tất cả</Text>
                 </View>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                        go_to_checkout({});
-                    }}
-                >
-                    <Text style={styles.textCheckout}>Trang thanh toán </Text>
-                    <View style={styles.dot}></View>
-                    <Text style={styles.textCheckout}> {totalPrice}$ </Text>
-                </TouchableOpacity>
+                {cartData.length < 1 ?
+                    (
+                        <View
+                            style={[styles.button, { backgroundColor: COLORS.darkGrey }]}
+                        >
+                            <Text style={[styles.textCheckout, { color: COLORS.slategray }]}>Trang thanh toán </Text>
+                            <View style={[styles.dot, { backgroundColor: COLORS.slategray }]}></View>
+                            <Text style={[styles.textCheckout, { color: COLORS.slategray }]}> {totalPrice}$ </Text>
+                        </View>
+                    ) : (
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => {
+                                go_to_checkout(cartData);
+                            }}
+                        >
+                            <Text style={styles.textCheckout}>Trang thanh toán </Text>
+                            <View style={styles.dot}></View>
+                            <Text style={styles.textCheckout}> {totalPrice}$ </Text>
+                        </TouchableOpacity>)}
             </View>
         </View>
     );

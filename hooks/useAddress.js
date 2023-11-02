@@ -17,15 +17,17 @@ function useAddress() {
             .catch((err) => alert(err));
     };
     const add_new_address = async (id, data) => {
-        await put_fetcher(`${ADDRESS_NEW_URL}/${id}`, data)
+         await put_fetcher(`${ADDRESS_NEW_URL}/${id}`, data)
             .then((response) => response)
             .catch((err) => alert(err));
+            
     };
 
     const get_address_by_id = async (id) => {
         const user = await get_fetcher(`${USER_BY_ID_URL}/${id}`)
             .then((res) => res)
             .catch((err) => alert(err));
+           
         return user.address
     };
 

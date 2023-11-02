@@ -25,7 +25,7 @@ function useNavigation() {
     const go_to_address_book = () => router.push("/shopping-option/address-book");
     const go_to_payment_method = () => router.push("/shopping-option/payment-method");
     const go_to_add_address = () => router.push("/shopping-option/add-new-address");
-    const go_to_checkout = () => router.push("/checkout");
+    const go_to_checkout = (info) => router.push({ pathname: '/checkout', params: info })
     const go_to_create_order = () => router.push("/checkout/create-order-success");
 
 

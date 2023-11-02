@@ -14,17 +14,16 @@ export default function AddAddressForm() {
     const { info } = userStore();
 
     const onSubmit = async (data) => {
+
         const { name_user, phone_user, home_address, district } = data;
 
-        const addressData = {
+        const { _id } = info
+        
+        await add_new_address(_id, {
             name_user,
             phone_user,
             address: `${district},Thành Phố Hồ Chính Minh`,
             home_address,
-        }
-        
-        await add_new_address(info._id, {
-            addressData,
         });
 
     };

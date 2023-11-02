@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         top: 20,
         left: 20,
         zIndex: 1,
-        maxWidth: '85%'
+        paddingRight:100,
     },
     textName: {
         fontSize: 19,

@@ -30,12 +30,14 @@ function CartCard({ cart, isSelected, onSelect, modalVisible, setModalVisible })
           )}
         </TouchableOpacity>
         <TouchableOpacity style={styles.wrapperContent}
-          onPress={() => setModalVisible(cart.id)}
+          onPress={() => setModalVisible(cart._id)}
         >
           <Image
             resizeMode="cover"
             style={{ width: 80, height: 80, borderRadius: 6 }}
-            source={cart.image}
+            source={{
+              uri: cart.image,
+            }}
           />
           <View style={styles.wrapperProduct}>
             <Text style={styles.text}>{cart.name}</Text>
