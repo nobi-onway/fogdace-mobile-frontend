@@ -31,7 +31,12 @@ function useChat() {
         const room_data = (with_user) => ({
             room_id: room_id,
             with_user: with_user,
-            last_message: { message: "" }
+            last_message: {
+                message: "",
+                from: cur_user_id,
+                to: with_user._id,
+                send_time: moment().format()
+            }
         })
 
         await update(
@@ -49,7 +54,7 @@ function useChat() {
 
     const get_chat_list = (callback) => {
         onValue(CHAT_LIST_REF(cur_user_id, ""), (snapshot) => {
-            const users = Object.values(snapshot.val());
+            const users = snapshot.val() ? Object.values(snapshot.val()) : [];
 
             callback(users);
         });

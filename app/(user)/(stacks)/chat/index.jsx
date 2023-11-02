@@ -24,6 +24,7 @@ export default function Chat() {
   useEffect(() => {
     get_all_users((users) => {
       const filter_data = users.filter((user) => user._id !== info._id);
+      setSearchedUserList(filter_data);
       setUsers(filter_data);
     });
     get_chat_list((rooms) => {
@@ -43,7 +44,23 @@ export default function Chat() {
         data={searchedUserList}
         contentContainerStyle={{ gap: 12 }}
         horizontal
-        renderItem={({ item: user }) => <UserBubble user={user} />}
+        renderItem={({ item: user }) => (
+          <UserBubble
+            already_in_room={() => {
+              const user_in_room = rooms.map((room) => room.with_user._id);
+
+              let cur_room_index = 0;
+
+              return user_in_room.some((item, index) => {
+                cur_room_index = index;
+                return item === user._id;
+              })
+                ? rooms[cur_room_index].room_id
+                : null;
+            }}
+            user={user}
+          />
+        )}
       />
       <FlatList
         data={rooms}

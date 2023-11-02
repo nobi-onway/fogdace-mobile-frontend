@@ -24,8 +24,10 @@ function useNavigation() {
     const go_to_address_book = () => router.push("/shopping-option/address-book");
     const go_to_payment_method = () => router.push("/shopping-option/payment-method");
     const go_to_pet_profile_of = (id) => router.push({ pathname: "/pet-profile", params: { id: id } })
+    const go_to_completing_profile = (info) => router.push({ pathname: "/sign-up/completing-profile", params: info })
 
     return {
+        go_to_completing_profile,
         go_to_pet_profile_of,
         go_to_chat,
         go_to_room_chat_with,

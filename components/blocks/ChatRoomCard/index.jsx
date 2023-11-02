@@ -20,7 +20,7 @@ export default function ChatRoomCard({ room }) {
   const message =
     typeof last_message.message === "string"
       ? last_message.message
-      : "Đã gửi một yêu cầu";
+      : "Đã gửi một yêu cầu trao đổi thú cưng";
 
   return (
     <TouchableOpacity

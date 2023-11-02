@@ -6,7 +6,7 @@ import styles from "./style";
 import useNavigation from "../../../hooks/useNavigation";
 import useChat from "../../../hooks/useChat";
 
-export default function UserBubble({ user }) {
+export default function UserBubble({ user, already_in_room }) {
   const { create_room_chat_with } = useChat();
   const { go_to_room_chat_with } = useNavigation();
   const { avatar, name } = user;
@@ -14,6 +14,11 @@ export default function UserBubble({ user }) {
   return (
     <TouchableOpacity
       onPress={async () => {
+        const in_room_id = already_in_room();
+        if (in_room_id) {
+          go_to_room_chat_with({ ...user, room_id: in_room_id });
+          return;
+        }
         const room_id = await create_room_chat_with(user);
         go_to_room_chat_with({ ...user, room_id });
       }}

@@ -10,18 +10,18 @@ import { useEffect, useState } from "react";
 
 import styles from "./style";
 import useAuth from "../../../hooks/useAuth";
+import useNavigation from "../../../hooks/useNavigation";
 
 function SignUpForm({ style }) {
   const { control, handleSubmit, watch } = useForm();
   const [policyAccepted, setPolicyAccepted] = useState(false);
-  const { sign_up_with_email } = useAuth();
+  const { go_to_completing_profile } = useNavigation();
 
   const password = watch("password");
   const confirmPassword = watch("confirmPassword");
 
   const onSubmit = (data) => {
-    const { username, password } = data;
-    sign_up_with_email(username, password);
+    go_to_completing_profile(data);
   };
 
   return (
