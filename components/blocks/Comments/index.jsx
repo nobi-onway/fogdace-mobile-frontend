@@ -75,9 +75,10 @@ const Comments = ({ data }) => {
             placeholder="Thêm bình luận..."
             placeholderTextColor="black"
           />
-          <Pressable onPress={handleAddComment}>
+          {newComment.length > 0 ? <Pressable onPress={handleAddComment}>
             <Text>Gửi</Text>
-          </Pressable>
+          </Pressable> : null}
+   
         </View>
       </KeyboardAvoidingView>
     </View>

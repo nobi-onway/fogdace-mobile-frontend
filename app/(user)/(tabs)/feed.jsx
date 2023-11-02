@@ -7,9 +7,11 @@ import UserComposition from "../../../components/blocks/UserComposition";
 import useFeeds from "../../../hooks/useFeeds";
 import CustomBottomSheet from "../../../components/elements/CustomBottomSheet";
 import Comments from "../../../components/blocks/Comments";
+import { useGetAllFeeds } from "../../../services/feeds/services";
 
 function Feed() {
   const bottomSheetRef = useRef(null);
+  const {data: feedsList, isLoading} = useGetAllFeeds();
 
   const [topCommentByFeed, setTopCommentByFeed] = useState({})
 
@@ -27,23 +29,9 @@ function Feed() {
     setRefresh(false);
   };
 
-  useEffect(() => {
-    let cleanUpFn = true;
-    const fetchData = async () => {
-        const feeds_fetch = await get_all_feeds();
-        if (cleanUpFn) {
-          setFeeds(feeds_fetch);
-
-        }
-  
-    };
-
-    fetchData();
-    return () => {
-      cleanUpFn = false
-    }
-
-  }, [])
+  if(isLoading){
+    return <Text>Loading...</Text>
+  }
 
   const openBottomSheet = (topComment) => {
     setTopCommentByFeed(topComment)
@@ -54,14 +42,13 @@ function Feed() {
     <View style={{ flex: 1 }}>
       <UserComposition />
       <FlatList
-        data={feeds}
+        data={feedsList}
         renderItem={({ item }) => <NewsFeedItem data={item} bottomSheetRef={bottomSheetRef} openBottomSheet={openBottomSheet}/>}
         keyExtractor={(item) => item._id}
         refreshControl={
           <RefreshControl refreshing={refresh} onRefresh={handleRefreshFeeds} />
         }
       />
-
 
         <CustomBottomSheet ref={bottomSheetRef}>
               <Comments data={topCommentByFeed}/>

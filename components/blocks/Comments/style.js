@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
       gap: 6,
     },
     commentList:{
-      height: 530,
+      flex: 1,
       paddingHorizontal: 4
     },
     infoWrapper: {
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     inputWrapper:{
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'flex-end',
       borderTopWidth: 0.6, 
       borderTopColor: COLORS.gray,
       paddingVertical: 4,

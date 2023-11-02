@@ -30,8 +30,8 @@ const TYPES = {
   },
 };
 
-function InteractiveIcon3D({ type }) {
-  const [active, setActive] = useState(false);
+function InteractiveIcon3D({ type, isActive=false, callbackFn }) {
+  const [active, setActive] = useState(isActive);
   const iconRef = useRef();
 
   const { width, height, scale } = TYPES[type];
@@ -45,6 +45,7 @@ function InteractiveIcon3D({ type }) {
     <TouchableOpacity
       onPress={() => {
         setActive(!active);
+        callbackFn(!active);
       }}
     >
       <AnimatedLottieView

@@ -4,18 +4,26 @@ import styles from "./style";
 import CarouselSlider from "../../elements/CarouselSlider";
 import { InteractiveIcon3D, Icon2D, Avatar } from "../../elements";
 import CustomBottomSheet from "../../elements/CustomBottomSheet";
+import { useLikedFeeds, useUnLikedFeeds } from "../../../services/feeds/services";
+import { userStore } from "../../../stores/userStore";
 
 export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) {
   const { _id="", likes="", author_id, caption, images, top_comment } = data;
-  const bottomSheetReffff = useRef(null);
+  const { info } = userStore();
+
+  const {mutate: likeFeeds} = useLikedFeeds()
+  const {mutate: unlikedFeeds} = useUnLikedFeeds()
+
+  const hasLiked = info.liked_post.some((likedPost) => likedPost === _id);
 
   const handleOpenBottomSheet = () => {
-
-  
     openBottomSheet(top_comment)
   };
 
-
+  const handleLikeFeed = (status) => {
+    const action = status ? likeFeeds : unlikedFeeds;
+  action({ _id, userId: info._id });
+  }
 
   return (
     <View style={styles.feedWrapper}>
@@ -40,7 +48,7 @@ export default function NewsFeedItem({ data, bottomSheetRef, openBottomSheet }) 
 
       <View style={styles.interactionWrapper}>
         <View style={styles.interactionRowGap}>
-          <InteractiveIcon3D type="heart" />
+          <InteractiveIcon3D type="heart" callbackFn={handleLikeFeed} isActive={hasLiked}/>
           <Pressable onPress={handleOpenBottomSheet}>
             <Icon2D name="comment" />
           </Pressable>
