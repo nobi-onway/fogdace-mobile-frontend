@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { FlatList, ScrollView, Text, View } from "react-native";
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  View
+} from "react-native";
 import { ProductCard } from "../../../components/blocks";
 import CarouselSlider from "../../../components/elements/CarouselSlider";
 import { retailCarouselImages } from "../../../fakeData/retailCarouselImages";
