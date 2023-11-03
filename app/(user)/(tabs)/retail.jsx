@@ -3,7 +3,8 @@ import {
   FlatList,
   ScrollView,
   Text,
-  View
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { ProductCard } from "../../../components/blocks";
 import CarouselSlider from "../../../components/elements/CarouselSlider";
@@ -52,6 +53,11 @@ function Retail() {
           numColumns={2}
         />
       </View>
+      <TouchableOpacity onPress={handleNotification}>
+        <View>
+          <Text>Test</Text>
+        </View>
+      </TouchableOpacity>
 
       {/* <FlatList data={PET_HEALTH_INFO} renderItem={({item}) => <PetHealthInfoCard type={item.type} mainInfo={item.mainInfo} subInfo={item.subInfo}/>} keyExtractor={item => item.id} horizontal/> */}
     </ScrollView>
