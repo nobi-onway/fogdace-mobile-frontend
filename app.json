@@ -7,11 +7,22 @@
     "android": {
       "package": "com.fogdace.fogdace",
       "versionCode": 1
-  },
+    },
     "plugins": [
       "expo-router"
     ],
     "name": "fogdace-mobile-frontend",
-    "slug": "fogdace-mobile-frontend"
+    "slug": "fogdace-mobile-frontend",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1635d691-ae24-44e5-97f2-fbafe86fb8a9"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "y"
+    }
   }
 }
