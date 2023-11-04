@@ -46,9 +46,9 @@ export default function NewsFeedItem({
     }
   };
 
-  useEffect(() => {
-    setLiked(info.liked_post.include(_id));
-  }, [info]);
+  // useEffect(() => {
+  //   setLiked(info.liked_post.include(_id));
+  // }, [info]);
 
   return (
     <View style={styles.feedWrapper}>

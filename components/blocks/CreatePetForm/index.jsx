@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import RadioGroup from "../RadioGroup";
 import usePet from "../../../hooks/usePet";
 import useNavigation from "../../../hooks/useNavigation";
+import useNotify from "../../../hooks/useNotify";
 
 export default function CreatePetForm({ pet_type }) {
   const { control, handleSubmit } = useForm();
@@ -23,6 +24,7 @@ export default function CreatePetForm({ pet_type }) {
     } = data;
 
     const { type } = pet_type;
+    const { notify } = useNotify();
 
     const pet_data = {
       owner: "653869dfb35af1758d932c1c",
@@ -42,6 +44,7 @@ export default function CreatePetForm({ pet_type }) {
     await update_pet_health_profile_of(health_profile_id, {
       triet_san: is_triet_san,
     });
+    await notify("Tạo thú cưng nè.", "Thành công ời!");
   };
 
   return (
