@@ -1,4 +1,3 @@
-import registerNNPushToken from "native-notify";
 import { APP_ID, APP_TOKEN } from "../constants/keys";
 import { NOTI_URL } from "../constants/url";
 import useFetch from "./useFetch";
