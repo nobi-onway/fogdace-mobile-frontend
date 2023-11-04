@@ -1,4 +1,4 @@
-import { Text, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Text, TextInput, View } from "react-native";
 import styles from "./style";
 import { COLORS, ICONS, SIZES } from "../../../constants";
 import { Ionicons } from "@expo/vector-icons";
@@ -62,6 +62,11 @@ const TYPE = {
       },
     }),
   },
+  trading_item: {
+    placeholder: "Nhập mô tả ở đây",
+    rules: () => {},
+  },
+
   name_user: {
     placeholder: "Đăng Hoàng Việt",
     rules: () => ({
@@ -77,8 +82,7 @@ const TYPE = {
   province: {
     placeholder: "Hồ Chính Minh",
     editable: false,
-    rules: () => ({
-    }),
+    rules: () => ({}),
   },
   district: {
     placeholder: "Chọn quận",
@@ -90,6 +94,16 @@ const TYPE = {
     placeholder: "VD: 123 Lê Đức Thọ, Phường Linh Trung",
     rules: () => ({
       required: "Vui lòng nhập địa chỉ cụ thể!",
+    }),
+  },
+  money: {
+    placeholder: "Tiền bạn muốn trao đổi",
+    rules: () => ({
+      required: "Không được để trống",
+      pattern: {
+        value: /^[0-9]+$/,
+        message: "Vui lòng nhập đúng số tiền",
+      },
     }),
   },
 };

@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { HeaderButton } from "../../components/elements";
-import { useLayoutEffect, useEffect } from "react";
+import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { userStore } from "../../stores/userStore";
 import useNavigation from "../../hooks/useNavigation";

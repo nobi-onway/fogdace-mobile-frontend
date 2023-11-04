@@ -3,6 +3,7 @@ import { COLORS, FONTS } from "../../../constants";
 
 const styles = StyleSheet.create({
     container: {
+        paddingVertical: 12,
     },
     input_title: {
         fontSize: 13,

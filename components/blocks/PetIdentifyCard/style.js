@@ -5,12 +5,12 @@ import GLOBAL_STYLE from "../../../app/global.style"
 const styles = StyleSheet.create({
     container: {
         backgroundColor: COLORS.lightBrown,
-        borderRadius: 24,
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
         height: 180,
         flexDirection: 'row',
         padding: 8,
         ...GLOBAL_STYLE.shadow,
-        marginVertical: 8,
     },
     avatar_wrapper: {
         flex: 0.3,
@@ -34,6 +34,9 @@ const styles = StyleSheet.create({
     regular_text: {
         fontFamily: FONTS.regular,
         color: COLORS.white,
+    },
+    trading_button: {
+        marginBottom: 12,
     }
 });
 

@@ -30,7 +30,7 @@ const TYPES = {
   },
 };
 
-function InteractiveIcon3D({ type, isActive=false, callbackFn }) {
+function InteractiveIcon3D({ type, isActive = false, callbackFn }) {
   const [active, setActive] = useState(isActive);
   const iconRef = useRef();
 
@@ -40,6 +40,10 @@ function InteractiveIcon3D({ type, isActive=false, callbackFn }) {
     if (!active) return;
     iconRef.current.play();
   }, [active]);
+
+  useEffect(() => {
+    setActive(isActive);
+  }, [isActive]);
 
   return (
     <TouchableOpacity

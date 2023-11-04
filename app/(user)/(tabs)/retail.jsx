@@ -10,6 +10,7 @@ import { ProductCard } from "../../../components/blocks";
 import CarouselSlider from "../../../components/elements/CarouselSlider";
 import { retailCarouselImages } from "../../../fakeData/retailCarouselImages";
 import usePet from "../../../hooks/usePet";
+import CustomBottomSheet from "../../../components/elements/CustomBottomSheet";
 
 function Retail() {
   const [products, setProducts] = useState();
@@ -27,7 +28,7 @@ function Retail() {
   return (
     <ScrollView style={{ flex: 1 }}>
       <View style={{ height: 300 }}>
-        <CarouselSlider carouselData={retailCarouselImages} autoplay />
+        <CarouselSlider carouselData={retailCarouselImages} />
       </View>
 
       <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
@@ -55,6 +56,10 @@ function Retail() {
       </View>
 
       {/* <FlatList data={PET_HEALTH_INFO} renderItem={({item}) => <PetHealthInfoCard type={item.type} mainInfo={item.mainInfo} subInfo={item.subInfo}/>} keyExtractor={item => item.id} horizontal/> */}
+
+      <CustomBottomSheet ref={bottomSheetRef}>
+        <Text>Hi</Text>
+      </CustomBottomSheet>
     </ScrollView>
   );
 }

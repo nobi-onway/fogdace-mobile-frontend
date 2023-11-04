@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Pressable, Image } from "react-native";
+import { View, Text, Pressable, Image, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 
 import styles from "./style";
+import Icon2D from "../Icon2D";
 
-const ImageUploader = () => {
+const ImageUploader = ({ onUpload }) => {
   const [imgURL, setImgUrl] = useState(null);
 
   const handleUploadImage = async () => {
@@ -28,7 +29,7 @@ const ImageUploader = () => {
         const formData = new FormData();
         formData.append("key", "373bc9b180e920e9c2ebceaa3b341eed");
         formData.append("image", {
-          uri: result.uri,
+          uri: result.assets[0].uri,
           name: "test.jpg",
           type: "image/jpeg",
         });
@@ -37,7 +38,8 @@ const ImageUploader = () => {
           "https://api.imgbb.com/1/upload",
           formData
         );
-        setImgUrl(result.uri);
+        setImgUrl(response.data.data.url);
+        onUpload(response.data.data.url);
       }
     } catch (error) {
       console.error(error);
@@ -45,13 +47,15 @@ const ImageUploader = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Hi</Text>
-      <Image source={{ uri: imgURL }} style={{ width: 200, height: 200 }} />
-      <Pressable style={styles.uploadImage} onPress={handleUploadImage}>
-        <Text style={styles.uploadImageText}>Select Image from Library</Text>
-      </Pressable>
-    </View>
+    <TouchableOpacity onPress={handleUploadImage} style={styles.container}>
+      <View style={styles.image_wrapper}>
+        {imgURL ? (
+          <Image style={styles.image} source={{ uri: imgURL }} />
+        ) : (
+          <Icon2D name={"image_gallery_xl"} />
+        )}
+      </View>
+    </TouchableOpacity>
   );
 };
 

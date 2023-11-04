@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Animated } from 'react-native';
-import styles from './style'
-import { COLORS, ICONS, SIZES } from '../../../constants';
-import { FontAwesome } from '@expo/vector-icons';
-const ToggleButton = () => {
-  const [isOn, setIsOn] = useState(false);
+import React, { useState, useEffect } from "react";
+import { View, TouchableOpacity, Animated } from "react-native";
+import styles from "./style";
+import { COLORS, ICONS, SIZES } from "../../../constants";
+import { FontAwesome } from "@expo/vector-icons";
+const ToggleButton = ({ onToggle }) => {
+  const [isOn, setIsOn] = useState(true);
   const [animationValue, setAnimationValue] = useState(new Animated.Value(0));
 
   const toggle = () => {
+    onToggle(isOn);
     setIsOn(!isOn);
   };
 
@@ -33,9 +34,14 @@ const ToggleButton = () => {
         onPress={toggle}
         activeOpacity={1}
       >
-        <Animated.View style={[styles.inner, toggleStyle]} >
+        <Animated.View style={[styles.inner, toggleStyle]}>
           {isOn && (
-            <FontAwesome name="check" style={styles.iconCheck} size={SIZES.medium} color={COLORS.primary} />
+            <FontAwesome
+              name="check"
+              style={styles.iconCheck}
+              size={SIZES.medium}
+              color={COLORS.primary}
+            />
           )}
         </Animated.View>
       </TouchableOpacity>

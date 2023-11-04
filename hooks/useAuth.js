@@ -38,15 +38,12 @@ function useAuth() {
             .catch(err => { alert('login fail: ' + err) })
     }
 
-    const sign_up_with_email = async (email, password) => {
-        await createUserWithEmailAndPassword(FIREBASE_AUTH, email, password)
+    const sign_up_with_email = async (info) => {
+        const { username, password } = info
+        await createUserWithEmailAndPassword(FIREBASE_AUTH, username, password)
             .then(userCredential => {
-                const { user } = userCredential;
-                const { uid } = user
-
-                return uid
             })
-            .catch(() => { alert('sign up fail') })
+            .catch(() => { alert('email not found') })
     }
 
     const sign_in_with_app = async (username, password) => {
@@ -58,33 +55,31 @@ function useAuth() {
         })
     }
 
-    const sign_up_with_app = async ({ user_info }) => {
-        const { email, password, confirmPassword, name, avatar } = user_info;
+    const sign_up_with_app = async (user_info) => {
+        const { username, password, confirmPassword, name, avatar } = user_info;
 
-        post_fetcher(REGISTER_URL, {
-            username: email,
+        await post_fetcher(REGISTER_URL, {
+            username: username,
             password: password,
             confirmPassword: confirmPassword,
             name: name,
             avatar: avatar,
-        }).then(user => {
-            const { _id, username, name, avatar } = user
-
+        }).then(_id => {
             set(ref(FIREBASE_DATABASE, 'users/' + _id), { _id, username, name, avatar })
                 .then(() => go_to_sign_in())
                 .catch(err => alert(err.message))
-        })
+        }).catch(err => alert(err.message))
     }
 
     const sign_out = () => {
         const auth = getAuth()
-        signOut(auth).then(async() => {
+        signOut(auth).then(async () => {
             setAuthentication(null)
             console.log('sign_out...');
             await AsyncStorage.clear()
-          }).catch((error) => {
+        }).catch((error) => {
             alert('toan cho dien')
-          });
+        });
     }
 
 

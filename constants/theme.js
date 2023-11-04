@@ -63,7 +63,7 @@ const ROUNDED = {
     small: 10,
     medium: 14,
     large: 20,
-    full: 50
+    full: 100
 }
 
 const FONTS = {
