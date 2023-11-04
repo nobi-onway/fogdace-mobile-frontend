@@ -28,6 +28,7 @@
     "firebase": "^10.5.0",
     "lottie-react-native": "^5.1.6",
     "moment": "^2.29.4",
+    "native-notify": "^3.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.2",
@@ -39,7 +40,9 @@
     "react-native-snap-carousel": "^3.9.1",
     "react-native-web": "~0.19.6",
     "stripe": "^14.2.0",
-    "zustand": "^4.4.4"
+    "zustand": "^4.4.4",
+    "expo-device": "~5.4.0",
+    "expo-notifications": "~0.20.1"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
