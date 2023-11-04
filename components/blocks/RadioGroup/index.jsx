@@ -50,6 +50,7 @@ const RadioGroup = ({ control, type }) => {
     <Controller
       control={control}
       name={name}
+      defaultValue={selectedOption}
       render={({ field: { onChange, value } }) => (
         <View>
           {options.map((option) => {

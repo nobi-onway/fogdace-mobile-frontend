@@ -17,6 +17,11 @@ export default function ChatRoomCard({ room }) {
   const last_message_of =
     last_message.from === cur_user_id ? "Bạn" : with_user.name;
 
+  const message =
+    typeof last_message.message === "string"
+      ? last_message.message
+      : "Đã gửi một yêu cầu trao đổi thú cưng";
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -28,7 +33,7 @@ export default function ChatRoomCard({ room }) {
       <View style={styles.content_wrapper}>
         <Text style={styles.user_name}>{name}</Text>
         <Text style={styles.last_message}>
-          {`${last_message_of}: ${last_message.message}`}
+          {`${last_message_of}: ${message}`}
         </Text>
       </View>
       <View>

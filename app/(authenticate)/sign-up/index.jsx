@@ -1,7 +1,7 @@
 import { Dimensions, Text } from "react-native";
-import { ContentContainer } from "../../components/elements";
-import { SignUpForm } from "../../components/blocks";
-import styles from "../global.style";
+import { ContentContainer } from "../../../components/elements";
+import { SignUpForm } from "../../../components/blocks";
+import styles from "../../global.style";
 
 function SignUp() {
   return (

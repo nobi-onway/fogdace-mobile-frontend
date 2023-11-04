@@ -1,5 +1,11 @@
 import React from "react";
-import { FontAwesome5, Ionicons, Feather, AntDesign, MaterialIcons } from "@expo/vector-icons";
+import {
+  FontAwesome5,
+  Ionicons,
+  Feather,
+  AntDesign,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { COLORS, ICONS, SIZES } from "../../../constants";
 
 import { View, Image } from "react-native";
@@ -73,23 +79,23 @@ const types = {
     color: COLORS.white,
     size: SIZES.medium,
   },
-  born:{
+  born: {
     component: Image,
     src: ICONS.born_img,
     size: SIZES.large,
     icon: ICONS.feather_activity,
     color: COLORS.white,
     height: 35,
-    width: 35
+    width: 35,
   },
-  pills:{
+  pills: {
     component: Image,
     src: ICONS.pills_img,
     size: SIZES.large,
     icon: ICONS.feather_activity,
     color: COLORS.white,
     height: 15,
-    width: 15
+    width: 15,
   },
   right: {
     component: AntDesign,
@@ -114,6 +120,24 @@ const types = {
     icon: ICONS.ionIcons_image,
     color: COLORS.lightBlack,
     size: SIZES.large,
+  },
+  swap: {
+    component: Ionicons,
+    icon: ICONS.ionIcons_swap,
+    color: COLORS.black,
+    size: SIZES.large,
+  },
+  image_gallery_xl: {
+    component: Ionicons,
+    icon: ICONS.ionIcons_image,
+    color: COLORS.lightBlack,
+    size: 40,
+  },
+  share_social: {
+    component: Ionicons,
+    icon: ICONS.ionIcons_share_social,
+    color: COLORS.lightGray,
+    size: SIZES.xxLarge,
   },
 };
 

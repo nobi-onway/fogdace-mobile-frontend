@@ -11,12 +11,18 @@ const types = {
     tertiary: {
         backgroundColor: COLORS.tertiary,
     },
+    brown: {
+        backgroundColor: COLORS.lightBrown,
+    },
     basic: {
         backgroundColor: COLORS.white,
         borderWidth: 2,
         borderColor: COLORS.gray,
     },
     disable: {
+        backgroundColor: COLORS.lightGray,
+    },
+    cancel: {
         backgroundColor: COLORS.lightGray,
     }
 }
@@ -27,6 +33,7 @@ const contentColor = {
     tertiary: COLORS.white,
     basic: COLORS.black,
     disable: COLORS.white,
+    brown: COLORS.lightYellow,
 }
 
 const styles = StyleSheet.create({
@@ -41,8 +48,7 @@ const styles = StyleSheet.create({
     }),
     content: (type) => ({
         fontSize: SIZES.medium,
-        fontWeight: 'bold',
-        fontFamily: FONTS.medium,
+        fontFamily: FONTS.bold,
         color: contentColor[type],
     }),
 })

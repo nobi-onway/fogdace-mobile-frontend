@@ -5,13 +5,15 @@ import {
   ScrollableContentContainer,
   SupportItemCard,
 } from "../../../components/elements";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   PetAppendProfileCard,
   PetBriefCard,
   UserBriefCard,
 } from "../../../components/blocks";
 import { COLORS } from "../../../constants";
+import useUser from "../../../hooks/useUser";
+import useNavigation from "../../../hooks/useNavigation";
 
 const SUPPORT_LIST = [
   "wish_list",
@@ -25,48 +27,39 @@ const SUPPORT_LIST = [
 const OPTION_RIGHT_LIST = ["NFC", "shopping_options", "pet_services", "clubs"];
 const OPTION_LEFT_LIST = ["pet_report_lost"];
 
-const MY_PETS = [
-  {
-    component: PetBriefCard,
-    props: {
-      pet: {
-        avatar:
-          "https://opet.com.vn/wp-content/uploads/2022/03/meo-anh-long-ngan-opet-15.jpg",
-        name: "Kem",
-        type: "Mèo Anh Lông ngắn",
-      },
-    },
-  },
-  {
-    component: PetBriefCard,
-    props: {
-      pet: {
-        avatar:
-          "https://matpetfamily.com/wp-content/uploads/2022/08/10016876d8a41dfa44b5.jpg",
-        name: "Su",
-        type: "Mèo Golden",
-      },
-    },
-  },
-  {
-    component: PetAppendProfileCard,
-    props: {},
-  },
-];
-
 function Menu() {
+  const { go_to_pet_profile_of } = useNavigation();
+  const [myPets, setMyPets] = useState([]);
+  const { get_my_pets } = useUser();
+
+  useEffect(() => {
+    const fetch_data = async () => {
+      const pets_data = await get_my_pets();
+
+      setMyPets([...pets_data, undefined]);
+    };
+
+    fetch_data();
+  }, []);
+
   return (
     <ScrollableContentContainer color={COLORS.white}>
       <UserBriefCard />
       <FlatList
-        data={MY_PETS}
+        data={myPets}
         horizontal
         contentContainerStyle={{ columnGap: 12 }}
         style={{ paddingVertical: 16, paddingLeft: 4 }}
         renderItem={({ item: pet }) => {
-          const { component: Component, props } = pet;
+          if (!pet) return <PetAppendProfileCard />;
 
-          return <Component key={pet.id} {...props} />;
+          return (
+            <PetBriefCard
+              key={pet.id}
+              pet={pet}
+              onPress={() => go_to_pet_profile_of(pet._id)}
+            />
+          );
         }}
       />
       <View style={{ flexDirection: "row", columnGap: 12, marginTop: 40 }}>

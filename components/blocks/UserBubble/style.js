@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         padding: 4,
     },
     name: {
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: FONTS.bold,
         textAlign: 'center',
     }

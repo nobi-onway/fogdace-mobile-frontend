@@ -1,5 +1,5 @@
 import { ImageBackground, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS, IMAGES } from "../../../../constants";
 import { Stack } from "expo-router";
 import {
@@ -10,7 +10,17 @@ import { PetIdentifyCard } from "../../../../components/blocks";
 import usePetTrading from "../../../../hooks/usePetTrading";
 
 export default function Trading() {
-  const { pets_trading } = usePetTrading();
+  const [pets, setPets] = useState([]);
+  const { get_pets_trading } = usePetTrading();
+
+  useEffect(() => {
+    const fetch_data = async () => {
+      const pets_data = await get_pets_trading();
+      setPets(pets_data);
+    };
+
+    fetch_data();
+  }, []);
 
   return (
     <ScrollableContentContainer
@@ -32,7 +42,7 @@ export default function Trading() {
           padding: 16,
         }}
       >
-        {pets_trading.map((pet, index) => (
+        {pets.map((pet, index) => (
           <View key={`${pet.id} + ${index}`}>
             <PetIdentifyCard pet={pet} />
           </View>

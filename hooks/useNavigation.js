@@ -14,6 +14,7 @@ function useNavigation() {
     const go_to_knowledge_detail_of = (info) => router.push({ pathname: '/knowledge/detail', params: info })
     const go_to_trading = () => router.push('/trading')
     const go_to_chat = () => router.push('/chat')
+    const go_to_chat_with = (info) => router.push({ pathname: '/chat', params: info });
     const go_to_room_chat_with = (info) => router.push({ pathname: '/chat/room-chat', params: info })
     const go_to_add_profile_pet = () => router.push("/add-profile-pet");
     const go_to_pet_list = () => router.push("/add-profile-pet/pet-list");
@@ -24,12 +25,17 @@ function useNavigation() {
     const go_to_my_cart = () => router.push("/shopping-option/cart");
     const go_to_address_book = () => router.push("/shopping-option/address-book");
     const go_to_payment_method = () => router.push("/shopping-option/payment-method");
+    const go_to_pet_profile_of = (id) => router.push({ pathname: "/pet-profile", params: { id: id } })
+    const go_to_completing_profile = (info) => router.push({ pathname: "/sign-up/completing-profile", params: info })
     const go_to_add_address = () => router.push("/shopping-option/add-new-address");
     const go_to_checkout = (checkoutData) => router.push({ pathname: '/checkout', params: checkoutData })
     const go_to_create_order = (orderDetail) => router.push({ pathname: "/checkout/create-order-success", params: orderDetail });
 
 
     return {
+        go_to_chat_with,
+        go_to_completing_profile,
+        go_to_pet_profile_of,
         go_to_chat,
         go_to_room_chat_with,
         go_back,

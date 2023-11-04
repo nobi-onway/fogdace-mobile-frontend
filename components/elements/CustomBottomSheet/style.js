@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    contentContainer: {
+	contentContainer: {
 		flex: 1,
-        backgroundColor: 'white'
+		backgroundColor: 'white'
 	},
 	containerHeadline: {
 		fontSize: 24,

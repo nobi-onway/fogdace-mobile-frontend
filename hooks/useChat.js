@@ -4,15 +4,19 @@ import { FIREBASE_DATABASE } from "../config/firebase";
 import { uuidv4 } from "@firebase/util";
 import moment from "moment/moment";
 
+const USER_REF = ref(FIREBASE_DATABASE, "users/");
+const CHAT_LIST_REF = (from, to) => ref(FIREBASE_DATABASE, "chat_list/" + from + "/" + to);
+const MESSAGES_IN_ROOM_REF = (room_id) => ref(FIREBASE_DATABASE, "messages/" + room_id);
+const MESSAGE_REF = (room_id, key) => ref(FIREBASE_DATABASE, "messages/" + room_id + "/" + key);
+
 function useChat() {
     const { info } = userStore()
 
     const { _id: cur_user_id } = info;
 
     const get_all_users = (callback) => {
-        const userRef = ref(FIREBASE_DATABASE, "users/");
         onValue(
-            userRef,
+            USER_REF,
             (snapshot) => {
                 const data = Object.values(snapshot.val());
                 callback(data);
@@ -24,51 +28,80 @@ function useChat() {
     const create_room_chat_with = async (user) => {
         const room_id = uuidv4();
 
-        await update(
-            ref(
-                FIREBASE_DATABASE,
-                "chat_list/" + user._id + "/" + cur_user_id
-            ),
-            {
-                room_id: room_id,
-                with_user: info,
-                last_message: {
-                    message: ""
-                },
+        const room_data = (with_user) => ({
+            room_id: room_id,
+            with_user: with_user,
+            last_message: {
+                message: "",
+                from: cur_user_id,
+                to: with_user._id,
+                send_time: moment().format()
             }
+        })
+
+        await update(
+            CHAT_LIST_REF(user._id, cur_user_id),
+            room_data(info)
         );
 
         await update(
-            ref(
-                FIREBASE_DATABASE,
-                "chat_list/" + cur_user_id + "/" + user._id
-            ),
-            {
-                room_id: room_id,
-                with_user: user,
-                last_message: {
-                    message: ""
-                },
-            }
+            CHAT_LIST_REF(cur_user_id, user._id),
+            room_data(user)
         );
 
         return room_id;
     }
 
     const get_chat_list = (callback) => {
-        const chat_list_ref = ref(
-            FIREBASE_DATABASE,
-            "chat_list/" + cur_user_id
-        );
-
-        onValue(chat_list_ref, (snapshot) => {
-            const users = Object.values(snapshot.val());
+        onValue(CHAT_LIST_REF(cur_user_id, ""), (snapshot) => {
+            const users = snapshot.val() ? Object.values(snapshot.val()) : [];
 
             callback(users);
         });
     }
 
-    const send_text_message_to = async (room_id, user_id, message) => {
+    const listen_messages_in_room = (room_id, callback) => {
+        const group_by_user = (list) => {
+            const result = [];
+            let cur_group = null;
+
+            list.forEach((item) => {
+                const { from, send_time, message, type, room_id, id } = item;
+
+                if (!cur_group || cur_group.from !== from) {
+                    cur_group = {
+                        from: from,
+                        messages: [],
+                        send_time: send_time,
+                    };
+                    result.push(cur_group);
+                }
+
+                cur_group.messages.push({ message: JSON.stringify(message), room_id, type, message_key: id });
+            });
+
+            return result;
+        };
+
+        onValue(MESSAGES_IN_ROOM_REF(room_id), (snapshot) => {
+            if (!snapshot.val()) return;
+            const data = Object.values(snapshot.val());
+            const new_data = group_by_user(data);
+
+            callback(new_data);
+        });
+    }
+
+    const update_message = async (room_id, message_key, message) => {
+        const message_data = {
+            message: message,
+            send_time: moment().format(),
+        };
+
+        update(MESSAGE_REF(room_id, message_key), message_data)
+    }
+
+    const send_message_to = async (room_id, user_id, message, type = 'text') => {
         const new_message_key = push(
             child(ref(FIREBASE_DATABASE), "messages/" + room_id)
         ).key;
@@ -80,7 +113,7 @@ function useChat() {
             from: cur_user_id,
             to: user_id,
             send_time: moment().format(),
-            type: "text",
+            type: type,
         };
 
         const updates = {};
@@ -93,24 +126,18 @@ function useChat() {
             };
 
             update(
-                ref(
-                    FIREBASE_DATABASE,
-                    "chat_list/" + cur_user_id + "/" + user_id
-                ),
+                CHAT_LIST_REF(cur_user_id, user_id),
                 chat_list_update
             );
 
             update(
-                ref(
-                    FIREBASE_DATABASE,
-                    "chat_list/" + user_id + "/" + cur_user_id
-                ),
+                CHAT_LIST_REF(user_id, cur_user_id),
                 chat_list_update
             );
         });
     };
 
-    return { create_room_chat_with, get_chat_list, send_text_message_to, get_all_users };
+    return { update_message, create_room_chat_with, get_chat_list, send_message_to, get_all_users, listen_messages_in_room };
 }
 
 export default useChat;

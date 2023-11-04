@@ -5,62 +5,66 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { onValue, ref } from "@firebase/database";
-import { FIREBASE_DATABASE } from "../../../../config/firebase";
 import useChat from "../../../../hooks/useChat";
 import { ContentContainer } from "../../../../components/elements";
 import {
   MessageComposer,
   MessageContainer,
+  PetTradingForm,
 } from "../../../../components/blocks";
 import { userStore } from "../../../../stores/userStore";
+import CustomBottomSheet from "../../../../components/elements/CustomBottomSheet";
 
 export default function RoomChat() {
   const params = useLocalSearchParams();
   const { info } = userStore();
-  const { _id, name, avatar, username, room_id } = params;
+  const { _id, name, avatar, room_id } = params;
 
-  const { send_text_message_to } = useChat();
+  const { send_message_to, listen_messages_in_room } = useChat();
 
   const [messages, setMessages] = useState([]);
 
+  const order_trading_sheet = useRef(null);
+
   const handleSendMessage = async (message) => {
-    send_text_message_to(room_id, _id, message);
+    send_message_to(room_id, _id, message);
+  };
+
+  const handleRequestTrading = async (form_data) => {
+    const {
+      accepter,
+      code,
+      fee_payer,
+      fee_payer_name,
+      price,
+      requester,
+      items,
+    } = form_data;
+
+    const message_data = {
+      requester_pet_id: requester.pet_id || "",
+      accepter_pet_id: accepter.pet_id || "",
+      requester: requester._id,
+      accepter: accepter._id,
+      items: items.length > 0 ? items : "Không có",
+      deposits: 100,
+      price: price,
+      fee_payer: fee_payer,
+      fee_payer_name: fee_payer_name,
+      code: code,
+      status: 0,
+    };
+
+    await send_message_to(room_id, _id, message_data, "order");
+
+    order_trading_sheet.current.close();
   };
 
   useEffect(() => {
-    const chatListRef = ref(FIREBASE_DATABASE, "messages/" + room_id);
-
-    const group_by_user = (list) => {
-      const result = [];
-      let cur_group = null;
-
-      list.forEach((item) => {
-        const { from, send_time, message } = item;
-
-        if (!cur_group || cur_group.from !== from) {
-          cur_group = {
-            from: from,
-            messages: [],
-            send_time: send_time,
-          };
-          result.push(cur_group);
-        }
-
-        cur_group.messages.push(message);
-      });
-
-      return result;
-    };
-
-    onValue(chatListRef, (snapshot) => {
-      if (!snapshot.val()) return;
-      const data = Object.values(snapshot.val());
-      const new_data = group_by_user(data);
-
-      setMessages(new_data);
+    listen_messages_in_room(room_id, (messages) => {
+      setMessages(messages);
     });
   }, []);
 
@@ -79,7 +83,7 @@ export default function RoomChat() {
       >
         <ScrollView>
           {messages.map((item, index) => {
-            const { from, messages } = item;
+            const { from } = item;
 
             const is_user = !(from === _id);
 
@@ -91,16 +95,29 @@ export default function RoomChat() {
                 }}
                 key={`${from} + ${index}`}
               >
-                <MessageContainer
-                  messages={messages}
-                  user={user}
-                  isUser={is_user}
-                />
+                <MessageContainer message={item} user={user} isUser={is_user} />
               </View>
             );
           })}
         </ScrollView>
-        <MessageComposer handleSendMessage={handleSendMessage} />
+        <MessageComposer
+          handleSendMessage={handleSendMessage}
+          handleRequestTrading={() => order_trading_sheet.current.expand()}
+        />
+
+        <CustomBottomSheet ref={order_trading_sheet}>
+          <KeyboardAvoidingView
+            enabled
+            keyboardVerticalOffset={200}
+            behavior="position"
+          >
+            <PetTradingForm
+              requester={info}
+              accepter={{ _id, avatar, name }}
+              onSubmitForm={handleRequestTrading}
+            />
+          </KeyboardAvoidingView>
+        </CustomBottomSheet>
       </View>
     </ContentContainer>
   );
